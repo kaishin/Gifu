@@ -28,11 +28,11 @@ extension UIImageView {
   }
 
   // MARK: - Setter Functions
-  func setAnimatedImage(named name: String) {
+  func setAnimatableImage(named name: String) {
     image = AnimatedImage.imageWithName(name, delegate: self)
   }
 
-  func setAnimatedImage(#data: NSData) {
+  func setAnimatableImage(#data: NSData) {
     image = AnimatedImage.imageWithData(data, delegate: self)
   }
 
