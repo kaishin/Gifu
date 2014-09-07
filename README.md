@@ -36,7 +36,14 @@ imageView.setAnimatableImage(named: "computer-kid.gif")
 imageView.setAnimatableImage(data: NSData(...))
 ```
 
-You can find a demo app [here](https://github.com/kaishin/gifu-demo).
+You can start/stop the animation using `UIImageView`'s `startAnimating()` and
+`stopAnimating()`.
+
+You can find a demo [here](https://github.com/kaishin/gifu-demo) (requires Xcode 6 Beta-7).
+
+#### Compatibility
+
+- iOS 7+
 
 #### To-do
 
