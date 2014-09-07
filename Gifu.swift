@@ -68,11 +68,11 @@ class AnimatedImage: UIImage {
   private func prepareFrames(source: CGImageSource!) {
     imageSource = source
 
-    let numberOfFrames = CGImageSourceGetCount(self.imageSource)
-    frameDurations.reserveCapacity(Int(numberOfFrames))
-    frames.reserveCapacity(Int(numberOfFrames))
+    let numberOfFrames = Int(CGImageSourceGetCount(self.imageSource))
+    frameDurations.reserveCapacity(numberOfFrames)
+    frames.reserveCapacity(numberOfFrames)
 
-    for index in 0..<Int(numberOfFrames) {
+    for index in 0..<numberOfFrames {
       let frameDuration = CGImageSourceGIFFrameDuration(source, index)
       frameDurations.append(frameDuration)
       totalDuration += frameDuration
