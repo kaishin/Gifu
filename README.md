@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/kaishin/gifu/master/logo.svg" width="100" />
+<img src="https://dl.dropboxusercontent.com/u/148921/assets/logo.svg" width="100" />
 
 Adds animated GIF support to UIKit. For the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
