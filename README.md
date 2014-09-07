@@ -1,8 +1,9 @@
-<img src="https://dl.dropboxusercontent.com/u/148921/logo.svg" width="100" />
+<img src="https://raw.githubusercontent.com/kaishin/gifu/master/logo.svg" width="100" />
 
 Adds animated GIF support to UIKit. For the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
 #### Why?
+
 Because Apple's `+animatedImage*` sucks, and the few third party implementations that
 got it right (see [Credits](#credits)) still require you to use a `UIImageView` subclass.
 
@@ -17,8 +18,7 @@ The figure below summarizes how this works in practice. Given an image
 containing 10 frames, Gifu will load the current frame (red), pre-load the next two frames (orange),
 and nullify all the other frames to free up memory (gray):
 
-<img src="https://dl.dropboxusercontent.com/u/148921/figure.gif" width="300" />
-
+<img src="https://raw.githubusercontent.com/kaishin/gifu/master/figure.gif" width="300" />
 
 #### Usage
 
@@ -35,6 +35,8 @@ imageView.setAnimatableImage(named: "computer-kid.gif")
 // or
 imageView.setAnimatableImage(data: NSData(...))
 ```
+
+You can find a demo app [here](https://github.com/kaishin/gifu-demo).
 
 #### To-do
 
