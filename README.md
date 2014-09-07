@@ -1,4 +1,5 @@
 <img src="https://dl.dropboxusercontent.com/u/148921/logo.svg" width="100" />
+
 Adds animated GIF support to UIKit. For the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
 #### Why?
