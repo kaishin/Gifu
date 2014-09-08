@@ -15,7 +15,7 @@ frames in-memory, which exponentially minimizes memory usage for large GIF files
 frames).
 
 The figure below summarizes how this works in practice. Given an image
-containing 10 frames, Gifu will load the current frame (red), pre-load the next two frames (orange),
+containing 10 frames, Gifu will load the current frame (red), pre-load the next two frames in this example (orange),
 and nullify all the other frames to free up memory (gray):
 
 <img src="https://raw.githubusercontent.com/kaishin/gifu/master/figure.gif" width="300" />
