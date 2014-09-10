@@ -1,0 +1,17 @@
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xccheckout
+xcuserdata
+build/
+*.o
+*.LinkFileList
+*.hmap
+*~.nib/
+*.swp
+*~
+*.dat
+*.dep

@@ -1,6 +1,6 @@
-<img src="https://dl.dropboxusercontent.com/u/148921/assets/logo.svg" width="100" />
+<img src="https://db.tt/mZ1iMNXO" width="100" />
 
-Adds performant animated GIF support to UIKit, without subclassing `UIImageView`.  Check out the __[demo](#demo-app)__. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
+Adds performant animated GIF support to UIKit, without subclassing `UIImageView`. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
 #### Why?
 
@@ -17,7 +17,7 @@ The figure below summarizes how this works in practice. Given an image
 containing 10 frames, Gifu will load the current frame (red), pre-load the next two frames in this example (orange),
 and nullify all the other frames to free up memory (gray):
 
-<img src="https://raw.githubusercontent.com/kaishin/gifu/master/figure.gif" width="300" />
+<img src="https://db.tt/ZLfx23hg" width="300" />
 
 #### Usage
 
@@ -42,9 +42,7 @@ The `isAnimating()` method returns the current animation state of the view.
 
 #### Demo App
 
-For an example, check out the demo app [here](https://github.com/kaishin/gifu/tree/demo) (requires Xcode 6).
-
-<img src="https://raw.githubusercontent.com/kaishin/gifu/demo/demo.gif" width="300" />
+<img src="https://db.tt/ZoUNLHGp" width="300" />
 
 #### Compatibility
 
