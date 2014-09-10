@@ -27,7 +27,7 @@ extension UIImageView {
     }
   }
 
-  // MARK: - Setter Functions
+  // MARK: - Setter Methods
   func setAnimatableImage(named name: String) {
     image = AnimatedImage.imageWithName(name, delegate: self)
   }
