@@ -39,7 +39,7 @@ imageView.setAnimatableImage(data: NSData(...))
 You can start/stop the animation using `UIImageView`'s `startAnimating()` and
 `stopAnimating()`.
 
-You can find a demo [here](https://github.com/kaishin/gifu/tree/demo) (requires Xcode 6 Beta-7).
+You can find a demo in this [branch](https://github.com/kaishin/gifu/tree/demo) (requires Xcode 6).
 
 <img src="https://raw.githubusercontent.com/kaishin/gifu/demo/demo.gif" width="300" />
 
@@ -65,8 +65,7 @@ Needless to say, you are welcome to contribute.
 
 - Kudos to my colleague [Tony DiPasquale](https://github.com/tonyd256) for helping out with the factory methods.
 
-- The characters used in the icon and example image in the demo are from [Samurai Champloo](https://en.wikipedia.org/wiki/Samurai_Champloo). The name and characters are property of their respective owners.
-
+- The characters used in the icon and example image in the demo are from [Samurai Champloo](https://en.wikipedia.org/wiki/Samurai_Champloo).
 #### License
 
 See LICENSE.
