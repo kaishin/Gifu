@@ -30,22 +30,24 @@ extension UIImageView {
   // MARK: - Setter Methods
   func setAnimatableImage(named name: String) {
     image = AnimatedImage.imageWithName(name, delegate: self)
+    layer.setNeedsDisplay()
   }
 
   func setAnimatableImage(#data: NSData) {
     image = AnimatedImage.imageWithData(data, delegate: self)
+    layer.setNeedsDisplay()
   }
 
   // MARK: - Animation
   func startAnimating() {
     if animatable {
-      animatableImage!.startAnimating()
+      animatableImage!.resumeAnimation()
     }
   }
 
   func stopAnimating() {
     if animatable {
-      animatableImage!.stopAnimating()
+      animatableImage!.pauseAnimation()
     }
   }
 }

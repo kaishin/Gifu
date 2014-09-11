@@ -41,10 +41,9 @@ class AnimatedImage: UIImage {
       super.init()
       attachDisplayLink()
       prepareFrames(imageSource)
-      startAnimating()
+      pauseAnimation()
     } else {
       super.init(data: data)
-      stopAnimating()
     }
   }
 
@@ -91,7 +90,6 @@ class AnimatedImage: UIImage {
     if Int(index) >= self.frames.count { return nil }
 
     var image: UIImage? = self.frames[Int(index)]
-
     updatePreloadedFramesAtIndex(index)
 
     return image
@@ -135,11 +133,11 @@ class AnimatedImage: UIImage {
   }
 
   // MARK: - Animation
-  func stopAnimating() {
+  func pauseAnimation() {
     displayLink.paused = true
   }
 
-  func startAnimating() {
+  func resumeAnimation() {
     displayLink.paused = false
   }
 
