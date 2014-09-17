@@ -1,11 +1,10 @@
 <img src="https://dl.dropboxusercontent.com/u/148921/assets/logo.svg" width="100" />
 
-Adds animated GIF support to UIKit. For the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
+Adds performant animated GIF support to UIKit, without subclassing `UIImagevIew`. For the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
 #### Why?
 
-Because Apple's `+animatedImage*` sucks, and the few third party implementations that
-got it right (see [Credits](#credits)) still require you to use a `UIImageView` subclass.
+Because Apple's `+animatedImage*` is not meant to be used for animated GIFs (loads all the frames in memory), and the few third party implementations that got it right (see [Credits](#credits)) still require you to use a `UIImageView` subclass, which is not very flexible and might clash with other application-specific functionality.
 
 #### How?
 
