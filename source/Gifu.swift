@@ -14,7 +14,7 @@ class AnimatedImage: UIImage {
 
   // MARK: - Private Properties
   private lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: "updateCurrentFrame")
-  private lazy var preloadFrameQueue: dispatch_queue_t = dispatch_queue_create("co.kaishin.GIFPreloadImages", DISPATCH_QUEUE_SERIAL)
+  private lazy var preloadFrameQueue = dispatch_queue_create("co.kaishin.GIFPreloadImages", DISPATCH_QUEUE_SERIAL)
   private var currentFrameIndex = 0
   private var imageSource: CGImageSource?
   private var timeSinceLastFrameChange: NSTimeInterval = 0.0
