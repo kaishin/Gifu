@@ -1,6 +1,6 @@
 <img src="https://dl.dropboxusercontent.com/u/148921/assets/logo.svg" width="100" />
 
-Adds performant animated GIF support to UIKit, without subclassing `UIImagevIew`. For the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
+Adds performant animated GIF support to UIKit, without subclassing `UIImagevIew`. For the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc). Checkout the __[demo](#demo-app)__.
 
 #### Why?
 
@@ -39,6 +39,8 @@ on it. You can stop the animation anytime using `stopAnimating()`, and resume
 it using `startAnimating()`.
 
 The `isAnimating()` method returns the current animation state of the view.
+
+#### Demo App
 
 For an example, check out the demo app [here](https://github.com/kaishin/gifu/tree/demo) (requires Xcode 6).
 
