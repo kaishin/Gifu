@@ -1,6 +1,6 @@
 <img src="https://dl.dropboxusercontent.com/u/148921/assets/logo.svg" width="100" />
 
-Adds performant animated GIF support to UIKit, without subclassing `UIImagevIew`. For the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc). Checkout the __[demo](#demo-app)__.
+Adds performant animated GIF support to UIKit, without subclassing `UIImageView`.  Check out the __[demo](#demo-app)__. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
 #### Why?
 
