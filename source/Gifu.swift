@@ -50,11 +50,11 @@ class AnimatedImage: UIImage {
   // MARK: - Factories
   class func imageWithName(name: String, delegate: UIImageView?) -> Self? {
     let path = NSBundle.mainBundle().bundlePath.stringByAppendingPathComponent(name)
-    
+
     if let data = NSData(contentsOfFile: path) {
-        return imageWithData(data, delegate: delegate)
+      return imageWithData(data, delegate: delegate)
     }
-    
+
     return nil
   }
 
