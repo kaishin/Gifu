@@ -14,13 +14,13 @@ func CGImageSourceGIFFrameDuration(imageSource: CGImageSource, index: Int) -> NS
 
   var duration = 0.0
   let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, UInt(index), nil) as NSDictionary
-  let GIFProperties: NSDictionary? = imageProperties[kCGImagePropertyGIFDictionary] as? NSDictionary
+  let GIFProperties: NSDictionary? = imageProperties.objectForKey(kCGImagePropertyGIFDictionary) as? NSDictionary
 
   if let properties = GIFProperties {
-    duration = properties[kCGImagePropertyGIFUnclampedDelayTime] as Double
+    duration = properties.valueForKey(kCGImagePropertyGIFUnclampedDelayTime) as Double
 
     if duration <= 0 {
-      duration = properties[kCGImagePropertyGIFDelayTime] as Double
+      duration = properties.valueForKey(kCGImagePropertyGIFDelayTime) as Double
     }
   }
 
