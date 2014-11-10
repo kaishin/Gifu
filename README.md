@@ -34,11 +34,13 @@ imageView.setAnimatableImage(named: "computer-kid.gif")
 // imageView.setAnimatableImage(data: NSData(...))
 ```
 
-The image view will not start animating until you call `startAnimating()`
-on it. You can stop the animation anytime using `stopAnimating()`, and resume
-it using `startAnimating()`.
+The image view will not start animating until you call `startAnimatingGIF()`
+on it. You can stop the animation anytime using `stopAnimatingGIF()`, and resume
+it using `startAnimatingGIF()`. These methods will fallback to UIKit's `startAnimating()` and `stopAnimating()`
+if the image view has no animatable image.
 
-The `isAnimating()` method returns the current animation state of the view.
+Likewise, the `isAnimatingGIF()` method returns the current animation state of the view if it has an animatable image,
+or UIKit's `isAnimating()` otherwise.
 
 #### Demo App
 
