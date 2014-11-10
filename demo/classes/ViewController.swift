@@ -8,17 +8,17 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     imageView.setAnimatableImage(named: "mugen.gif")
-    imageView.startAnimating()
+    imageView.startAnimatingGIF()
     UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
   }
 
   @IBAction func toggleAnimation(button: UIButton) {
-    if imageView.isAnimating {
-      imageView.stopAnimating()
+    if imageView.isAnimatingGIF {
+      imageView.stopAnimatingGIF()
       button.layer.backgroundColor = UIColor.whiteColor().CGColor
       button.setTitleColor(UIColor.blackColor(), forState: .Normal)
     } else {
-      imageView.startAnimating()
+      imageView.startAnimatingGIF()
       button.layer.backgroundColor = UIColor.clearColor().CGColor
       button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     }

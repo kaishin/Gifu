@@ -10,8 +10,8 @@ extension UIImageView {
     }
   }
 
-  var isAnimating: Bool {
-    return animatableImage?.isAnimating() ?? false
+  var isAnimatingGIF: Bool {
+    return animatableImage?.isAnimating() ?? isAnimating()
   }
 
   var animatable: Bool {
@@ -39,15 +39,19 @@ extension UIImageView {
   }
 
   // MARK: - Animation
-  func startAnimating() {
+  func startAnimatingGIF() {
     if animatable {
       animatableImage!.resumeAnimation()
+    } else {
+      startAnimating()
     }
   }
 
-  func stopAnimating() {
+  func stopAnimatingGIF() {
     if animatable {
       animatableImage!.pauseAnimation()
+    } else {
+      stopAnimating()
     }
   }
 }
