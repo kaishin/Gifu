@@ -1,6 +1,6 @@
 import UIKit
 
-extension UIImageView {
+public extension UIImageView {
   // MARK: - Computed Properties
   var animatableImage: AnimatedImage? {
     if image is AnimatedImage {

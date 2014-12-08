@@ -1,9 +1,7 @@
-// Gifu 0.6.1
-
 import UIKit
 import ImageIO
 
-class AnimatedImage: UIImage {
+public class AnimatedImage: UIImage {
   // MARK: - Constants
   let framesToPreload = 10
   let maxTimeStep = 1.0
@@ -31,11 +29,11 @@ class AnimatedImage: UIImage {
   }
 
   // MARK: - Initializers
-  required init(coder aDecoder: NSCoder) {
+  required public init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
 
-  required init(data: NSData, delegate: UIImageView?) {
+  required public init(data: NSData, delegate: UIImageView?) {
     let imageSource = CGImageSourceCreateWithData(data, nil)
     self.delegate = delegate
 
