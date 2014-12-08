@@ -1,4 +1,5 @@
 import UIKit
+import gifu
 
 class ViewController: UIViewController {
                             
