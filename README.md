@@ -19,12 +19,15 @@ and nullify all the other frames to free up memory (gray):
 
 <img src="https://db.tt/ZLfx23hg" width="300" />
 
+#### Install
+
+If you use [Carthage](https://github.com/Carthage/Carthage), add this to your `cartfile`: `github "kaishin/gifu"`.
+
+If your prefer Git submodules or want to support iOS 7, you want to add the files in `source` to your Xcode project.
+
 #### Usage
 
-Use git submodules or drag-and-drop the files in your Xcode project. I can't
-believe I'm saying this in 2014.
-
-Once done, you can call `setAnimatableImage(named:)` or
+Call `setAnimatableImage(named:)` or
 `setAnimatableImage(data:)` on your `UIImageView` (or its subclass):
 
 ```swift
