@@ -16,10 +16,10 @@
 /* Begin PBXFileReference section */
 		00B8C73E1A364DA400C188E7 /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00B8C7421A364DA400C188E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
-		00B8C75B1A364DCE00C188E7 /* Gifu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gifu.swift; path = ../Source/Gifu.swift; sourceTree = "<group>"; };
-		00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageSourceHelpers.swift; path = ../Source/ImageSourceHelpers.swift; sourceTree = "<group>"; };
-		00B8C75D1A364DCE00C188E7 /* UIImageView+Gifu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+Gifu.swift"; path = "../Source/UIImageView+Gifu.swift"; sourceTree = "<group>"; };
-		00B8C7951A3650EE00C188E7 /* Gifu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gifu.h; path = ../Source/Gifu.h; sourceTree = "<group>"; };
+		00B8C75B1A364DCE00C188E7 /* Gifu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gifu.swift; sourceTree = "<group>"; };
+		00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
+		00B8C75D1A364DCE00C188E7 /* UIImageView+Gifu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Gifu.swift"; sourceTree = "<group>"; };
+		00B8C7951A3650EE00C188E7 /* Gifu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gifu.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +36,8 @@
 		00B8C7341A364DA400C188E7 = {
 			isa = PBXGroup;
 			children = (
-				00B8C7401A364DA400C188E7 /* Gifu */,
+				00B8C75A1A364DBE00C188E7 /* Source */,
+				00B8C7411A364DA400C188E7 /* Supporting Files */,
 				00B8C73F1A364DA400C188E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,21 +50,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00B8C7401A364DA400C188E7 /* Gifu */ = {
-			isa = PBXGroup;
-			children = (
-				00B8C75A1A364DBE00C188E7 /* Source */,
-				00B8C7411A364DA400C188E7 /* Supporting Files */,
-			);
-			path = Gifu;
-			sourceTree = "<group>";
-		};
 		00B8C7411A364DA400C188E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				00B8C7421A364DA400C188E7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = Source;
 			sourceTree = "<group>";
 		};
 		00B8C75A1A364DBE00C188E7 /* Source */ = {
@@ -74,7 +67,7 @@
 				00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */,
 				00B8C75D1A364DCE00C188E7 /* UIImageView+Gifu.swift */,
 			);
-			name = Source;
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
