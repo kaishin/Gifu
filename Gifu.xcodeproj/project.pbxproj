@@ -123,7 +123,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00B8C7381A364DA400C188E7 /* Build configuration list for PBXProject "gifu" */;
+			buildConfigurationList = 00B8C7381A364DA400C188E7 /* Build configuration list for PBXProject "Gifu" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -287,7 +287,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00B8C7381A364DA400C188E7 /* Build configuration list for PBXProject "gifu" */ = {
+		00B8C7381A364DA400C188E7 /* Build configuration list for PBXProject "Gifu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00B8C7521A364DA500C188E7 /* Debug */,
