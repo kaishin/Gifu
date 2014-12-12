@@ -2,7 +2,7 @@ import UIKit
 import ImageIO
 import MobileCoreServices
 
-func CGImageSourceContainsAnimatedGIF(imageSource: CGImageSource) -> Bool {
+private func CGImageSourceContainsAnimatedGIF(imageSource: CGImageSource) -> Bool {
   let isTypeGIF = UTTypeConformsTo(CGImageSourceGetType(imageSource), kUTTypeGIF)
   let imageCount = CGImageSourceGetCount(imageSource)
   return isTypeGIF != 0 && imageCount > 1

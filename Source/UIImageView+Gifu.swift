@@ -3,11 +3,7 @@ import UIKit
 public extension UIImageView {
   // MARK: - Computed Properties
   var animatableImage: AnimatedImage? {
-    if image is AnimatedImage {
-      return image as? AnimatedImage
-    } else {
-      return nil
-    }
+    return image as? AnimatedImage
   }
 
   var isAnimatingGIF: Bool {
@@ -15,43 +11,27 @@ public extension UIImageView {
   }
 
   var animatable: Bool {
-    return animatableImage != nil
+    return animatableImage != .None
   }
 
   // MARK: - Method Overrides
   override public func displayLayer(layer: CALayer!) {
-    if let image = animatableImage {
-      if let frame = image.currentFrame {
-        layer.contents = frame.CGImage
-      }
-    }
+    layer.contents = animatableImage?.currentFrame?.CGImage
   }
 
   // MARK: - Setter Methods
-  func setAnimatableImage(named name: String) {
-    image = AnimatedImage.imageWithName(name, delegate: self)
-    layer.setNeedsDisplay()
-  }
-
-  func setAnimatableImage(#data: NSData) {
-    image = AnimatedImage.imageWithData(data, delegate: self)
+  public func setAnimatedImage(image: AnimatedImage) {
+    image.delegate = self
+    self.image = image
     layer.setNeedsDisplay()
   }
 
   // MARK: - Animation
   func startAnimatingGIF() {
-    if animatable {
-      animatableImage!.resumeAnimation()
-    } else {
-      startAnimating()
-    }
+    animatableImage?.resumeAnimation() ?? startAnimating()
   }
 
   func stopAnimatingGIF() {
-    if animatable {
-      animatableImage!.pauseAnimation()
-    } else {
-      stopAnimating()
-    }
+    animatableImage?.pauseAnimation() ?? stopAnimating()
   }
 }

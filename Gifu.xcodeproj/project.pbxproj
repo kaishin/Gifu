@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00B8C75E1A364DCE00C188E7 /* Gifu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75B1A364DCE00C188E7 /* Gifu.swift */; };
+		00B8C75E1A364DCE00C188E7 /* AnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75B1A364DCE00C188E7 /* AnimatedImage.swift */; };
 		00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */; };
 		00B8C7601A364DCE00C188E7 /* UIImageView+Gifu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75D1A364DCE00C188E7 /* UIImageView+Gifu.swift */; };
 		00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8C7951A3650EE00C188E7 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */; };
+		EAF49C811A3A4FAA00B395DF /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C801A3A4FAA00B395DF /* Functional.swift */; };
+		EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00B8C73E1A364DA400C188E7 /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00B8C7421A364DA400C188E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
-		00B8C75B1A364DCE00C188E7 /* Gifu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gifu.swift; sourceTree = "<group>"; };
+		00B8C75B1A364DCE00C188E7 /* AnimatedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedImage.swift; sourceTree = "<group>"; };
 		00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
 		00B8C75D1A364DCE00C188E7 /* UIImageView+Gifu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Gifu.swift"; sourceTree = "<group>"; };
 		00B8C7951A3650EE00C188E7 /* Gifu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gifu.h; sourceTree = "<group>"; };
+		EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		EAF49C801A3A4FAA00B395DF /* Functional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functional.swift; sourceTree = "<group>"; };
+		EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +69,12 @@
 			isa = PBXGroup;
 			children = (
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
-				00B8C75B1A364DCE00C188E7 /* Gifu.swift */,
+				00B8C75B1A364DCE00C188E7 /* AnimatedImage.swift */,
 				00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */,
 				00B8C75D1A364DCE00C188E7 /* UIImageView+Gifu.swift */,
+				EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */,
+				EAF49C801A3A4FAA00B395DF /* Functional.swift */,
+				EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -148,9 +157,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */,
 				00B8C7601A364DCE00C188E7 /* UIImageView+Gifu.swift in Sources */,
 				00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */,
-				00B8C75E1A364DCE00C188E7 /* Gifu.swift in Sources */,
+				EAF49C811A3A4FAA00B395DF /* Functional.swift in Sources */,
+				00B8C75E1A364DCE00C188E7 /* AnimatedImage.swift in Sources */,
+				EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
