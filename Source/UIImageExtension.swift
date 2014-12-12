@@ -10,6 +10,7 @@ extension UIImage {
   class func imageWithData(data: NSData, size: CGSize) -> UIImage? {
     return UIImage(data: data)?.resize(size)
   }
+
   class func sizeForImageData(data: NSData) -> CGSize? {
     return UIImage(data: data)?.size
   }
