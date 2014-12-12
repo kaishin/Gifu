@@ -8,8 +8,10 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    imageView.setAnimatableImage(named: "mugen.gif")
-    imageView.startAnimatingGIF()
+    if let image = AnimatedImage.animatedImageWithName("mugen.gif") {
+      imageView.setAnimatedImage(image)
+      imageView.startAnimatingGIF()
+    }
     UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
   }
 
