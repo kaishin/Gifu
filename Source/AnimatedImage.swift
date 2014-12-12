@@ -72,12 +72,16 @@ public class AnimatedImage: UIImage {
     let numberOfFrames = Int(CGImageSourceGetCount(imageSource))
     animatedFrames.reserveCapacity(numberOfFrames)
 
-    (animatedFrames, totalDuration) = reduce(0..<numberOfFrames, ([AnimatedFrame](), 0.0)) { accum, index in
+    (animatedFrames, totalDuration) = reduce(0..<numberOfFrames, ([AnimatedFrame](), 0.0)) { accumulator, index in
+      let accumulatedFrames = accumulator.0
+      let accumulatedDuration = accumulator.1
+
       let frameDuration = CGImageSourceGIFFrameDuration(imageSource, index)
       let frameImageRef = CGImageSourceCreateImageAtIndex(imageSource, UInt(index), nil)
       let frame = UIImage(CGImage: frameImageRef)?.resize(size)
       let animatedFrame = AnimatedFrame(image: frame, duration: frameDuration)
-      return (accum.0 + [animatedFrame], accum.1 + frameDuration)
+
+      return (accumulatedFrames + [animatedFrame], accumulatedDuration + frameDuration)
     }
   }
 
