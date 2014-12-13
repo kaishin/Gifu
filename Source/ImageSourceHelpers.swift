@@ -2,33 +2,53 @@ import UIKit
 import ImageIO
 import MobileCoreServices
 
-private func CGImageSourceContainsAnimatedGIF(imageSource: CGImageSource) -> Bool {
-  let isTypeGIF = UTTypeConformsTo(CGImageSourceGetType(imageSource), kUTTypeGIF)
-  let imageCount = CGImageSourceGetCount(imageSource)
-  return isTypeGIF != 0 && imageCount > 1
-}
+internal typealias GIFProperties = [String : Double]
+private let defaultDuration: Double = 0
 
 func CGImageSourceGIFFrameDuration(imageSource: CGImageSource, index: Int) -> NSTimeInterval {
-  let containsAnimatedGIF = CGImageSourceContainsAnimatedGIF(imageSource)
-  if !containsAnimatedGIF { return 0.0 }
+  if !imageSource.isAnimatedGIF { return 0.0 }
 
-  var duration = 0.0
-  let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, UInt(index), nil) as NSDictionary
-  let GIFProperties: NSDictionary? = imageProperties.objectForKey(kCGImagePropertyGIFDictionary) as? NSDictionary
+  let duration = imageSource.GIFPropertiesAtIndex(UInt(index))
+    >>- durationFromGIFProperties
+    >>- capDuration
 
-  if let properties = GIFProperties {
-    duration = properties.valueForKey(kCGImagePropertyGIFUnclampedDelayTime) as Double
+  return duration ?? defaultDuration
+}
 
-    if duration <= 0 {
-      duration = properties.valueForKey(kCGImagePropertyGIFDelayTime) as Double
-    }
-  }
-
+private func capDuration(duration: Double) -> Double? {
+  if duration < 0 { return .None }
   let threshold = 0.02 - Double(FLT_EPSILON)
+  let cappedDuration = duration < threshold ? 0.1 : duration
+  return cappedDuration
+}
 
-  if duration > 0 && duration < threshold {
-    duration = 0.1
+private func durationFromGIFProperties(properties: GIFProperties) -> Double? {
+  let unclampedDelayTime = properties[String(kCGImagePropertyGIFUnclampedDelayTime)]
+  let delayTime = properties[String(kCGImagePropertyGIFDelayTime)]
+
+  return duration <^> unclampedDelayTime <*> delayTime
+}
+
+private func duration(unclampedDelayTime: Double)(delayTime: Double) -> Double {
+  let delayArray = [unclampedDelayTime, delayTime]
+  return delayArray.filter(isPositive).first ?? defaultDuration
+}
+
+private func isPositive(value: Double) -> Bool {
+  return value >= 0
+}
+
+extension CGImageSourceRef {
+  var isAnimatedGIF: Bool {
+    let isTypeGIF = UTTypeConformsTo(CGImageSourceGetType(self), kUTTypeGIF)
+    let imageCount = CGImageSourceGetCount(self)
+    return isTypeGIF != 0 && imageCount > 1
   }
 
-  return duration
+  func GIFPropertiesAtIndex(index: UInt) -> GIFProperties? {
+    if !isAnimatedGIF { return .None }
+
+    let imageProperties = CGImageSourceCopyPropertiesAtIndex(self, index, nil) as Dictionary
+    return imageProperties[String(kCGImagePropertyGIFDictionary)] as? GIFProperties
+  }
 }
