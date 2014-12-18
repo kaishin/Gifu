@@ -3,27 +3,28 @@ import Gifu
 
 class ViewController: UIViewController {
                             
-  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var animatedView: AnimatedView!
   @IBOutlet weak var button: FlatButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    if let image = AnimatedImage.animatedImageWithName("mugen.gif") {
-      imageView.setAnimatedImage(image)
-      imageView.startAnimatingGIF()
+    let path = NSBundle.mainBundle().bundlePath.stringByAppendingPathComponent("mugen.gif")
+    if let data = NSData(contentsOfFile: path) {
+      animatedView.setAnimatedFrames(AnimatedFrame.createWithData(data, size: animatedView.frame.size))
+      animatedView.resumeAnimation()
     }
     
     UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
   }
 
   @IBAction func toggleAnimation(button: UIButton) {
-    if imageView.isAnimatingGIF {
-      imageView.stopAnimatingGIF()
+    if animatedView.isAnimating {
+      animatedView.pauseAnimation()
       button.layer.backgroundColor = UIColor.whiteColor().CGColor
       button.setTitleColor(UIColor.blackColor(), forState: .Normal)
     } else {
-      imageView.startAnimatingGIF()
+      animatedView.resumeAnimation()
       button.layer.backgroundColor = UIColor.clearColor().CGColor
       button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     }
