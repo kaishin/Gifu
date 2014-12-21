@@ -10,6 +10,10 @@ public class AnimatedImage: UIImage {
   var animatedFrames = [AnimatedFrame]()
   var totalDuration: NSTimeInterval = 0.0
 
+  override public var size: CGSize {
+    return frameAtIndex(0)?.size ?? CGSizeZero
+  }
+
   // MARK: - Private Properties
   private lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: "updateCurrentFrame")
   private var currentFrameIndex = 0
