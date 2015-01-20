@@ -1,5 +1,6 @@
 import UIKit
 import ImageIO
+import Runes
 
 public class AnimatedImage: UIImage {
   // MARK: - Constants

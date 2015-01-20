@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00B8C8381A36583600C188E7 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B8C8371A36583000C188E7 /* Gifu.framework */; };
-		00B8C8391A36583600C188E7 /* Gifu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00B8C8371A36583000C188E7 /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		005656EB1A6EE471008A0ED1 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005656EA1A6EE471008A0ED1 /* Gifu.framework */; };
 		9D25870819BCCB0F00A55A18 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9D25870619BCCB0F00A55A18 /* mugen.gif */; };
 		9D98823D19BC69CA00B790C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823C19BC69CA00B790C6 /* AppDelegate.swift */; };
 		9D98823F19BC69CA00B790C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823E19BC69CA00B790C6 /* ViewController.swift */; };
@@ -17,23 +16,6 @@
 		9D98826719BC874C00B790C6 /* FlatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98826619BC874C00B790C6 /* FlatButton.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		00B8C8361A36583000C188E7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00B8C8321A36583000C188E7 /* Gifu.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 00B8C73E1A364DA400C188E7;
-			remoteInfo = Gifu;
-		};
-		00B8C83A1A36583600C188E7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00B8C8321A36583000C188E7 /* Gifu.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 00B8C73D1A364DA400C188E7;
-			remoteInfo = Gifu;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		00B8C7331A364D4C00C188E7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -41,7 +23,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				00B8C8391A36583600C188E7 /* Gifu.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,7 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00B8C8321A36583000C188E7 /* Gifu.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gifu.xcodeproj; path = ../../Gifu.xcodeproj; sourceTree = "<group>"; };
+		005656EA1A6EE471008A0ED1 /* Gifu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gifu.framework; path = "../../build/Debug-iphoneos/Gifu.framework"; sourceTree = "<group>"; };
 		9D25870519BCCB0F00A55A18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D25870619BCCB0F00A55A18 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mugen.gif; sourceTree = "<group>"; };
 		9D98823719BC69CA00B790C6 /* gifu-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gifu-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,36 +46,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00B8C8381A36583600C188E7 /* Gifu.framework in Frameworks */,
+				005656EB1A6EE471008A0ED1 /* Gifu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00B8C7621A364E8C00C188E7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				00B8C8321A36583000C188E7 /* Gifu.xcodeproj */,
-			);
-			name = Frameworks;
-			path = demo;
-			sourceTree = "<group>";
-		};
-		00B8C8331A36583000C188E7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				00B8C8371A36583000C188E7 /* Gifu.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9D98822E19BC69CA00B790C6 = {
 			isa = PBXGroup;
 			children = (
 				9D98823919BC69CA00B790C6 /* Source */,
 				9D98823819BC69CA00B790C6 /* Products */,
-				00B8C7621A364E8C00C188E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +86,7 @@
 		9D98823A19BC69CA00B790C6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				005656EA1A6EE471008A0ED1 /* Gifu.framework */,
 				9D25870519BCCB0F00A55A18 /* Info.plist */,
 				9D25870619BCCB0F00A55A18 /* mugen.gif */,
 			);
@@ -144,7 +108,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				00B8C83B1A36583600C188E7 /* PBXTargetDependency */,
 			);
 			name = "gifu-demo";
 			productName = "gifu-demo";
@@ -165,7 +128,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9D98823219BC69CA00B790C6 /* Build configuration list for PBXProject "gifu-demo" */;
+			buildConfigurationList = 9D98823219BC69CA00B790C6 /* Build configuration list for PBXProject "Demo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -176,28 +139,12 @@
 			mainGroup = 9D98822E19BC69CA00B790C6;
 			productRefGroup = 9D98823819BC69CA00B790C6 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 00B8C8331A36583000C188E7 /* Products */;
-					ProjectRef = 00B8C8321A36583000C188E7 /* Gifu.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9D98823619BC69CA00B790C6 /* gifu-demo */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		00B8C8371A36583000C188E7 /* Gifu.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Gifu.framework;
-			remoteRef = 00B8C8361A36583000C188E7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9D98823519BC69CA00B790C6 /* Resources */ = {
@@ -224,14 +171,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		00B8C83B1A36583600C188E7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Gifu;
-			targetProxy = 00B8C83A1A36583600C188E7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9D98825119BC69CA00B790C6 /* Debug */ = {
@@ -317,6 +256,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -330,6 +270,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -340,7 +281,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9D98823219BC69CA00B790C6 /* Build configuration list for PBXProject "gifu-demo" */ = {
+		9D98823219BC69CA00B790C6 /* Build configuration list for PBXProject "Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D98825119BC69CA00B790C6 /* Debug */,
