@@ -3,17 +3,14 @@ import Gifu
 
 class ViewController: UIViewController {
                             
-  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var imageView: AnimatableImageView!
   @IBOutlet weak var button: FlatButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    if let image = AnimatedImage.animatedImageWithName("mugen.gif") {
-      imageView.setAnimatedImage(image)
-      imageView.startAnimatingGIF()
-    }
-    
+    imageView.animateWithImage(named: "mugen.gif")
+
     UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
   }
 

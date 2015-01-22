@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		005656ED1A6F14D6008A0ED1 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EC1A6F14D6008A0ED1 /* Animator.swift */; };
+		005656EF1A6F1C26008A0ED1 /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */; };
+		005656F11A7042E9008A0ED1 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656F01A7042E9008A0ED1 /* Animatable.swift */; };
 		006F97011A6EDE7900CB5CE8 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006F97001A6EDE7900CB5CE8 /* Runes.framework */; };
-		00B8C75E1A364DCE00C188E7 /* AnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75B1A364DCE00C188E7 /* AnimatedImage.swift */; };
 		00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */; };
-		00B8C7601A364DCE00C188E7 /* UIImageView+Gifu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75D1A364DCE00C188E7 /* UIImageView+Gifu.swift */; };
 		00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8C7951A3650EE00C188E7 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */; };
 		EAF49C811A3A4FAA00B395DF /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C801A3A4FAA00B395DF /* Curry.swift */; };
@@ -18,12 +19,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		005656EC1A6F14D6008A0ED1 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatableImageView.swift; sourceTree = "<group>"; };
+		005656F01A7042E9008A0ED1 /* Animatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		006F97001A6EDE7900CB5CE8 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = "../Carthage/Checkouts/runes/build/Debug-iphoneos/Runes.framework"; sourceTree = "<group>"; };
 		00B8C73E1A364DA400C188E7 /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00B8C7421A364DA400C188E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
-		00B8C75B1A364DCE00C188E7 /* AnimatedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedImage.swift; sourceTree = "<group>"; };
 		00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
-		00B8C75D1A364DCE00C188E7 /* UIImageView+Gifu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Gifu.swift"; sourceTree = "<group>"; };
 		00B8C7951A3650EE00C188E7 /* Gifu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gifu.h; sourceTree = "<group>"; };
 		EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		EAF49C801A3A4FAA00B395DF /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
@@ -72,13 +74,14 @@
 		00B8C75A1A364DBE00C188E7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */,
+				EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */,
+				005656EC1A6F14D6008A0ED1 /* Animator.swift */,
+				005656F01A7042E9008A0ED1 /* Animatable.swift */,
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
-				00B8C75B1A364DCE00C188E7 /* AnimatedImage.swift */,
 				00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */,
-				00B8C75D1A364DCE00C188E7 /* UIImageView+Gifu.swift */,
 				EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */,
 				EAF49C801A3A4FAA00B395DF /* Curry.swift */,
-				EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -161,11 +164,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				005656EF1A6F1C26008A0ED1 /* AnimatableImageView.swift in Sources */,
+				005656ED1A6F14D6008A0ED1 /* Animator.swift in Sources */,
 				EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */,
-				00B8C7601A364DCE00C188E7 /* UIImageView+Gifu.swift in Sources */,
+				005656F11A7042E9008A0ED1 /* Animatable.swift in Sources */,
 				00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */,
 				EAF49C811A3A4FAA00B395DF /* Curry.swift in Sources */,
-				00B8C75E1A364DCE00C188E7 /* AnimatedImage.swift in Sources */,
 				EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
