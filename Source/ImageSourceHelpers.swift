@@ -1,11 +1,14 @@
-import UIKit
 import ImageIO
 import MobileCoreServices
 import Runes
+import UIKit
 
-internal typealias GIFProperties = [String : Double]
+typealias GIFProperties = [String : Double]
 private let defaultDuration: Double = 0
 
+/// Retruns the duration of a frame at a specific index using an image source (an `CGImageSource` instance).
+///
+/// :returns: A frame duration.
 func CGImageSourceGIFFrameDuration(imageSource: CGImageSource, index: Int) -> NSTimeInterval {
   if !imageSource.isAnimatedGIF { return 0.0 }
 
@@ -16,6 +19,9 @@ func CGImageSourceGIFFrameDuration(imageSource: CGImageSource, index: Int) -> NS
   return duration ?? defaultDuration
 }
 
+/// Ensures that a duration is never smaller than a threshold value.
+///
+/// :returns: A capped frame duration.
 private func capDuration(duration: Double) -> Double? {
   if duration < 0 { return .None }
   let threshold = 0.02 - Double(FLT_EPSILON)
@@ -23,6 +29,9 @@ private func capDuration(duration: Double) -> Double? {
   return cappedDuration
 }
 
+/// Returns a frame duration from a `GIFProperties` dictionary.
+///
+/// :returns: A frame duration.
 private func durationFromGIFProperties(properties: GIFProperties) -> Double? {
   let unclampedDelayTime = properties[String(kCGImagePropertyGIFUnclampedDelayTime)]
   let delayTime = properties[String(kCGImagePropertyGIFDelayTime)]
@@ -30,22 +39,36 @@ private func durationFromGIFProperties(properties: GIFProperties) -> Double? {
   return duration <^> unclampedDelayTime <*> delayTime
 }
 
+/// Calculates frame duration based on both clamped and unclamped times.
+///
+/// :returns: A frame duration.
 private func duration(unclampedDelayTime: Double)(delayTime: Double) -> Double {
   let delayArray = [unclampedDelayTime, delayTime]
   return delayArray.filter(isPositive).first ?? defaultDuration
 }
 
+/// Checks if a `Double` value is positive.
+///
+/// :returns: A boolean value that is `true` if the tested value is positive.
 private func isPositive(value: Double) -> Bool {
   return value >= 0
 }
 
+/// An extension of `CGImageSourceRef` that add GIF introspection and easier property retrieval.
 extension CGImageSourceRef {
+  /// Returns whether the image source contains an animated GIF.
+  ///
+  /// :returns: A boolean value that is `true` if the image source contains animated GIF data.
   var isAnimatedGIF: Bool {
     let isTypeGIF = UTTypeConformsTo(CGImageSourceGetType(self), kUTTypeGIF)
     let imageCount = CGImageSourceGetCount(self)
     return isTypeGIF != 0 && imageCount > 1
   }
 
+  /// Returns the GIF properties at a specific index.
+  ///
+  /// :param: index The index of the GIF properties to retrieve.
+  /// :returns: A dictionary containing the GIF properties at the passed in index.
   func GIFPropertiesAtIndex(index: UInt) -> GIFProperties? {
     if !isAnimatedGIF { return .None }
 
