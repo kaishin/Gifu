@@ -10,8 +10,8 @@
 		00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */; };
 		00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8C7951A3650EE00C188E7 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA10131B1A4339890026673B /* AnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA10131A1A4339890026673B /* AnimatedView.swift */; };
+		EA13D8AE1A77ED0900E2611C /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA13D8AD1A77ED0900E2611C /* Runes.framework */; };
 		EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */; };
-		EAF49C811A3A4FAA00B395DF /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C801A3A4FAA00B395DF /* Functional.swift */; };
 		EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */; };
 /* End PBXBuildFile section */
 
@@ -21,8 +21,8 @@
 		00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
 		00B8C7951A3650EE00C188E7 /* Gifu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gifu.h; sourceTree = "<group>"; };
 		EA10131A1A4339890026673B /* AnimatedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedView.swift; sourceTree = "<group>"; };
+		EA13D8AD1A77ED0900E2611C /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 		EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
-		EAF49C801A3A4FAA00B395DF /* Functional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functional.swift; sourceTree = "<group>"; };
 		EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -31,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA13D8AE1A77ED0900E2611C /* Runes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +43,7 @@
 			children = (
 				00B8C75A1A364DBE00C188E7 /* Source */,
 				00B8C7411A364DA400C188E7 /* Supporting Files */,
+				EA13D8AF1A77ED2400E2611C /* Frameworks */,
 				00B8C73F1A364DA400C188E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,11 +71,18 @@
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
 				00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */,
 				EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */,
-				EAF49C801A3A4FAA00B395DF /* Functional.swift */,
 				EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */,
 				EA10131A1A4339890026673B /* AnimatedView.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		EA13D8AF1A77ED2400E2611C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA13D8AD1A77ED0900E2611C /* Runes.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +166,6 @@
 				EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */,
 				00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */,
 				EA10131B1A4339890026673B /* AnimatedView.swift in Sources */,
-				EAF49C811A3A4FAA00B395DF /* Functional.swift in Sources */,
 				EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +266,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -276,6 +288,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
