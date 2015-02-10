@@ -76,7 +76,7 @@ class Animator: NSObject {
   /// Updates the current frame if necessary using the frame timer and the duration of each frame in `animatedFrames`.
   ///
   /// :returns: An optional image at a given frame.
-  private func updateCurrentFrame() {
+  func updateCurrentFrame() {
     if totalDuration == 0 { return }
 
     timeSinceLastFrameChange += min(maxTimeStep, displayLink.duration)

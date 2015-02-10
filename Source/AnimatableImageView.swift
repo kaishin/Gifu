@@ -47,7 +47,7 @@ public class AnimatableImageView: UIImageView, Animatable {
 
   /// Updates the `UIImage` property of the image view if necessary. This method should not be called manually.
   override public func displayLayer(layer: CALayer!) {
-    image = animator?.currentFrame?
+    image = animator?.currentFrame
   }
 
   /// Starts the image view animation.
