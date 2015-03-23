@@ -56,7 +56,7 @@ class Animator: NSObject {
       let accumulatedDuration = accumulator.1
 
       let frameDuration = CGImageSourceGIFFrameDuration(imageSource, index)
-      let frameImageRef = CGImageSourceCreateImageAtIndex(imageSource, UInt(index), nil)
+      let frameImageRef = CGImageSourceCreateImageAtIndex(imageSource, Int(index), nil)
       let frame = UIImage(CGImage: frameImageRef)?.resize(size)
       let animatedFrame = AnimatedFrame(image: frame, duration: frameDuration)
 
