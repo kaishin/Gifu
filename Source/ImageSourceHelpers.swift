@@ -12,7 +12,7 @@ private let defaultDuration: Double = 0
 func CGImageSourceGIFFrameDuration(imageSource: CGImageSource, index: Int) -> NSTimeInterval {
   if !imageSource.isAnimatedGIF { return 0.0 }
 
-  let duration = imageSource.GIFPropertiesAtIndex(UInt(index))
+  let duration = imageSource.GIFPropertiesAtIndex(index)
     >>- durationFromGIFProperties
     >>- capDuration
 
@@ -69,7 +69,7 @@ extension CGImageSourceRef {
   ///
   /// :param: index The index of the GIF properties to retrieve.
   /// :returns: A dictionary containing the GIF properties at the passed in index.
-  func GIFPropertiesAtIndex(index: UInt) -> GIFProperties? {
+  func GIFPropertiesAtIndex(index: Int) -> GIFProperties? {
     if !isAnimatedGIF { return .None }
 
     let imageProperties = CGImageSourceCopyPropertiesAtIndex(self, index, nil) as Dictionary
