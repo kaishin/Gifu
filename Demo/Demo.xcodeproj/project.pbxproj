@@ -14,6 +14,7 @@
 		9D98824419BC69CA00B790C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D98824319BC69CA00B790C6 /* Images.xcassets */; };
 		9D98825A19BC69F600B790C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D98825919BC69F600B790C6 /* Main.storyboard */; };
 		9D98826719BC874C00B790C6 /* FlatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98826619BC874C00B790C6 /* FlatButton.swift */; };
+		EA9299291AE99E2900E22976 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9299281AE99E2900E22976 /* Runes.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		9D98824319BC69CA00B790C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9D98825919BC69F600B790C6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9D98826619BC874C00B790C6 /* FlatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlatButton.swift; path = classes/FlatButton.swift; sourceTree = "<group>"; };
+		EA9299281AE99E2900E22976 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = ../Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				005656EB1A6EE471008A0ED1 /* Gifu.framework in Frameworks */,
+				EA9299291AE99E2900E22976 /* Runes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +59,7 @@
 		9D98822E19BC69CA00B790C6 = {
 			isa = PBXGroup;
 			children = (
+				EA92992C1AE9AB2100E22976 /* Frameworks */,
 				9D98823919BC69CA00B790C6 /* Source */,
 				9D98823819BC69CA00B790C6 /* Products */,
 			);
@@ -93,6 +97,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EA92992C1AE9AB2100E22976 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA9299281AE99E2900E22976 /* Runes.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,6 +116,7 @@
 				9D98823419BC69CA00B790C6 /* Frameworks */,
 				9D98823519BC69CA00B790C6 /* Resources */,
 				00B8C7331A364D4C00C188E7 /* Embed Frameworks */,
+				EA92992B1AE99E5600E22976 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -158,6 +171,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EA92992B1AE99E5600E22976 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../Carthage/Build/iOS/Runes.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9D98823319BC69CA00B790C6 /* Sources */ = {
@@ -256,7 +286,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -270,7 +303,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

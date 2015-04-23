@@ -7,7 +7,4 @@
    <FileRef
       location = "group:../Gifu.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:../Carthage/Checkouts/runes/Runes.xcodeproj">
-   </FileRef>
 </Workspace>
