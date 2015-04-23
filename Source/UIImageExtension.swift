@@ -50,14 +50,19 @@ extension UIImage {
 }
 
 private extension CGSize {
+  /// Calculates the aspect ratio of the size.
+  ///
+  /// :returns: aspectRatio The aspect ratio of the size.
+  var aspectRatio: CGFloat {
+    if height == 0 { return 1 }
+    return width / height
+  }
+
   /// Finds a new size constrained by a size keeping the aspect ratio.
   ///
   /// :param: size The contraining size.
   /// :returns: size A new size that fits inside the contraining size with the same aspect ratio.
   func sizeConstrainedBySize(size: CGSize) -> CGSize {
-    if height == 0 { return size }
-
-    let aspectRatio = width / height
     let aspectWidth = round(aspectRatio * size.height)
     let aspectHeight = round(size.width / aspectRatio)
 
@@ -73,9 +78,6 @@ private extension CGSize {
   /// :param: size The contraining size.
   /// :returns: size A new size that fills the contraining size keeping the same aspect ratio.
   func sizeFillingSize(size: CGSize) -> CGSize {
-    if height == 0 { return size }
-
-    let aspectRatio = width / height
     let aspectWidth = round(aspectRatio * size.height)
     let aspectHeight = round(size.width / aspectRatio)
 

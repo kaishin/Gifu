@@ -57,8 +57,17 @@ class Animator: NSObject {
 
       let frameDuration = CGImageSourceGIFFrameDuration(imageSource, index)
       let frameImageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil)
-      let frame = UIImage(CGImage: frameImageRef)?.resize(size)
-      let animatedFrame = AnimatedFrame(image: frame, duration: frameDuration)
+
+      let image = UIImage(CGImage: frameImageRef)
+      let scaledImage: UIImage?
+
+      switch delegate.contentMode {
+      case .ScaleAspectFit: scaledImage = image?.resizeAspectFit(size)
+      case .ScaleAspectFill: scaledImage = image?.resizeAspectFill(size)
+      default: scaledImage = image?.resize(size)
+      }
+
+      let animatedFrame = AnimatedFrame(image: scaledImage, duration: frameDuration)
 
       return (accumulatedFrames + [animatedFrame], accumulatedDuration + frameDuration)
     }
