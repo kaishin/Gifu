@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Gifu-->
@@ -16,43 +17,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gifu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-41-BaC">
-                                <rect key="frame" x="283" y="45" width="42" height="20.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="1Mg-oH-beY"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Gifu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-41-BaC">
+                                <rect key="frame" x="284" y="45" width="33" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Not the Japanese prefecture." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsv-cU-WO5">
-                                <rect key="frame" x="217" y="69" width="175" height="13.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="175" id="qtB-pf-agE"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Not the Japanese prefecture." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsv-cU-WO5">
+                                <rect key="frame" x="225" y="70" width="150" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="450" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="FSz-xF-Xds" customClass="AnimatableImageView" customModule="Gifu">
-                                <rect key="frame" x="75" y="150" width="450" height="300"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="450" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="FSz-xF-Xds" customClass="AnimatableImageView" customModule="Gifu">
+                                <rect key="frame" x="24" y="134" width="552" height="325"/>
                                 <color key="backgroundColor" red="0.7725490196" green="0.1764705882" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-3J-OXr" customClass="FlatButton" customModule="gifu_demo" customModuleProvider="target">
                                 <rect key="frame" x="275" y="509" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Lmc-xA-WNU"/>
-                                    <constraint firstAttribute="height" constant="50" id="d3c-zA-X4Y"/>
                                     <constraint firstAttribute="width" constant="50" id="eYX-lm-C2V"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="tintColor" red="0.99444444444444446" green="1" blue="0.98888888888888893" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="❙❙"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="d3c-zA-X4Y"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <action selector="toggleAnimation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PvH-3E-LbB"/>
                                 </connections>
@@ -60,28 +49,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.24722154438495636" green="0.26659342646598816" blue="0.2988148033618927" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="bFY-3J-OXr" secondAttribute="centerY" id="09i-ag-RTM"/>
-                            <constraint firstItem="bFY-3J-OXr" firstAttribute="top" secondItem="FSz-xF-Xds" secondAttribute="bottom" constant="-73" id="1KN-hB-V2y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FSz-xF-Xds" secondAttribute="trailing" constant="8" id="8kQ-x1-WJl"/>
                             <constraint firstAttribute="centerX" secondItem="bFY-3J-OXr" secondAttribute="centerX" id="CNh-OD-Msi"/>
+                            <constraint firstItem="FSz-xF-Xds" firstAttribute="top" secondItem="wsv-cU-WO5" secondAttribute="bottom" constant="50" id="I39-Ku-NYc"/>
                             <constraint firstItem="c8Y-41-BaC" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="JHy-q1-JuJ"/>
-                            <constraint firstAttribute="centerX" secondItem="c8Y-41-BaC" secondAttribute="centerX" constant="-4" id="Kc0-P5-KMZ"/>
-                            <constraint firstItem="wsv-cU-WO5" firstAttribute="leading" secondItem="c8Y-41-BaC" secondAttribute="trailing" constant="-108" id="WMw-79-FUC"/>
-                            <constraint firstItem="wsv-cU-WO5" firstAttribute="top" secondItem="c8Y-41-BaC" secondAttribute="bottom" constant="3.5" id="cLO-Rh-lrl"/>
-                            <constraint firstItem="bFY-3J-OXr" firstAttribute="centerY" secondItem="FSz-xF-Xds" secondAttribute="centerY" constant="102" id="eTb-IQ-R1d"/>
-                            <constraint firstAttribute="centerY" secondItem="FSz-xF-Xds" secondAttribute="centerY" id="lUc-8z-Gjn"/>
+                            <constraint firstAttribute="centerX" secondItem="c8Y-41-BaC" secondAttribute="centerX" id="Kc0-P5-KMZ"/>
+                            <constraint firstItem="FSz-xF-Xds" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="O4L-QH-SvV"/>
+                            <constraint firstItem="bFY-3J-OXr" firstAttribute="top" secondItem="FSz-xF-Xds" secondAttribute="bottom" constant="50" id="PKi-91-olI"/>
+                            <constraint firstItem="wsv-cU-WO5" firstAttribute="top" secondItem="c8Y-41-BaC" secondAttribute="bottom" constant="4" id="ZG4-fK-WvN"/>
                             <constraint firstAttribute="centerX" secondItem="FSz-xF-Xds" secondAttribute="centerX" id="oih-yH-vRh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bFY-3J-OXr" secondAttribute="bottom" constant="41" id="w4g-Xu-ht2"/>
-                            <constraint firstItem="bFY-3J-OXr" firstAttribute="top" secondItem="FSz-xF-Xds" secondAttribute="bottom" constant="-73" id="wKy-oP-72d"/>
-                            <constraint firstAttribute="centerX" secondItem="wsv-cU-WO5" secondAttribute="centerX" constant="-4.5" id="yLb-zR-gfU"/>
+                            <constraint firstAttribute="centerX" secondItem="wsv-cU-WO5" secondAttribute="centerX" id="yLb-zR-gfU"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="09i-ag-RTM"/>
-                                <exclude reference="1KN-hB-V2y"/>
-                                <exclude reference="eTb-IQ-R1d"/>
-                                <exclude reference="wKy-oP-72d"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
