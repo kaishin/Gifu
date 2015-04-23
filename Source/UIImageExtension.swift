@@ -6,8 +6,9 @@ extension UIImage {
   /// :param: size The new size of the image.
   /// :returns: A new resized image instance.
   func resize(size: CGSize) -> UIImage {
-    UIGraphicsBeginImageContext(size)
-    self.drawInRect(CGRectMake(0, 0, size.width, size.height))
+    let newSize = self.size.sizeConstrainedBySize(size)
+    UIGraphicsBeginImageContext(newSize)
+    self.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
     let newImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     return newImage
@@ -28,5 +29,25 @@ extension UIImage {
   /// :returns: The size of the image contained in the data.
   class func sizeForImageData(data: NSData) -> CGSize? {
     return UIImage(data: data)?.size
+  }
+}
+
+private extension CGSize {
+  /// Finds a new size constrained by a size keeping the aspect ratio.
+  ///
+  /// :param: size The contraining size.
+  /// :returns: size A new size that fits inside the contraining size with the same aspect ratio.
+  func sizeConstrainedBySize(size: CGSize) -> CGSize {
+    if height == 0 { return size }
+
+    let aspectRatio = width / height
+    let aspectWidth = round(aspectRatio * size.height)
+    let aspectHeight = round(size.width / aspectRatio)
+
+    if aspectWidth > size.width {
+      return CGSize(width: size.width, height: aspectHeight)
+    } else {
+      return CGSize(width: aspectWidth, height: size.height)
+    }
   }
 }
