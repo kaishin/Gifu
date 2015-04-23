@@ -6,12 +6,29 @@ extension UIImage {
   /// :param: size The new size of the image.
   /// :returns: A new resized image instance.
   func resize(size: CGSize) -> UIImage {
-    let newSize = self.size.sizeConstrainedBySize(size)
-    UIGraphicsBeginImageContext(newSize)
-    self.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+    UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+    self.drawInRect(CGRect(origin: CGPointZero, size: size))
     let newImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     return newImage
+  }
+
+  /// Resizes an image instance to fit inside a constraining size while keeping the aspect ratio.
+  ///
+  /// :param: size The constraining size of the image.
+  /// :returns: A new resized image instance.
+  func resizeAspectFit(size: CGSize) -> UIImage {
+    let newSize = self.size.sizeConstrainedBySize(size)
+    return resize(newSize)
+  }
+
+  /// Resizes an image instance to fill a constraining size while keeping the aspect ratio.
+  ///
+  /// :param: size The constraining size of the image.
+  /// :returns: A new resized image instance.
+  func resizeAspectFill(size: CGSize) -> UIImage {
+    let newSize = self.size.sizeFillingSize(size)
+    return resize(newSize)
   }
 
   /// Returns a new `UIImage` instance using raw image data and a size.
@@ -48,6 +65,24 @@ private extension CGSize {
       return CGSize(width: size.width, height: aspectHeight)
     } else {
       return CGSize(width: aspectWidth, height: size.height)
+    }
+  }
+
+  /// Finds a new size filling the given size while keeping the aspect ratio.
+  ///
+  /// :param: size The contraining size.
+  /// :returns: size A new size that fills the contraining size keeping the same aspect ratio.
+  func sizeFillingSize(size: CGSize) -> CGSize {
+    if height == 0 { return size }
+
+    let aspectRatio = width / height
+    let aspectWidth = round(aspectRatio * size.height)
+    let aspectHeight = round(size.width / aspectRatio)
+
+    if aspectWidth > size.width {
+      return CGSize(width: aspectWidth, height: size.height)
+    } else {
+      return CGSize(width: size.width, height: aspectHeight)
     }
   }
 }
