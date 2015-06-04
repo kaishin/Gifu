@@ -7,15 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		005656EB1A6EE471008A0ED1 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005656EA1A6EE471008A0ED1 /* Gifu.framework */; };
 		9D25870819BCCB0F00A55A18 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9D25870619BCCB0F00A55A18 /* mugen.gif */; };
 		9D98823D19BC69CA00B790C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823C19BC69CA00B790C6 /* AppDelegate.swift */; };
 		9D98823F19BC69CA00B790C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823E19BC69CA00B790C6 /* ViewController.swift */; };
 		9D98824419BC69CA00B790C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D98824319BC69CA00B790C6 /* Images.xcassets */; };
 		9D98825A19BC69F600B790C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D98825919BC69F600B790C6 /* Main.storyboard */; };
 		9D98826719BC874C00B790C6 /* FlatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98826619BC874C00B790C6 /* FlatButton.swift */; };
+		EA5789A01B20C5B100A9F7D1 /* almost_nailed_it.gif in Resources */ = {isa = PBXBuildFile; fileRef = EA57899F1B20C5B100A9F7D1 /* almost_nailed_it.gif */; };
+		EA5789A71B20C65E00A9F7D1 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5789A61B20C65800A9F7D1 /* Gifu.framework */; };
+		EA5789A91B20C68B00A9F7D1 /* Gifu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA5789A61B20C65800A9F7D1 /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA9299291AE99E2900E22976 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9299281AE99E2900E22976 /* Runes.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA5789A51B20C65800A9F7D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5789A11B20C65800A9F7D1 /* Gifu.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00B8C73E1A364DA400C188E7;
+			remoteInfo = Gifu;
+		};
+		EA5789AA1B20C68B00A9F7D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5789A11B20C65800A9F7D1 /* Gifu.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 00B8C73D1A364DA400C188E7;
+			remoteInfo = Gifu;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		00B8C7331A364D4C00C188E7 /* Embed Frameworks */ = {
@@ -24,6 +43,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				EA5789A91B20C68B00A9F7D1 /* Gifu.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -31,7 +51,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		005656EA1A6EE471008A0ED1 /* Gifu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gifu.framework; path = "../../build/Debug-iphoneos/Gifu.framework"; sourceTree = "<group>"; };
 		9D25870519BCCB0F00A55A18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D25870619BCCB0F00A55A18 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mugen.gif; sourceTree = "<group>"; };
 		9D98823719BC69CA00B790C6 /* gifu-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gifu-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +59,8 @@
 		9D98824319BC69CA00B790C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9D98825919BC69F600B790C6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9D98826619BC874C00B790C6 /* FlatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlatButton.swift; path = classes/FlatButton.swift; sourceTree = "<group>"; };
+		EA57899F1B20C5B100A9F7D1 /* almost_nailed_it.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = almost_nailed_it.gif; sourceTree = "<group>"; };
+		EA5789A11B20C65800A9F7D1 /* Gifu.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gifu.xcodeproj; path = ../Gifu.xcodeproj; sourceTree = "<group>"; };
 		EA9299281AE99E2900E22976 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = ../Carthage/Build/iOS/Runes.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,8 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				005656EB1A6EE471008A0ED1 /* Gifu.framework in Frameworks */,
 				EA9299291AE99E2900E22976 /* Runes.framework in Frameworks */,
+				EA5789A71B20C65E00A9F7D1 /* Gifu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,16 +111,25 @@
 		9D98823A19BC69CA00B790C6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				005656EA1A6EE471008A0ED1 /* Gifu.framework */,
 				9D25870519BCCB0F00A55A18 /* Info.plist */,
+				EA57899F1B20C5B100A9F7D1 /* almost_nailed_it.gif */,
 				9D25870619BCCB0F00A55A18 /* mugen.gif */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EA5789A21B20C65800A9F7D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA5789A61B20C65800A9F7D1 /* Gifu.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		EA92992C1AE9AB2100E22976 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA5789A11B20C65800A9F7D1 /* Gifu.xcodeproj */,
 				EA9299281AE99E2900E22976 /* Runes.framework */,
 			);
 			name = Frameworks;
@@ -121,6 +151,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				EA5789AB1B20C68B00A9F7D1 /* PBXTargetDependency */,
 			);
 			name = "gifu-demo";
 			productName = "gifu-demo";
@@ -152,6 +183,12 @@
 			mainGroup = 9D98822E19BC69CA00B790C6;
 			productRefGroup = 9D98823819BC69CA00B790C6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EA5789A21B20C65800A9F7D1 /* Products */;
+					ProjectRef = EA5789A11B20C65800A9F7D1 /* Gifu.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9D98823619BC69CA00B790C6 /* gifu-demo */,
@@ -159,11 +196,22 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		EA5789A61B20C65800A9F7D1 /* Gifu.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gifu.framework;
+			remoteRef = EA5789A51B20C65800A9F7D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		9D98823519BC69CA00B790C6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5789A01B20C5B100A9F7D1 /* almost_nailed_it.gif in Resources */,
 				9D98824419BC69CA00B790C6 /* Images.xcassets in Resources */,
 				9D25870819BCCB0F00A55A18 /* mugen.gif in Resources */,
 				9D98825A19BC69F600B790C6 /* Main.storyboard in Resources */,
@@ -201,6 +249,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA5789AB1B20C68B00A9F7D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Gifu;
+			targetProxy = EA5789AA1B20C68B00A9F7D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9D98825119BC69CA00B790C6 /* Debug */ = {

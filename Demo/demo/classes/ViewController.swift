@@ -9,7 +9,7 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    imageView.animateWithImage(named: "mugen.gif")
+    imageView.animateWithImage(named: "almost_nailed_it.gif")
 
     UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
   }

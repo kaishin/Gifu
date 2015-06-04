@@ -7,6 +7,10 @@ public class AnimatableImageView: UIImageView, Animatable {
   /// An `Animator` instance that holds the frames of a specific image in memory.
   var animator: Animator?
 
+  deinit {
+    println("deinit animatable view")
+  }
+
   /// A computed property that returns whether the image view is animating.
   public var isAnimatingGIF: Bool {
     return animator?.isAnimating ?? isAnimating()
@@ -58,6 +62,10 @@ public class AnimatableImageView: UIImageView, Animatable {
   /// Stops the image view animation.
   public func stopAnimatingGIF() {
     animator?.pauseAnimation() ?? stopAnimating()
+  }
+
+  public func cleanup() {
+    animator = .None
   }
 }
 

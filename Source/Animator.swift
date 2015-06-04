@@ -8,10 +8,14 @@ class Animator: NSObject {
   let delegate: Animatable
   /// Maximum duration to increment the frame timer with.
   private let maxTimeStep = 1.0
-  /// The total duration of the GIF image.
-  private var totalDuration: NSTimeInterval = 0.0
   /// An array of animated frames from a single GIF image.
   private var animatedFrames = [AnimatedFrame]()
+  /// Maximum number of frames to load at once
+  private let maxNumberOfFrames = 50
+  /// The total number of frames in the GIF.
+  private var numberOfFrames = 0
+  /// A reference to the original image source.
+  private var imageSource: CGImageSourceRef
   /// The index of the current GIF frame.
   private var currentFrameIndex = 0
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
@@ -34,43 +38,46 @@ class Animator: NSObject {
   /// :param: data The raw GIF image data.
   /// :param: delegate An `Animatable` delegate.
   required init(data: NSData, delegate: Animatable) {
-    let imageSource = CGImageSourceCreateWithData(data, nil)
+    imageSource = CGImageSourceCreateWithData(data, nil)
     self.delegate = delegate
     super.init()
     attachDisplayLink()
-    curry(prepareFrames) <^> imageSource <*> delegate.frame.size
+    prepareFrames()
     pauseAnimation()
+  }
+
+  deinit {
+    println("deinit animator")
   }
 
   // MARK: - Frames
   /// Loads the frames from an image source, resizes them, then caches them in `animatedFrames`.
+  private func prepareFrames() {
+    numberOfFrames = Int(CGImageSourceGetCount(imageSource))
+    let framesToProcess = numberOfFrames > maxNumberOfFrames ? maxNumberOfFrames : numberOfFrames
+    animatedFrames.reserveCapacity(framesToProcess)
+    animatedFrames = reduce(0..<framesToProcess, []) { $0 + pure(prepareFrame($1)) }
+  }
+
+  /// Loads a single frame from an image source, resizes it, then returns an `AnimatedFrame`.
   ///
-  /// :param: imageSource The `CGImageSourceRef` image source to extract the frames from.
-  /// :param: size The size to use for the cached frames.
-  private func prepareFrames(imageSource: CGImageSourceRef, size: CGSize) {
-    let numberOfFrames = Int(CGImageSourceGetCount(imageSource))
-    animatedFrames.reserveCapacity(numberOfFrames)
+  /// :param: index The index of the GIF image source to prepare
+  /// :returns: An AnimatedFrame object
+  private func prepareFrame(index: Int) -> AnimatedFrame {
+    let frameDuration = CGImageSourceGIFFrameDuration(imageSource, index)
+    let frameImageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil)
+    let size = delegate.frame.size
 
-    (animatedFrames, totalDuration) = reduce(0..<numberOfFrames, ([AnimatedFrame](), 0.0)) { accumulator, index in
-      let accumulatedFrames = accumulator.0
-      let accumulatedDuration = accumulator.1
+    let image = UIImage(CGImage: frameImageRef)
+    let scaledImage: UIImage?
 
-      let frameDuration = CGImageSourceGIFFrameDuration(imageSource, index)
-      let frameImageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil)
-
-      let image = UIImage(CGImage: frameImageRef)
-      let scaledImage: UIImage?
-
-      switch delegate.contentMode {
-      case .ScaleAspectFit: scaledImage = image?.resizeAspectFit(size)
-      case .ScaleAspectFill: scaledImage = image?.resizeAspectFill(size)
-      default: scaledImage = image?.resize(size)
-      }
-
-      let animatedFrame = AnimatedFrame(image: scaledImage, duration: frameDuration)
-
-      return (accumulatedFrames + [animatedFrame], accumulatedDuration + frameDuration)
+    switch delegate.contentMode {
+    case .ScaleAspectFit: scaledImage = image?.resizeAspectFit(size)
+    case .ScaleAspectFill: scaledImage = image?.resizeAspectFill(size)
+    default: scaledImage = image?.resize(size)
     }
+
+    return AnimatedFrame(image: scaledImage, duration: frameDuration)
   }
 
   /// Returns the frame at a particular index.
@@ -78,23 +85,29 @@ class Animator: NSObject {
   /// :param: index The index of the frame.
   /// :returns: An optional image at a given frame.
   private func frameAtIndex(index: Int) -> UIImage? {
-    if index >= animatedFrames.count { return .None }
-    return animatedFrames[index].image
+    return animatedFrames[index % animatedFrames.count].image
   }
 
   /// Updates the current frame if necessary using the frame timer and the duration of each frame in `animatedFrames`.
   ///
   /// :returns: An optional image at a given frame.
   func updateCurrentFrame() {
-    if totalDuration == 0 { return }
+    if animatedFrames.count <= 1 { return }
 
     timeSinceLastFrameChange += min(maxTimeStep, displayLink.duration)
-    var frameDuration = animatedFrames[currentFrameIndex].duration
+    var frameDuration = animatedFrames[currentFrameIndex % animatedFrames.count].duration
 
     if timeSinceLastFrameChange >= frameDuration {
       timeSinceLastFrameChange -= frameDuration
-      currentFrameIndex = ++currentFrameIndex % animatedFrames.count
+      let lastFrameIndex = currentFrameIndex
+      currentFrameIndex = ++currentFrameIndex % numberOfFrames
       delegate.layer.setNeedsDisplay()
+
+      // load the next needed frame for progressive loading
+      if animatedFrames.count < numberOfFrames {
+        let nextFrameToLoad = (lastFrameIndex + animatedFrames.count) % numberOfFrames
+        animatedFrames[lastFrameIndex % animatedFrames.count] = prepareFrame(nextFrameToLoad)
+      }
     }
   }
 
@@ -106,7 +119,7 @@ class Animator: NSObject {
 
   /// Resumes the display link.
   func resumeAnimation() {
-    if totalDuration > 0 {
+    if animatedFrames.count > 1 {
       displayLink.paused = false
     }
   }
