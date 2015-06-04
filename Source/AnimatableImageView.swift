@@ -1,17 +1,15 @@
-import ImageIO
 import Runes
 import UIKit
 
 /// A subclass of `UIImageView` that can be animated using an image name string or raw data.
 public class AnimatableImageView: UIImageView {
   /// An `Animator` instance that holds the frames of a specific image in memory.
-  var animator: Animator?
+  private var animator: Animator?
   /// A display link that keeps calling the `updateFrame` method on every screen refresh.
   private lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: Selector("updateFrame"))
 
-  deinit {
-    println("deinit animatable view")
-  }
+  /// The size of the frame cache.
+  public var framePreloadCount = 50
 
   /// A computed property that returns whether the image view is animating.
   public var isAnimatingGIF: Bool {
@@ -32,7 +30,8 @@ public class AnimatableImageView: UIImageView {
   /// :param: data GIF image data.
   public func prepareForAnimation(imageData data: NSData) {
     image = UIImage(data: data)
-    animator = Animator(data: data, size: frame.size, contentMode: contentMode)
+    animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
+    animator?.prepareFrames()
     attachDisplayLink()
   }
 
@@ -74,18 +73,16 @@ public class AnimatableImageView: UIImageView {
   /// Stops the image view animation.
   public func stopAnimatingGIF() {
     displayLink.paused = true
-    cleanup()
   }
 
-  /// Cleanup the animator to reduce memory.
+  /// Invalidate the displayLink so it releases this object.
   public func cleanup() {
-    image = .None
-    animator = .None
+    displayLink.invalidate()
   }
 
-  /// Attaches the dsiplay link.
-  func attachDisplayLink() {
-    displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+  /// Attaches the display link.
+  private func attachDisplayLink() {
+    displayLink.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
   }
 }
 

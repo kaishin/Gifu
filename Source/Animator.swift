@@ -3,7 +3,7 @@ import ImageIO
 import Runes
 
 /// Responsible for storing and updating the frames of a `AnimatableImageView` instance via delegation.
-class Animator: NSObject {
+class Animator {
   /// Maximum duration to increment the frame timer with.
   private let maxTimeStep = 1.0
   /// An array of animated frames from a single GIF image.
@@ -13,7 +13,7 @@ class Animator: NSObject {
   /// The content mode to use when resizing
   private let contentMode: UIViewContentMode
   /// Maximum number of frames to load at once
-  private let maxNumberOfFrames = 50
+  private let maxNumberOfFrames: Int
   /// The total number of frames in the GIF.
   private var numberOfFrames = 0
   /// A reference to the original image source.
@@ -37,24 +37,19 @@ class Animator: NSObject {
   ///
   /// :param: data The raw GIF image data.
   /// :param: delegate An `Animatable` delegate.
-  required init(data: NSData, size: CGSize, contentMode: UIViewContentMode) {
+  init(data: NSData, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int) {
     let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse]
     imageSource = CGImageSourceCreateWithData(data, options)
     self.size = size
     self.contentMode = contentMode
-    super.init()
-    prepareFrames()
-  }
-
-  deinit {
-    println("deinit animator")
+    maxNumberOfFrames = framePreloadCount
   }
 
   // MARK: - Frames
   /// Loads the frames from an image source, resizes them, then caches them in `animatedFrames`.
-  private func prepareFrames() {
+  func prepareFrames() {
     numberOfFrames = Int(CGImageSourceGetCount(imageSource))
-    let framesToProcess = numberOfFrames > maxNumberOfFrames ? maxNumberOfFrames : numberOfFrames
+    let framesToProcess = min(numberOfFrames, maxNumberOfFrames)
     animatedFrames.reserveCapacity(framesToProcess)
     animatedFrames = reduce(0..<framesToProcess, []) { $0 + pure(prepareFrame($1)) }
   }
@@ -91,8 +86,6 @@ class Animator: NSObject {
   ///
   /// :returns: An optional image at a given frame.
   func updateCurrentFrame(duration: CFTimeInterval) -> Bool {
-    if animatedFrames.count <= 1 { return false }
-
     timeSinceLastFrameChange += min(maxTimeStep, duration)
     var frameDuration = animatedFrames[currentFrameIndex % animatedFrames.count].duration
 
@@ -101,7 +94,7 @@ class Animator: NSObject {
       let lastFrameIndex = currentFrameIndex
       currentFrameIndex = ++currentFrameIndex % numberOfFrames
 
-      // load the next needed frame for progressive loading
+      // Loads the next needed frame for progressive loading
       if animatedFrames.count < numberOfFrames {
         let nextFrameToLoad = (lastFrameIndex + animatedFrames.count) % numberOfFrames
         animatedFrames[lastFrameIndex % animatedFrames.count] = prepareFrame(nextFrameToLoad)
