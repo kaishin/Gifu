@@ -4,12 +4,14 @@ import Runes
 
 /// Responsible for storing and updating the frames of a `AnimatableImageView` instance via delegation.
 class Animator: NSObject {
-  /// The animator delegate. Should conform to the `Animatable` protocol.
-  let delegate: Animatable
   /// Maximum duration to increment the frame timer with.
   private let maxTimeStep = 1.0
   /// An array of animated frames from a single GIF image.
   private var animatedFrames = [AnimatedFrame]()
+  /// The size to resize all frames to
+  private let size: CGSize
+  /// The content mode to use when resizing
+  private let contentMode: UIViewContentMode
   /// Maximum number of frames to load at once
   private let maxNumberOfFrames = 50
   /// The total number of frames in the GIF.
@@ -20,30 +22,28 @@ class Animator: NSObject {
   private var currentFrameIndex = 0
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
   private var timeSinceLastFrameChange: NSTimeInterval = 0.0
-  /// A display link that keeps calling the `updateCurrentFrame` method on every screen refresh.
-  private lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: "updateCurrentFrame")
 
   /// The current image frame to show.
   var currentFrame: UIImage? {
     return frameAtIndex(currentFrameIndex)
   }
 
-  /// Returns whether the animator is animating.
-  var isAnimating: Bool {
-    return !displayLink.paused
+  /// Is this image animatable?
+  var isAnimatable: Bool {
+    return imageSource.isAnimatedGIF
   }
 
   /// Initializes an animator instance from raw GIF image data and an `Animatable` delegate.
   ///
   /// :param: data The raw GIF image data.
   /// :param: delegate An `Animatable` delegate.
-  required init(data: NSData, delegate: Animatable) {
-    imageSource = CGImageSourceCreateWithData(data, nil)
-    self.delegate = delegate
+  required init(data: NSData, size: CGSize, contentMode: UIViewContentMode) {
+    let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse]
+    imageSource = CGImageSourceCreateWithData(data, options)
+    self.size = size
+    self.contentMode = contentMode
     super.init()
-    attachDisplayLink()
     prepareFrames()
-    pauseAnimation()
   }
 
   deinit {
@@ -66,12 +66,11 @@ class Animator: NSObject {
   private func prepareFrame(index: Int) -> AnimatedFrame {
     let frameDuration = CGImageSourceGIFFrameDuration(imageSource, index)
     let frameImageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil)
-    let size = delegate.frame.size
 
     let image = UIImage(CGImage: frameImageRef)
     let scaledImage: UIImage?
 
-    switch delegate.contentMode {
+    switch contentMode {
     case .ScaleAspectFit: scaledImage = image?.resizeAspectFit(size)
     case .ScaleAspectFill: scaledImage = image?.resizeAspectFill(size)
     default: scaledImage = image?.resize(size)
@@ -91,41 +90,25 @@ class Animator: NSObject {
   /// Updates the current frame if necessary using the frame timer and the duration of each frame in `animatedFrames`.
   ///
   /// :returns: An optional image at a given frame.
-  func updateCurrentFrame() {
-    if animatedFrames.count <= 1 { return }
+  func updateCurrentFrame(duration: CFTimeInterval) -> Bool {
+    if animatedFrames.count <= 1 { return false }
 
-    timeSinceLastFrameChange += min(maxTimeStep, displayLink.duration)
+    timeSinceLastFrameChange += min(maxTimeStep, duration)
     var frameDuration = animatedFrames[currentFrameIndex % animatedFrames.count].duration
 
     if timeSinceLastFrameChange >= frameDuration {
       timeSinceLastFrameChange -= frameDuration
       let lastFrameIndex = currentFrameIndex
       currentFrameIndex = ++currentFrameIndex % numberOfFrames
-      delegate.layer.setNeedsDisplay()
 
       // load the next needed frame for progressive loading
       if animatedFrames.count < numberOfFrames {
         let nextFrameToLoad = (lastFrameIndex + animatedFrames.count) % numberOfFrames
         animatedFrames[lastFrameIndex % animatedFrames.count] = prepareFrame(nextFrameToLoad)
       }
+      return true
     }
-  }
 
-  // MARK: - Animation
-  /// Pauses the display link.
-  func pauseAnimation() {
-    displayLink.paused = true
-  }
-
-  /// Resumes the display link.
-  func resumeAnimation() {
-    if animatedFrames.count > 1 {
-      displayLink.paused = false
-    }
-  }
-
-  /// Attaches the dsiplay link.
-  func attachDisplayLink() {
-    displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+    return false
   }
 }

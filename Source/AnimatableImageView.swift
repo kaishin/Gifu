@@ -3,9 +3,11 @@ import Runes
 import UIKit
 
 /// A subclass of `UIImageView` that can be animated using an image name string or raw data.
-public class AnimatableImageView: UIImageView, Animatable {
+public class AnimatableImageView: UIImageView {
   /// An `Animator` instance that holds the frames of a specific image in memory.
   var animator: Animator?
+  /// A display link that keeps calling the `updateFrame` method on every screen refresh.
+  private lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: Selector("updateFrame"))
 
   deinit {
     println("deinit animatable view")
@@ -13,7 +15,7 @@ public class AnimatableImageView: UIImageView, Animatable {
 
   /// A computed property that returns whether the image view is animating.
   public var isAnimatingGIF: Bool {
-    return animator?.isAnimating ?? isAnimating()
+    return !displayLink.paused
   }
 
   /// Prepares the frames using a GIF image file name, without starting the animation.
@@ -30,7 +32,8 @@ public class AnimatableImageView: UIImageView, Animatable {
   /// :param: data GIF image data.
   public func prepareForAnimation(imageData data: NSData) {
     image = UIImage(data: data)
-    animator = Animator(data: data, delegate: self)
+    animator = Animator(data: data, size: frame.size, contentMode: contentMode)
+    attachDisplayLink()
   }
 
   /// Prepares the frames using a GIF image file name and starts animating the image view.
@@ -54,18 +57,35 @@ public class AnimatableImageView: UIImageView, Animatable {
     image = animator?.currentFrame
   }
 
+  /// Update the current frame with the displayLink duration
+  func updateFrame() {
+    if animator?.updateCurrentFrame(displayLink.duration) ?? false {
+      layer.setNeedsDisplay()
+    }
+  }
+
   /// Starts the image view animation.
   public func startAnimatingGIF() {
-    animator?.resumeAnimation() ?? startAnimating()
+    if animator?.isAnimatable ?? false {
+      displayLink.paused = false
+    }
   }
 
   /// Stops the image view animation.
   public func stopAnimatingGIF() {
-    animator?.pauseAnimation() ?? stopAnimating()
+    displayLink.paused = true
+    cleanup()
   }
 
+  /// Cleanup the animator to reduce memory.
   public func cleanup() {
+    image = .None
     animator = .None
+  }
+
+  /// Attaches the dsiplay link.
+  func attachDisplayLink() {
+    displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
   }
 }
 

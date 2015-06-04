@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		005656ED1A6F14D6008A0ED1 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EC1A6F14D6008A0ED1 /* Animator.swift */; };
 		005656EF1A6F1C26008A0ED1 /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */; };
-		005656F11A7042E9008A0ED1 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656F01A7042E9008A0ED1 /* Animatable.swift */; };
 		00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */; };
 		00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8C7951A3650EE00C188E7 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA1E21131AD5D369000459BD /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1E21121AD5D369000459BD /* Runes.framework */; };
@@ -21,7 +20,6 @@
 /* Begin PBXFileReference section */
 		005656EC1A6F14D6008A0ED1 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatableImageView.swift; sourceTree = "<group>"; };
-		005656F01A7042E9008A0ED1 /* Animatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		00B8C73E1A364DA400C188E7 /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00B8C7421A364DA400C188E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
 		00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
@@ -77,7 +75,6 @@
 				005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */,
 				EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */,
 				005656EC1A6F14D6008A0ED1 /* Animator.swift */,
-				005656F01A7042E9008A0ED1 /* Animatable.swift */,
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
 				00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */,
 				EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */,
@@ -175,7 +172,6 @@
 				005656EF1A6F1C26008A0ED1 /* AnimatableImageView.swift in Sources */,
 				005656ED1A6F14D6008A0ED1 /* Animator.swift in Sources */,
 				EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */,
-				005656F11A7042E9008A0ED1 /* Animatable.swift in Sources */,
 				00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */,
 				EAF49C811A3A4FAA00B395DF /* Curry.swift in Sources */,
 				EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */,
