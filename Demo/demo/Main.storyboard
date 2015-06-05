@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -46,6 +46,19 @@
                                     <action selector="toggleAnimation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PvH-3E-LbB"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tZ1-rw-Kbd">
+                                <rect key="frame" x="236" y="467" width="129" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="VXm-pK-heN"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Mugen"/>
+                                    <segment title="Nailed It"/>
+                                </segments>
+                                <connections>
+                                    <action selector="toggleGIF:" destination="vXZ-lx-hvc" eventType="valueChanged" id="W0R-yI-ahi"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.24722154438495636" green="0.26659342646598816" blue="0.2988148033618927" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -56,7 +69,10 @@
                             <constraint firstAttribute="centerX" secondItem="c8Y-41-BaC" secondAttribute="centerX" id="Kc0-P5-KMZ"/>
                             <constraint firstItem="FSz-xF-Xds" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="O4L-QH-SvV"/>
                             <constraint firstItem="bFY-3J-OXr" firstAttribute="top" secondItem="FSz-xF-Xds" secondAttribute="bottom" constant="50" id="PKi-91-olI"/>
+                            <constraint firstAttribute="centerX" secondItem="tZ1-rw-Kbd" secondAttribute="centerX" id="QKy-Gl-KPQ"/>
+                            <constraint firstItem="bFY-3J-OXr" firstAttribute="top" secondItem="tZ1-rw-Kbd" secondAttribute="bottom" constant="14" id="Vqv-f1-dnH"/>
                             <constraint firstItem="wsv-cU-WO5" firstAttribute="top" secondItem="c8Y-41-BaC" secondAttribute="bottom" constant="4" id="ZG4-fK-WvN"/>
+                            <constraint firstItem="tZ1-rw-Kbd" firstAttribute="top" secondItem="FSz-xF-Xds" secondAttribute="bottom" constant="8" id="lu2-sK-QNZ"/>
                             <constraint firstAttribute="centerX" secondItem="FSz-xF-Xds" secondAttribute="centerX" id="oih-yH-vRh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bFY-3J-OXr" secondAttribute="bottom" constant="41" id="w4g-Xu-ht2"/>
                             <constraint firstAttribute="centerX" secondItem="wsv-cU-WO5" secondAttribute="centerX" id="yLb-zR-gfU"/>

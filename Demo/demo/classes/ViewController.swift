@@ -9,7 +9,7 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    imageView.animateWithImage(named: "almost_nailed_it.gif")
+    imageView.animateWithImage(named: "mugen.gif")
 
     UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
   }
@@ -23,6 +23,16 @@ class ViewController: UIViewController {
       imageView.startAnimatingGIF()
       button.layer.backgroundColor = UIColor.clearColor().CGColor
       button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    }
+  }
+
+  @IBAction func toggleGIF(sender: UISegmentedControl) {
+    imageView.stopAnimatingGIF()
+
+    switch sender.selectedSegmentIndex {
+    case 0: imageView.animateWithImage(named: "mugen.gif")
+    case 1: imageView.animateWithImage(named: "almost_nailed_it.gif")
+    default: imageView.image = .None
     }
   }
 }
