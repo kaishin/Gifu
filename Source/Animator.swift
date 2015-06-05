@@ -20,6 +20,8 @@ class Animator {
   private var imageSource: CGImageSourceRef
   /// The index of the current GIF frame.
   private var currentFrameIndex = 0
+  /// The index of the current GIF frame from the source.
+  private var currentPreloadIndex = 0
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
   private var timeSinceLastFrameChange: NSTimeInterval = 0.0
 
@@ -52,6 +54,7 @@ class Animator {
     let framesToProcess = min(numberOfFrames, maxNumberOfFrames)
     animatedFrames.reserveCapacity(framesToProcess)
     animatedFrames = reduce(0..<framesToProcess, []) { $0 + pure(prepareFrame($1)) }
+    currentPreloadIndex = framesToProcess
   }
 
   /// Loads a single frame from an image source, resizes it, then returns an `AnimatedFrame`.
@@ -79,7 +82,7 @@ class Animator {
   /// :param: index The index of the frame.
   /// :returns: An optional image at a given frame.
   private func frameAtIndex(index: Int) -> UIImage? {
-    return animatedFrames[index % animatedFrames.count].image
+    return animatedFrames[index].image
   }
 
   /// Updates the current frame if necessary using the frame timer and the duration of each frame in `animatedFrames`.
@@ -87,17 +90,17 @@ class Animator {
   /// :returns: An optional image at a given frame.
   func updateCurrentFrame(duration: CFTimeInterval) -> Bool {
     timeSinceLastFrameChange += min(maxTimeStep, duration)
-    var frameDuration = animatedFrames[currentFrameIndex % animatedFrames.count].duration
+    var frameDuration = animatedFrames[currentFrameIndex].duration
 
     if timeSinceLastFrameChange >= frameDuration {
       timeSinceLastFrameChange -= frameDuration
       let lastFrameIndex = currentFrameIndex
-      currentFrameIndex = ++currentFrameIndex % numberOfFrames
+      currentFrameIndex = ++currentFrameIndex % animatedFrames.count
 
       // Loads the next needed frame for progressive loading
       if animatedFrames.count < numberOfFrames {
-        let nextFrameToLoad = (lastFrameIndex + animatedFrames.count) % numberOfFrames
-        animatedFrames[lastFrameIndex % animatedFrames.count] = prepareFrame(nextFrameToLoad)
+        animatedFrames[lastFrameIndex] = prepareFrame(currentPreloadIndex)
+        currentPreloadIndex = ++currentPreloadIndex % numberOfFrames
       }
       return true
     }
