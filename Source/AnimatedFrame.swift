@@ -2,4 +2,9 @@
 struct AnimatedFrame {
   let image: UIImage?
   let duration: NSTimeInterval
+
+  static func null() -> AnimatedFrame {
+    return AnimatedFrame(image: .None, duration: 0)
+  }
 }
+

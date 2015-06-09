@@ -1,19 +1,38 @@
+# OS X Finder
+.DS_Store
+
+# Xcode per-user config
 *.mode1
 *.mode1v3
 *.mode2v3
 *.perspective
 *.perspectivev3
 *.pbxuser
-*.xccheckout
 xcuserdata
+*.xccheckout
+
+# Build products
 build/
 *.o
 *.LinkFileList
 *.hmap
+
+# Automatic backup files
 *~.nib/
 *.swp
 *~
 *.dat
 *.dep
-.DS_Store
+
+# Cocoapods
+Pods
+
+# Carthage
 Carthage/Build
+
+# AppCode specific files
+.idea/
+*.iml
+
+Gifu.framework.zip
+*.xcscmblueprint

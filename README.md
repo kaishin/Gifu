@@ -1,15 +1,18 @@
 <img src="https://db.tt/mZ1iMNXO" width="100" />
 
-Adds performant animated GIF support to UIKit, without subclassing `UIImageView`. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
-
-#### Why?
-
-Because Apple's `+animatedImage*` is not meant to be used for animated GIFs (loads all the full-sized frames in memory), and the few third party implementations that got it right (see [Credits](#credits)) still require you to use a `UIImageView` subclass, which is not very flexible and might clash with other application-specific functionality.
+Adds performant animated GIF support to UIKit. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
 #### How?
 
-Gifu uses a `UIImage` subclass and `UIImageView` extension written in Swift.
-It relies on `CADisplayLink` to animate the view and optimizes the frames by resizing them.
+Gifu uses a `UIImageView` subclass and an animator that keeps track of frames and their durations.
+
+It uses `CADisplayLink` to animate the view and only keeps a limited number of
+resized frames in-memory, which exponentially minimizes memory usage for large GIF files (+300 frames).
+
+The figure below summarizes how this works in practice. Given an image
+containing 10 frames, Gifu will load the current frame (red), pre-load the next two frames in this example (orange), and nullify all the other frames to free up memory (gray):
+
+<img src="https://db.tt/ZLfx23hg" width="300" />
 
 #### Install
 
@@ -19,25 +22,20 @@ If your prefer Git submodules or want to support iOS 7, you want to add the file
 
 #### Usage
 
-Start by instantiating an `AnimatedImage`, then pass it to your `UIImageView`'s `setAnimatedImage`:
+Start by instantiating an `AnimatableImageView` either in code or Interface Builder, then call `animateWithImage(named:)` or `animateWithImageData(data:)` on it.
 
 ```swift
-if let image = AnimatedImage.animatedImageWithName("mugen.gif") {
-  imageView.setAnimatedImage(image)
-  imageView.startAnimatingGIF()
-}
+let imageView = AnimatableImageView(frame: CGRect(...))
+imageView.animateWithImage(named: "mugen.gif")
 ```
-Note that the image view will not start animating until you call `startAnimatingGIF()`
-on it. You can stop the animation anytime using `stopAnimatingGIF()`, and resume
-it using `startAnimatingGIF()`. These methods will fallback to UIKit's `startAnimating()` and `stopAnimating()`
-if the image view has no animatable image.
+You can stop the animation anytime using `imageView.stopAnimatingGIF()`, and resume
+it using `imageView.startAnimatingGIF()`.
 
-Likewise, the `isAnimatingGIF()` method returns the current animation state of the view if it has an animatable image,
-or UIKit's `isAnimating()` otherwise.
+The `isAnimatingGIF()` method returns the current animation state of the view if it has an animatable image.
 
 #### Demo App
 
-<img src="https://db.tt/ZoUNLHGp" width="300" />
+Clone or download the repository and open `Gifu.xcworkspace` to check out the demo app.
 
 #### Compatibility
 
@@ -46,8 +44,7 @@ or UIKit's `isAnimating()` otherwise.
 #### Roadmap
 
 - Documentation.
-- Write some basic tests.
-- Add ability to pass a frame-rate argument to `startAnimatingGIF()`
+- Add ability to set the frame-rate
 
 #### Contributors
 

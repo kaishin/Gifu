@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Gifu-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController title="Gifu" id="vXZ-lx-hvc" customClass="ViewController" customModule="gifu_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Gifu" id="vXZ-lx-hvc" customClass="ViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -17,77 +17,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Gifu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-41-BaC">
-                                <rect key="frame" x="284" y="45" width="33" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Tap the image to pause/resume" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsv-cU-WO5">
+                                <rect key="frame" x="211" y="79" width="178.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.6334223747253418" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Not the Japanese prefecture." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsv-cU-WO5">
-                                <rect key="frame" x="225" y="70" width="150" height="14"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="450" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="FSz-xF-Xds" customClass="AnimatableImageView" customModule="Gifu">
-                                <rect key="frame" x="24" y="134" width="552" height="325"/>
-                                <color key="backgroundColor" red="0.7725490196" green="0.1764705882" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="FSz-xF-Xds" customClass="AnimatableImageView" customModule="Gifu">
+                                <rect key="frame" x="0.0" y="143" width="600" height="300"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="yth-9a-24x" appends="YES" id="21e-1P-Idk"/>
+                                </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-3J-OXr" customClass="FlatButton" customModule="gifu_demo" customModuleProvider="target">
-                                <rect key="frame" x="275" y="509" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Lmc-xA-WNU"/>
-                                    <constraint firstAttribute="width" constant="50" id="eYX-lm-C2V"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="tintColor" red="0.99444444444444446" green="1" blue="0.98888888888888893" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="❙❙"/>
-                                <connections>
-                                    <action selector="toggleAnimation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PvH-3E-LbB"/>
-                                </connections>
-                            </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tZ1-rw-Kbd">
-                                <rect key="frame" x="236" y="467" width="129" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="VXm-pK-heN"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Mugen"/>
-                                    <segment title="Nailed It"/>
-                                </segments>
-                                <connections>
-                                    <action selector="toggleGIF:" destination="vXZ-lx-hvc" eventType="valueChanged" id="W0R-yI-ahi"/>
-                                </connections>
-                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Gifu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-41-BaC">
+                                <rect key="frame" x="283" y="55" width="34" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.6334223747253418" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.24722154438495636" green="0.26659342646598816" blue="0.2988148033618927" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.98160680789999999" green="0.98160680789999999" blue="0.98160680789999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.6334223747253418" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="FSz-xF-Xds" secondAttribute="trailing" constant="8" id="8kQ-x1-WJl"/>
-                            <constraint firstAttribute="centerX" secondItem="bFY-3J-OXr" secondAttribute="centerX" id="CNh-OD-Msi"/>
-                            <constraint firstItem="FSz-xF-Xds" firstAttribute="top" secondItem="wsv-cU-WO5" secondAttribute="bottom" constant="50" id="I39-Ku-NYc"/>
-                            <constraint firstItem="c8Y-41-BaC" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="JHy-q1-JuJ"/>
+                            <constraint firstAttribute="trailing" secondItem="FSz-xF-Xds" secondAttribute="trailing" id="8kQ-x1-WJl"/>
+                            <constraint firstItem="c8Y-41-BaC" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="55" id="JHy-q1-JuJ"/>
                             <constraint firstAttribute="centerX" secondItem="c8Y-41-BaC" secondAttribute="centerX" id="Kc0-P5-KMZ"/>
-                            <constraint firstItem="FSz-xF-Xds" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="O4L-QH-SvV"/>
-                            <constraint firstItem="bFY-3J-OXr" firstAttribute="top" secondItem="FSz-xF-Xds" secondAttribute="bottom" constant="50" id="PKi-91-olI"/>
-                            <constraint firstAttribute="centerX" secondItem="tZ1-rw-Kbd" secondAttribute="centerX" id="QKy-Gl-KPQ"/>
-                            <constraint firstItem="bFY-3J-OXr" firstAttribute="top" secondItem="tZ1-rw-Kbd" secondAttribute="bottom" constant="14" id="Vqv-f1-dnH"/>
+                            <constraint firstItem="FSz-xF-Xds" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="O4L-QH-SvV"/>
+                            <constraint firstItem="FSz-xF-Xds" firstAttribute="top" secondItem="wsv-cU-WO5" secondAttribute="bottom" constant="50" id="ODd-UW-Pca"/>
                             <constraint firstItem="wsv-cU-WO5" firstAttribute="top" secondItem="c8Y-41-BaC" secondAttribute="bottom" constant="4" id="ZG4-fK-WvN"/>
-                            <constraint firstItem="tZ1-rw-Kbd" firstAttribute="top" secondItem="FSz-xF-Xds" secondAttribute="bottom" constant="8" id="lu2-sK-QNZ"/>
                             <constraint firstAttribute="centerX" secondItem="FSz-xF-Xds" secondAttribute="centerX" id="oih-yH-vRh"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bFY-3J-OXr" secondAttribute="bottom" constant="41" id="w4g-Xu-ht2"/>
                             <constraint firstAttribute="centerX" secondItem="wsv-cU-WO5" secondAttribute="centerX" id="yLb-zR-gfU"/>
                         </constraints>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="button" destination="bFY-3J-OXr" id="MYJ-Xm-nTf"/>
                         <outlet property="imageView" destination="FSz-xF-Xds" id="gtV-MK-Fwd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yth-9a-24x">
+                    <connections>
+                        <action selector="toggleAnimation:" destination="vXZ-lx-hvc" id="AKP-V2-BPy"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="330" y="360"/>
         </scene>
     </scenes>
 </document>
