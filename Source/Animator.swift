@@ -90,12 +90,13 @@ class Animator {
   /// :returns: An optional image at a given frame.
   func updateCurrentFrame(duration: CFTimeInterval) -> Bool {
     timeSinceLastFrameChange += min(maxTimeStep, duration)
-    var frameDuration = animatedFrames[currentFrameIndex].duration
     
     //If there are no frames to animate, crashes with array index out of range
     if animatedFrames.count == 0 {
         return false
     }
+    
+    var frameDuration = animatedFrames[currentFrameIndex].duration
 
     if timeSinceLastFrameChange >= frameDuration {
       timeSinceLastFrameChange -= frameDuration
