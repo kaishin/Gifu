@@ -91,21 +91,19 @@ class Animator {
   /// - returns: An optional image at a given frame.
   func updateCurrentFrame(duration: CFTimeInterval) -> Bool {
     timeSinceLastFrameChange += min(maxTimeStep, duration)
-    let frameDuration = animatedFrames[currentFrameIndex].duration
+    guard let frameDuration = animatedFrames[safe:currentFrameIndex]?.duration where
+    frameDuration <= timeSinceLastFrameChange else { return false }
 
-    if timeSinceLastFrameChange >= frameDuration {
-      timeSinceLastFrameChange -= frameDuration
-      let lastFrameIndex = currentFrameIndex
-      currentFrameIndex = ++currentFrameIndex % animatedFrames.count
-
-      // Loads the next needed frame for progressive loading
-      if animatedFrames.count < frameCount {
-        animatedFrames[lastFrameIndex] = prepareFrame(currentPreloadIndex)
-        currentPreloadIndex = ++currentPreloadIndex % frameCount
-      }
-      return true
+    timeSinceLastFrameChange -= frameDuration
+    let lastFrameIndex = currentFrameIndex
+    currentFrameIndex = ++currentFrameIndex % animatedFrames.count
+    
+    // Loads the next needed frame for progressive loading
+    if animatedFrames.count < frameCount {
+      animatedFrames[lastFrameIndex] = prepareFrame(currentPreloadIndex)
+      currentPreloadIndex = ++currentPreloadIndex % frameCount
     }
-
-    return false
+    
+    return true
   }
 }
