@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+version=0.9.3
+
+curl -L -O "https://github.com/Carthage/Carthage/releases/download/$version/Carthage.pkg"
+sudo installer -pkg Carthage.pkg -target /

@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+set -o pipefail
+
+xcrun xcodebuild \
+  -project Gifu.xcodeproj \
+  -scheme Gifu \
+  -sdk iphonesimulator \
+  CONFIGURATION_BUILD_DIR='./build' \
+  test \
+  | xcpretty --color
+
