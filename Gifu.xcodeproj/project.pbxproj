@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0036ABB71BBD1D0B00C6CC3D /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0036ABB61BBD1D0B00C6CC3D /* mugen.gif */; settings = {ASSET_TAGS = (); }; };
-		0036ABB91BBD1D1400C6CC3D /* nailed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0036ABB81BBD1D1400C6CC3D /* nailed.gif */; settings = {ASSET_TAGS = (); }; };
-		004529921BD82209006493BF /* Runes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004529911BD82209006493BF /* Runes.swift */; settings = {ASSET_TAGS = (); }; };
+		0036ABB71BBD1D0B00C6CC3D /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0036ABB61BBD1D0B00C6CC3D /* mugen.gif */; };
+		0036ABB91BBD1D1400C6CC3D /* nailed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0036ABB81BBD1D1400C6CC3D /* nailed.gif */; };
+		004529921BD82209006493BF /* Runes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004529911BD82209006493BF /* Runes.swift */; };
 		005656ED1A6F14D6008A0ED1 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EC1A6F14D6008A0ED1 /* Animator.swift */; };
 		005656EF1A6F1C26008A0ED1 /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */; };
 		009BD1391BBC7F6500FC982B /* GifuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BD1381BBC7F6500FC982B /* GifuTests.swift */; };
-		009BD13B1BBC7F6500FC982B /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B8C73E1A364DA400C188E7 /* Gifu.framework */; settings = {ASSET_TAGS = (); }; };
-		009BD1441BBC93C800FC982B /* CGSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BD1431BBC93C800FC982B /* CGSizeExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		009BD13B1BBC7F6500FC982B /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B8C73E1A364DA400C188E7 /* Gifu.framework */; };
+		009BD1441BBC93C800FC982B /* CGSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BD1431BBC93C800FC982B /* CGSizeExtension.swift */; };
 		00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */; };
 		00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8C7951A3650EE00C188E7 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */; };
@@ -79,6 +79,35 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		007E08401BD95BE900883D0C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				009BD1431BBC93C800FC982B /* CGSizeExtension.swift */,
+				EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		007E08411BD95C0200883D0C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				004529911BD82209006493BF /* Runes.swift */,
+				EAF49C801A3A4FAA00B395DF /* FunctionalHelpers.swift */,
+				00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		007E08421BD95C6100883D0C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */,
+				EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */,
+				005656EC1A6F14D6008A0ED1 /* Animator.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		009BD1371BBC7F6500FC982B /* GifuTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,15 +149,10 @@
 		00B8C75A1A364DBE00C188E7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */,
-				EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */,
-				005656EC1A6F14D6008A0ED1 /* Animator.swift */,
-				009BD1431BBC93C800FC982B /* CGSizeExtension.swift */,
-				EAF49C801A3A4FAA00B395DF /* FunctionalHelpers.swift */,
+				007E08421BD95C6100883D0C /* Classes */,
+				007E08411BD95C0200883D0C /* Helpers */,
+				007E08401BD95BE900883D0C /* Extensions */,
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
-				00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */,
-				EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */,
-				004529911BD82209006493BF /* Runes.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
