@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-jazzy -o ./docs -c -a "Reda Lemeden"
