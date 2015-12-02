@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.social_media_url = "http://twitter.com/kaishin"
   s.license = { :type => "MIT", :file => "LICENSE" }
   s.author = { "Reda Lemeden" => "git@kaishin.haz.email" }
-  s.source = { :git => "https://github.com/kaishin/gifu.git", :tag => "v#{s.version}" }
+  s.source = { :git => "https://github.com/kaishin/gifu.git", :tag => "v#{s.version}", :submodules => true }
   s.platform = :ios, "8.0"
   s.ios.source_files = "Source/**/*.{h,swift}", "Carthage/Checkouts/Runes/Source/Runes.swift"
   s.requires_arc = true
