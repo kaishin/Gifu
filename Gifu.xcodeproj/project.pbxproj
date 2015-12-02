@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0036ABB71BBD1D0B00C6CC3D /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0036ABB61BBD1D0B00C6CC3D /* mugen.gif */; };
 		0036ABB91BBD1D1400C6CC3D /* nailed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0036ABB81BBD1D1400C6CC3D /* nailed.gif */; };
-		004529921BD82209006493BF /* Runes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004529911BD82209006493BF /* Runes.swift */; };
 		005656ED1A6F14D6008A0ED1 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EC1A6F14D6008A0ED1 /* Animator.swift */; };
 		005656EF1A6F1C26008A0ED1 /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */; };
 		007E08441BD95E6200883D0C /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E08431BD95E6200883D0C /* ArrayExtension.swift */; };
@@ -36,7 +35,6 @@
 /* Begin PBXFileReference section */
 		0036ABB61BBD1D0B00C6CC3D /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = Demo/demo/Images.xcassets/mugen.dataset/mugen.gif; sourceTree = SOURCE_ROOT; };
 		0036ABB81BBD1D1400C6CC3D /* nailed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = nailed.gif; path = Demo/demo/Images.xcassets/nailed.dataset/nailed.gif; sourceTree = SOURCE_ROOT; };
-		004529911BD82209006493BF /* Runes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Runes.swift; path = Carthage/Checkouts/Runes/Source/Runes.swift; sourceTree = SOURCE_ROOT; };
 		005656EC1A6F14D6008A0ED1 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		005656EE1A6F1C26008A0ED1 /* AnimatableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatableImageView.swift; sourceTree = "<group>"; };
 		007E08431BD95E6200883D0C /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 		007E08411BD95C0200883D0C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				004529911BD82209006493BF /* Runes.swift */,
 				EAF49C801A3A4FAA00B395DF /* FunctionalHelpers.swift */,
 				00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */,
 			);
@@ -281,7 +278,6 @@
 				005656EF1A6F1C26008A0ED1 /* AnimatableImageView.swift in Sources */,
 				005656ED1A6F14D6008A0ED1 /* Animator.swift in Sources */,
 				009BD1441BBC93C800FC982B /* CGSizeExtension.swift in Sources */,
-				004529921BD82209006493BF /* Runes.swift in Sources */,
 				EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */,
 				00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */,
 				EAF49C811A3A4FAA00B395DF /* FunctionalHelpers.swift in Sources */,
