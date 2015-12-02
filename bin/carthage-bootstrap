@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-
-if ! diff Cartfile.resolved Carthage/Cartfile.resolved &>/dev/null; then
-  carthage bootstrap --platform iOS
-  cp Cartfile.resolved Carthage
-fi
