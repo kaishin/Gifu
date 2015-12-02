@@ -1,4 +1,4 @@
-<img src="https://db.tt/mZ1iMNXO" width="100" />
+# ![Gifu](https://db.tt/mZ1iMNXO)
 
 Adds performant animated GIF support to UIKit. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
