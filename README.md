@@ -15,10 +15,20 @@ containing 10 frames, Gifu will load the current frame (red), pre-load the next 
 <img src="https://db.tt/ZLfx23hg" width="300" />
 
 #### Install
+#### [Carthage](https://github.com/Carthage/Carthage)
 
-If you use [Carthage](https://github.com/Carthage/Carthage), add this to your `cartfile`: `github "kaishin/gifu"`.
+- Add the following to your Cartfile: `github "kaishin/Gifu"`
+- Then run `carthage update`
+- Follow the current instructions in [Carthage's README][carthage-installation]
+for up to date installation instructions.
 
-If your prefer Git submodules or want to support iOS 7, you want to add the files in `source` to your Xcode project.
+[carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
+
+#### [CocoaPods](http://cocoapods.org)
+
+- Add the following to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html): `pod 'Gifu'`
+- You will also need to make sure you're opting into using frameworks: `use_frameworks!`
+- Then run `pod install` with CocoaPods 0.36 or newer.
 
 #### Usage
 
