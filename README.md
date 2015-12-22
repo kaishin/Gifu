@@ -1,5 +1,7 @@
 # ![Gifu](https://db.tt/mZ1iMNXO)
 
+[![Join the chat at https://gitter.im/kaishin/gifu](https://badges.gitter.im/kaishin/gifu.svg)](https://gitter.im/kaishin/gifu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Adds performant animated GIF support to UIKit. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
 #### How?
