@@ -66,6 +66,12 @@ public class AnimatableImageView: UIImageView {
   public func stopAnimatingGIF() {
     displayLink.paused = true
   }
+  
+  /// Reset the image view values
+  public func prepareForReuse() {
+    stopAnimatingGIF()
+    animator = nil
+  }
 
   /// Update the current frame with the displayLink duration
   func updateFrame() {
