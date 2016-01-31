@@ -68,7 +68,7 @@ public class AnimatableImageView: UIImageView {
   }
   
   /// Reset the image view values
-  public func resetAnimationView() {
+  public func prepareForReuse() {
     stopAnimatingGIF()
     animator = nil
   }
