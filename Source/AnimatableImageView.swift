@@ -27,6 +27,10 @@ public protocol AnimatableImageViewDelegate: class {
 
 /// A subclass of `UIImageView` that can be animated using an image name string or raw data.
 public class AnimatableImageView: UIImageView {
+  /// The index of the GIF frame the timeline was moved to.
+  private var currentMovedToFrameIndex = -1
+  /// Specifies the number of times an animation was played.
+  private var currentIterationsCount = 0
   /// An `Animator` instance that holds the frames of a specific image in memory.
   var animator: Animator?
   /// A display link that keeps calling the `updateFrame` method on every screen refresh.
@@ -37,11 +41,26 @@ public class AnimatableImageView: UIImageView {
   
   /// The size of the frame cache. Default is 50.
   public var framePreloadCount = 50
+  
+  /// The required number of times the GIF animation is to cycle though the image sequence before stopping. The default is -1 which means to use loop count setting from the GIF data. 0 means infinite loop.
+  public var customLoopCount = -1
+  
+  /// The first frame from the animated sequence. It can be used when a static image is required.
+  public var posterImage: UIImage?
+  
+  /// Determines whether resizing gif images in accordance with the image view frame size is required. This can reduce memory usage but also degrade image original quality. Default is **true**.
+  public var needsFramesResizing = true
 
   /// A computed property that returns whether the image view is animating.
   public var isAnimatingGIF: Bool {
     return !displayLink.paused
   }
+  
+  /// The number of the GIF's frames.
+  public var framesCount: Int {
+    if let animator = animator { return animator.frameCount } else { return 0 }
+  }
+  
 
   /// Prepares the frames using a GIF image file name, without starting the animation.
   /// The file name should include the `.gif` extension.
@@ -56,10 +75,16 @@ public class AnimatableImageView: UIImageView {
   ///
   /// - parameter data: GIF image data.
   public func prepareForAnimation(imageData data: NSData) {
-    image = UIImage(data: data)
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
-    animator?.prepareFrames()
-    attachDisplayLink()
+    
+    if let animator = animator {
+      animator.needsFramesResizing = self.needsFramesResizing
+      animator.prepareFrames()
+      posterImage = animator.animatedFrames.count > 0 ? animator.animatedFrames[0].image : nil
+      image = posterImage
+      delegate?.animatableImageView?(self, didUpdateFrameToIndex: 0)
+      attachDisplayLink()
+    }
   }
 
   /// Prepares the frames using a GIF image file name and starts animating the image view.
@@ -108,7 +133,7 @@ public class AnimatableImageView: UIImageView {
     }
   }
 
-  /// Invalidate the displayLink so it releases this object.
+  /// Invalidates the displayLink so it releases this object.
   deinit {
     displayLink.invalidate()
   }
