@@ -5,6 +5,22 @@ import UIKit
 typealias GIFProperties = [String : Double]
 let defaultDuration: Double = 0
 
+/// Returns the number of times to repeat an animated sequence.
+/// - returns: The animation loop count.
+func CGImageSourceGIFLoopCount(imageSource: CGImageSource) -> Int {
+  if !imageSource.isAnimatedGIF { return 0 }
+  
+  let imageSourceProperties = imageSource.globalGIFProperties()
+  var loopCount = 0
+  if let properties = imageSourceProperties {
+    if let unwrappedLoopCount = properties[String(kCGImagePropertyGIFLoopCount)] {
+      loopCount = Int(unwrappedLoopCount)
+    }
+  }
+  
+  return loopCount
+}
+
 /// Retruns the duration of a frame at a specific index using an image source (an `CGImageSource` instance).
 ///
 /// - returns: A frame duration.
@@ -70,6 +86,14 @@ extension CGImageSourceRef {
   /// - returns: A dictionary containing the GIF properties at the passed in index.
   func GIFPropertiesAtIndex(index: Int) -> GIFProperties? {
     let imageProperties = CGImageSourceCopyPropertiesAtIndex(self, index, nil) as Dictionary?
+    return imageProperties?[String(kCGImagePropertyGIFDictionary)] as? GIFProperties
+  }
+  
+  /// Returns the global GIF properties.
+  ///
+  /// - returns: A dictionary containing the GIF properties.
+  func globalGIFProperties() -> GIFProperties? {
+    let imageProperties = CGImageSourceCopyProperties(self, nil) as Dictionary?
     return imageProperties?[String(kCGImagePropertyGIFDictionary)] as? GIFProperties
   }
 }
