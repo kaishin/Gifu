@@ -141,10 +141,48 @@ public class AnimatableImageView: UIImageView {
   /// Resets the image view values
   public func prepareForReuse() {
     stopAnimatingGIF()
+    
     animator = nil
+    delegate = nil
+    posterImage = nil
+    
+    currentMovedToFrameIndex = -1
+    customLoopCount = -1
+    currentIterationsCount = 0
   }
+  
+  /// Stops the image view animation if all loops are finished.
+  /// - parameter currentGIFIndex: Current displayed frame index.
+  func stopAnimatingGIFIfNeeded(currentGIFIndex: Int) {
+    // Check whether current loop is finished.
+    if (currentGIFIndex + 1) == animator!.frameCount {
+      // Notify delegate that current loop cycle is finished.
+      delegate?.animatableImageView?(self, didReachEndOfCurrentLoop: ++currentIterationsCount)
 
-  /// Update the current frame with the displayLink duration
+      if allLoopsCompleted() == true { stopAnimatingGIF() }
+    }
+  }
+  
+  /// Checks whether the animation must be stopped in accordance with the loop count settings.
+  /// - returns: Bool value indicating whether the animation must be stopped.
+  func allLoopsCompleted() -> Bool {
+    let loopCountFromGIFData = CGImageSourceGIFLoopCount(animator!.imageSource)
+    if customLoopCount == 0 || loopCountFromGIFData == 0 {
+      // Infinite loop.
+      return false
+    }
+    
+    if customLoopCount > 0 {
+      // Use custom loop count.
+      if customLoopCount == currentIterationsCount { return true }
+    }
+      // Use stored in GIF loop count.
+    else if loopCountFromGIFData == currentIterationsCount { return true }
+    
+    return false
+  }
+  
+  /// Updates the current frame with the displayLink duration
   func updateFrame() {
     if animator?.updateCurrentFrame(displayLink.duration) ?? false {
       layer.setNeedsDisplay()
