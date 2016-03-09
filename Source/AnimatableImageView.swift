@@ -182,6 +182,11 @@ public class AnimatableImageView: UIImageView {
     return false
   }
   
+  // Updates cached frames after moving to an arbitrary frame to correctly continue GIF playing.
+  func prepareForPlayAfterMoving() {
+    animator?.prepareFramesAfterMovingToIndex(currentMovedToFrameIndex)
+  }
+
   /// Updates the current frame with the displayLink duration
   func updateFrame() {
     if animator?.updateCurrentFrame(displayLink.duration) ?? false {
