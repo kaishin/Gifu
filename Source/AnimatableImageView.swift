@@ -105,19 +105,37 @@ public class AnimatableImageView: UIImageView {
 
   /// Updates the `image` property of the image view if necessary. This method should not be called manually.
   override public func displayLayer(layer: CALayer) {
-    image = animator?.currentFrame
+    if let animator = animator {
+      image = animator.currentFrame
+      let currentGIFIndex = animator.convertCurrentCacheIndexToGIFIndex()
+      delegate?.animatableImageView?(self, didUpdateFrameToIndex: currentGIFIndex)
+      stopAnimatingGIFIfNeeded(currentGIFIndex)
+    }
   }
 
   /// Starts the image view animation.
   public func startAnimatingGIF() {
     if animator?.isAnimatable ?? false {
+      // Check whether the animation was moved to a specific frame.
+      if currentMovedToFrameIndex >= 0 && currentMovedToFrameIndex < framesCount {
+        prepareForPlayAfterMoving()
+        currentMovedToFrameIndex = -1
+      }
+      
       displayLink.paused = false
+      let currentGIFIndex = animator!.convertCurrentCacheIndexToGIFIndex()
+      delegate?.animatableImageView?(self, didStartAnimatingAtIndex: currentGIFIndex)
+      
+      // Call this method in case when current frame is a final frame.
+      stopAnimatingGIFIfNeeded(currentGIFIndex)
     }
   }
 
   /// Stops the image view animation.
   public func stopAnimatingGIF() {
     displayLink.paused = true
+    delegate?.animatableImageView?(self, didStopAnimatingAtIndex: animator!.convertCurrentCacheIndexToGIFIndex())
+    currentIterationsCount = 0
   }
   
   /// Stops the animation and moves to the given frame index.
