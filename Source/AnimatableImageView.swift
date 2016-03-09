@@ -120,7 +120,25 @@ public class AnimatableImageView: UIImageView {
     displayLink.paused = true
   }
   
-  /// Reset the image view values
+  /// Stops the animation and moves to the given frame index.
+  /// - parameter index: Index the animation must be moved to.
+  public func moveToFrame(index: Int) {
+    if currentMovedToFrameIndex == index || framesCount <= 0 || index < 0 || index >= framesCount { return }
+    guard let animator = animator else { return }
+    
+    if isAnimatingGIF == true {
+      stopAnimatingGIF()
+    }
+    
+    let requestedFrame: UIImage? = animator.prepareFrame(index).image
+    if let requestedFrame = requestedFrame {
+      image = requestedFrame
+      delegate?.animatableImageView?(self, didUpdateFrameToIndex: index)
+      currentMovedToFrameIndex = index
+    }
+  }
+  
+  /// Resets the image view values
   public func prepareForReuse() {
     stopAnimatingGIF()
     animator = nil
