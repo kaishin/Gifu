@@ -23,6 +23,9 @@ class Animator {
   var currentPreloadIndex = 0
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
   var timeSinceLastFrameChange: NSTimeInterval = 0.0
+  /// Determines whether resizing is required.
+  /// - seealso: `needsFramesResizing` in AnimatableImageView.swift
+  var needsFramesResizing = true
 
   /// The current image frame to show.
   var currentFrame: UIImage? {
@@ -34,10 +37,12 @@ class Animator {
     return imageSource.isAnimatedGIF
   }
 
-  /// Initializes an animator instance from raw GIF image data and an `Animatable` delegate.
+  /// Initializes an animator instance from raw GIF image data.
   ///
   /// - parameter data: The raw GIF image data.
-  /// - parameter delegate: An `Animatable` delegate.
+  /// - parameter size: Size that is used for all GIF frames resizing.
+  /// - parameter contentMode: Mode that determines how a view adjusts its content.
+  /// - parameter framePreloadCount: Number of frames that will be preloaded into memory.
   init(data: NSData, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int) {
     let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse]
     self.imageSource = CGImageSourceCreateWithData(data, options) ?? CGImageSourceCreateIncremental(options)
@@ -55,7 +60,7 @@ class Animator {
     animatedFrames = (0..<framesToProcess).reduce([]) { $0 + pure(prepareFrame($1)) }
     currentPreloadIndex = framesToProcess
   }
-
+  
   /// Loads a single frame from an image source, resizes it, then returns an `AnimatedFrame`.
   ///
   /// - parameter index: The index of the GIF image source to prepare
@@ -64,17 +69,21 @@ class Animator {
     guard let frameImageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil) else {
       return AnimatedFrame.null()
     }
-
+    
     let frameDuration = CGImageSourceGIFFrameDuration(imageSource, index: index)
     let image = UIImage(CGImage: frameImageRef)
     let scaledImage: UIImage?
-
-    switch contentMode {
-    case .ScaleAspectFit: scaledImage = image.resizeAspectFit(size)
-    case .ScaleAspectFill: scaledImage = image.resizeAspectFill(size)
-    default: scaledImage = image.resize(size)
+    
+    if needsFramesResizing == true {
+      switch contentMode {
+      case .ScaleAspectFit: scaledImage = image.resizeAspectFit(size)
+      case .ScaleAspectFill: scaledImage = image.resizeAspectFill(size)
+      default: scaledImage = image.resize(size)
+      }
+    } else {
+      scaledImage = image
     }
-
+    
     return AnimatedFrame(image: scaledImage, duration: frameDuration)
   }
 
