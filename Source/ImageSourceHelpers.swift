@@ -4,6 +4,25 @@ import UIKit
 
 typealias GIFProperties = [String : Double]
 let defaultDuration: Double = 0
+let defaultLoopCount: Int = 0
+
+/// Returns the GIF loop count value retrieved from the imageSource.
+/// - parameter imageSource: The image source that contains a GIF data.
+/// - returns: The animation loop count.
+func CGImageSourceGIFLoopCount(imageSource: CGImageSource) -> Int {
+  if !imageSource.isAnimatedGIF { return defaultLoopCount }
+  
+  var loopCount = defaultLoopCount
+  let imageSourceProperties = imageSource.globalGIFProperties()
+  
+  if let properties = imageSourceProperties {
+    if let unwrappedLoopCount = properties[String(kCGImagePropertyGIFLoopCount)] {
+      loopCount = Int(unwrappedLoopCount)
+    }
+  }
+  
+  return loopCount
+}
 
 /// Retruns the duration of a frame at a specific index using an image source (an `CGImageSource` instance).
 ///
