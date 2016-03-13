@@ -31,10 +31,10 @@ public class AnimatableImageView: UIImageView {
   ///
   /// - parameter data: GIF image data.
   public func prepareForAnimation(imageData data: NSData) {
-    image = UIImage(data: data)
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
     animator?.prepareFrames()
     posterImage = (animator?.animatedFrames.count > 0) ? animator?.animatedFrames[0].image : nil
+    image = posterImage
     attachDisplayLink()
   }
 
