@@ -72,4 +72,12 @@ extension CGImageSourceRef {
     let imageProperties = CGImageSourceCopyPropertiesAtIndex(self, index, nil) as Dictionary?
     return imageProperties?[String(kCGImagePropertyGIFDictionary)] as? GIFProperties
   }
+  
+  /// Returns the global GIF properties.
+  ///
+  /// - returns: A dictionary containing the GIF properties.
+  func globalGIFProperties() -> GIFProperties? {
+    let imageProperties = CGImageSourceCopyProperties(self, nil) as Dictionary?
+    return imageProperties?[String(kCGImagePropertyGIFDictionary)] as? GIFProperties
+  }
 }
