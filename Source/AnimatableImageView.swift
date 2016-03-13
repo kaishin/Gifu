@@ -10,6 +10,9 @@ public class AnimatableImageView: UIImageView {
   /// The size of the frame cache.
   public var framePreloadCount = 50
 
+  /// The required number of times the GIF animation is to cycle though the image sequence before stopping. The default is __0__ that means repeating the animation indefinitely. __-1__ means using loop count setting extracted from the GIF data.
+  public var loopCount = 0
+  
   /// A computed property that returns whether the image view is animating.
   public var isAnimatingGIF: Bool {
     return !displayLink.paused
