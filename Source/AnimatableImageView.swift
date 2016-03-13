@@ -76,6 +76,7 @@ public class AnimatableImageView: UIImageView {
     stopAnimatingGIF()
     animator = nil
     posterImage = nil
+    image = nil
   }
 
   /// Update the current frame with the displayLink duration
