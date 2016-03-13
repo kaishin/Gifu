@@ -23,6 +23,8 @@ class Animator {
   var currentPreloadIndex = 0
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
   var timeSinceLastFrameChange: NSTimeInterval = 0.0
+  /// The loop count value extracted from the GIF data.
+  var sourceLoopCount = 0
 
   /// The current image frame to show.
   var currentFrame: UIImage? {
