@@ -78,6 +78,17 @@ public class AnimatableImageView: UIImageView {
     animator = nil
   }
 
+  /// Stops the animation in accordance with the loop count settings.
+  func stopAnimatingIfNeeded() {
+    if let animator = animator {
+      // Check whether the currently displayed animation frame is the last one.
+      if animator.currentAnimationPosition == (animator.frameCount - 1) {
+        
+        if shouldStopLooping() == true { stopAnimatingGIF() }
+      }
+    }
+  }
+  
   /// Specifies whether all of the required animation iterations have been finished.
   /// - returns: true if the animation should stop looping, false otherwise.
   func shouldStopLooping() -> Bool {
