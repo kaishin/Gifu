@@ -44,7 +44,7 @@ class Animator {
       } else {
         // Compute the animation position using currentPreloadIndex and current cache count properties.
         let animationPosition = currentPreloadIndex - animatedFrames.count
-        return (animationPosition < 0) ? (animationPosition + frameCount + 1) : animationPosition
+        return (animationPosition < 0) ? (animationPosition + frameCount) : animationPosition
       }
   }
 
