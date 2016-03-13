@@ -9,6 +9,9 @@ public class AnimatableImageView: UIImageView {
 
   /// The size of the frame cache.
   public var framePreloadCount = 50
+  
+  /// A preview image extracted from the first frame of an animated GIF.
+  public var posterImage: UIImage?
 
   /// A computed property that returns whether the image view is animating.
   public var isAnimatingGIF: Bool {
