@@ -78,6 +78,25 @@ public class AnimatableImageView: UIImageView {
     animator = nil
   }
 
+  /// Specifies whether all of the required animation iterations have been finished.
+  /// - returns: true if the animation should stop looping, false otherwise.
+  func shouldStopLooping() -> Bool {
+    let sourceLoopCount = animator?.sourceLoopCount ?? 0
+    if loopCount == 0 || sourceLoopCount == 0 {
+      // Infinite animation loop.
+      return false
+    }
+    
+    if loopCount > 0 {
+      // Control iterations with user-defined loop count.
+      if loopCount == playCount { return true }
+    }
+    // Control iterations with loop count from the GIF data.
+    else if sourceLoopCount == playCount { return true }
+    
+    return false
+  }
+  
   /// Update the current frame with the displayLink duration
   func updateFrame() {
     if animator?.updateCurrentFrame(displayLink.duration) ?? false {
