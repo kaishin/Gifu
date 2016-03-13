@@ -33,11 +33,9 @@ public class AnimatableImageView: UIImageView {
   public func prepareForAnimation(imageData data: NSData) {
     image = UIImage(data: data)
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
-    if let animator = animator {
-      animator.needsPrescaling = self.needsPrescaling
-      animator.prepareFrames()
-      attachDisplayLink()
-    }
+    animator?.needsPrescaling = self.needsPrescaling
+    animator?.prepareFrames()
+    attachDisplayLink()
   }
 
   /// Prepares the frames using a GIF image file name and starts animating the image view.
