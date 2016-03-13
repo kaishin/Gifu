@@ -86,7 +86,10 @@ public class AnimatableImageView: UIImageView {
       // Check whether the currently displayed animation frame is the last one.
       if animator.currentAnimationPosition == (animator.frameCount - 1) {
         ++playCount
-        if shouldStopLooping() == true { stopAnimatingGIF() }
+        if shouldStopLooping() == true {
+          playCount = 0
+          stopAnimatingGIF()
+        }
       }
     }
   }
