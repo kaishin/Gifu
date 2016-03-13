@@ -34,6 +34,7 @@ public class AnimatableImageView: UIImageView {
     image = UIImage(data: data)
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
     animator?.prepareFrames()
+    posterImage = (animator?.animatedFrames.count > 0) ? animator?.animatedFrames[0].image : nil
     attachDisplayLink()
   }
 
