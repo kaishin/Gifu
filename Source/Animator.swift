@@ -55,6 +55,7 @@ class Animator {
   init(data: NSData, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int) {
     let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse]
     self.imageSource = CGImageSourceCreateWithData(data, options) ?? CGImageSourceCreateIncremental(options)
+    self.sourceLoopCount = CGImageSourceGIFLoopCount(imageSource)
     self.size = size
     self.contentMode = contentMode
     self.maxFrameCount = framePreloadCount
