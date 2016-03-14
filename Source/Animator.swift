@@ -129,6 +129,9 @@ class Animator {
   func rebuildFrameCache() {
     if currentMoveIndex < 0 { return }
     
+    // Check whether move index matches current animation position.
+    if ((currentMoveIndex + animatedFrames.count) % frameCount) == currentPreloadIndex { return }
+    
     // Calculate indices of the frames that require preloading.
     var indicesForPreload = [Int](count: animatedFrames.count, repeatedValue: 0)
     var baseIndex = currentMoveIndex
