@@ -83,6 +83,11 @@ public class AnimatableImageView: UIImageView {
     stopAnimatingGIF()
     animator = nil
   }
+  
+  /// Updates cache to correctly continue GIF playing.
+  func prepareForPlayAfterMoving() {
+    animator?.prepareFramesAfterMoving()
+  }
 
   /// Update the current frame with the displayLink duration
   func updateFrame() {
