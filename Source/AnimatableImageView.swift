@@ -71,6 +71,7 @@ public class AnimatableImageView: UIImageView {
   /// - parameter index: Index the animation must be moved to.
   public func moveToFrame(index: Int) {
     guard let animator = animator else { return }
+    if animator.currentMoveIndex == index || index < 0 || index >= animator.frameCount { return }
     
     stopAnimatingGIF()
     image = animator.prepareFrame(index).image
