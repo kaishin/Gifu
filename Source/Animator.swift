@@ -108,4 +108,24 @@ class Animator {
     
     return true
   }
+  
+  /// Rebuilds cache using currentMoveIndex as the starting index.
+  func rebuildFrameCache() {
+    if currentMoveIndex < 0 { return }
+    
+    // Calculate indices of the frames that require preloading.
+    var indicesForPreload = [Int](count: animatedFrames.count, repeatedValue: 0)
+    var baseIndex = currentMoveIndex
+    for indexForPreload in (0..<indicesForPreload.count) {
+      indicesForPreload[indexForPreload] = baseIndex % frameCount
+      ++baseIndex
+    }
+    
+    // Fill the cache with the new animated frames.
+    animatedFrames = indicesForPreload.reduce([]) { $0 + pure(prepareFrame($1)) }
+
+    // Reset currently invalid indices.
+    currentPreloadIndex = baseIndex % frameCount
+    currentFrameIndex = 0
+  }
 }
