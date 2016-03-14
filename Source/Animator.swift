@@ -21,6 +21,8 @@ class Animator {
   var currentFrameIndex = 0
   /// The index of the current GIF frame from the source.
   var currentPreloadIndex = 0
+  /// The idnex of the current GIF frame the animation was moved to. -1 means the animation wasn't moved.
+  var currentMoveIndex = -1
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
   var timeSinceLastFrameChange: NSTimeInterval = 0.0
 
