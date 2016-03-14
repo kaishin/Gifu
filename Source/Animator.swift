@@ -79,6 +79,22 @@ class Animator {
 
     return AnimatedFrame(image: scaledImage, duration: frameDuration)
   }
+  
+  /// Updates the cached frames and indices in case the animation was moved to an arbitrary frame.
+  func prepareFramesAfterMoving() {
+    // Check whether cache rebuilding is needed.
+    if animatedFrames.count == frameCount {
+      currentFrameIndex = currentMoveIndex
+    } else {
+      rebuildFrameCache()
+    }
+    
+    // Reset updating time.
+    timeSinceLastFrameChange = 0.0
+    
+    // Reset move index.
+    currentMoveIndex = -1
+  }
 
   /// Returns the frame at a particular index.
   ///
