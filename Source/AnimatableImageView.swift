@@ -67,6 +67,15 @@ public class AnimatableImageView: UIImageView {
     displayLink.paused = true
   }
   
+  /// Moves the GIF animation to the given frame index.
+  /// - parameter index: Index the animation must be moved to.
+  public func moveToFrame(index: Int) {
+    guard let animator = animator else { return }
+    
+    stopAnimatingGIF()
+    image = animator.prepareFrame(index).image
+  }
+  
   /// Reset the image view values
   public func prepareForReuse() {
     stopAnimatingGIF()
