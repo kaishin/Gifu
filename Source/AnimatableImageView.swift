@@ -74,6 +74,7 @@ public class AnimatableImageView: UIImageView {
     
     stopAnimatingGIF()
     image = animator.prepareFrame(index).image
+    animator.currentMoveIndex = index
   }
   
   /// Reset the image view values
