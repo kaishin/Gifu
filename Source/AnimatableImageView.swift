@@ -58,6 +58,11 @@ public class AnimatableImageView: UIImageView {
   /// Starts the image view animation.
   public func startAnimatingGIF() {
     if animator?.isAnimatable ?? false {
+      // Check whether the animation was moved.
+      if (animator?.currentMoveIndex ?? -1) >= 0 {
+        prepareForPlayAfterMoving()
+      }
+      
       displayLink.paused = false
     }
   }
