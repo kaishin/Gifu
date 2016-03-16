@@ -10,6 +10,9 @@ public class AnimatableImageView: UIImageView {
   /// The size of the frame cache.
   public var framePreloadCount = 50
 
+  /// Specifies whether a scaled version of each GIF frame that matches the current size of the image view should be created. Default is **true**.
+  public var needsPrescaling = true
+  
   /// A computed property that returns whether the image view is animating.
   public var isAnimatingGIF: Bool {
     return !displayLink.paused
@@ -35,6 +38,7 @@ public class AnimatableImageView: UIImageView {
   public func prepareForAnimation(imageData data: NSData) {
     image = UIImage(data: data)
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
+    animator?.needsPrescaling = self.needsPrescaling
     animator?.prepareFrames()
     attachDisplayLink()
   }

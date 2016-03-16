@@ -23,6 +23,9 @@ class Animator {
   var currentPreloadIndex = 0
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
   var timeSinceLastFrameChange: NSTimeInterval = 0.0
+  /// Specifies whether GIF images pre-scaling is needed.
+  /// - seealso: `needsPrescaling` in AnimatableImageView.
+  var needsPrescaling = true
 
   /// The current image frame to show.
   var currentFrame: UIImage? {
@@ -69,11 +72,16 @@ class Animator {
     let image = UIImage(CGImage: frameImageRef)
     let scaledImage: UIImage?
 
-    switch contentMode {
-    case .ScaleAspectFit: scaledImage = image.resizeAspectFit(size)
-    case .ScaleAspectFill: scaledImage = image.resizeAspectFill(size)
-    default: scaledImage = image.resize(size)
+    if needsPrescaling == true {
+      switch contentMode {
+      case .ScaleAspectFit: scaledImage = image.resizeAspectFit(size)
+      case .ScaleAspectFill: scaledImage = image.resizeAspectFill(size)
+      default: scaledImage = image.resize(size)
+      }
+    } else {
+      scaledImage = image
     }
+
 
     return AnimatedFrame(image: scaledImage, duration: frameDuration)
   }
