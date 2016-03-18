@@ -25,6 +25,9 @@ class Animator {
   var timeSinceLastFrameChange: NSTimeInterval = 0.0
   /// The loop count value extracted from the GIF data.
   var sourceLoopCount = 0
+  /// Specifies whether GIF frames should be pre-scaled.
+  /// - seealso: `needsPrescaling` in AnimatableImageView.
+  var needsPrescaling = true
 
   /// The current image frame to show.
   var currentFrame: UIImage? {
