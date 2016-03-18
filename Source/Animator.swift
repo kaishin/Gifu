@@ -84,10 +84,14 @@ class Animator {
     let image = UIImage(CGImage: frameImageRef)
     let scaledImage: UIImage?
 
-    switch contentMode {
-    case .ScaleAspectFit: scaledImage = image.resizeAspectFit(size)
-    case .ScaleAspectFill: scaledImage = image.resizeAspectFill(size)
-    default: scaledImage = image.resize(size)
+    if needsPrescaling == true {
+      switch contentMode {
+      case .ScaleAspectFit: scaledImage = image.resizeAspectFit(size)
+      case .ScaleAspectFill: scaledImage = image.resizeAspectFill(size)
+      default: scaledImage = image.resize(size)
+      }
+    } else {
+      scaledImage = image
     }
 
     return AnimatedFrame(image: scaledImage, duration: frameDuration)
