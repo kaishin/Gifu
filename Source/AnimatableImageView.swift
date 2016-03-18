@@ -13,11 +13,19 @@ public class AnimatableImageView: UIImageView {
   /// A preview image extracted from the first frame of an animated GIF.
   public var posterImage: UIImage?
 
+  /// Specifies whether the GIF frames should be pre-scaled to save memory. Default is **true**.
+  public var needsPrescaling = true
+  
   /// A computed property that returns whether the image view is animating.
   public var isAnimatingGIF: Bool {
     return !displayLink.paused
   }
 
+  /// A computed property that returns the total number of frames in the GIF.
+  public var frameCount: Int {
+    return animator?.frameCount ?? 0
+  }
+  
   /// Prepares the frames using a GIF image file name, without starting the animation.
   /// The file name should include the `.gif` extension.
   ///
@@ -32,6 +40,7 @@ public class AnimatableImageView: UIImageView {
   /// - parameter data: GIF image data.
   public func prepareForAnimation(imageData data: NSData) {
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
+    animator?.needsPrescaling = needsPrescaling
     animator?.prepareFrames()
     posterImage = (animator?.animatedFrames.count > 0) ? animator?.animatedFrames[0].image : nil
     image = posterImage
