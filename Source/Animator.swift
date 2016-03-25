@@ -144,7 +144,7 @@ class Animator {
     var baseIndex = currentMoveIndex
     for indexForPreload in (0..<indicesForPreload.count) {
       indicesForPreload[indexForPreload] = baseIndex % frameCount
-      ++baseIndex
+      baseIndex += 1
     }
     
     // Fill the cache with the new animated frames.
