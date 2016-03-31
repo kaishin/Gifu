@@ -2,11 +2,26 @@ import UIKit
 
 /// A subclass of `UIImageView` that can be animated using an image name string or raw data.
 public class AnimatableImageView: UIImageView {
+  /// Proxy object for preventing a reference cycle between the CADisplayLink and AnimatableImageView.
+  /// Source: http://merowing.info/2015/11/the-beauty-of-imperfection/
+  class TargetProxy {
+    private weak var target: AnimatableImageView?
+
+    init(target: AnimatableImageView) {
+      self.target = target
+    }
+
+    @objc func onScreenUpdate() {
+      target?.updateFrame()
+    }
+  }
+
   /// An `Animator` instance that holds the frames of a specific image in memory.
   var animator: Animator?
+
   /// A display link that keeps calling the `updateFrame` method on every screen refresh.
   lazy var displayLink: CADisplayLink = {
-    let display = CADisplayLink(target: self, selector: #selector(updateFrame))
+    let display = CADisplayLink(target: TargetProxy(target: self), selector: #selector(TargetProxy.onScreenUpdate))
     display.paused = true
     return display
   }()
@@ -16,7 +31,7 @@ public class AnimatableImageView: UIImageView {
 
   /// Specifies whether the GIF frames should be pre-scaled to save memory. Default is **true**.
   public var needsPrescaling = true
-  
+
   /// A computed property that returns whether the image view is animating.
   public var isAnimatingGIF: Bool {
     return !displayLink.paused
@@ -26,7 +41,7 @@ public class AnimatableImageView: UIImageView {
   public var frameCount: Int {
     return animator?.frameCount ?? 0
   }
-  
+
   /// Prepares the frames using a GIF image file name, without starting the animation.
   /// The file name should include the `.gif` extension.
   ///
@@ -79,7 +94,7 @@ public class AnimatableImageView: UIImageView {
   public func stopAnimatingGIF() {
     displayLink.paused = true
   }
-  
+
   /// Reset the image view values
   public func prepareForReuse() {
     stopAnimatingGIF()
@@ -93,8 +108,9 @@ public class AnimatableImageView: UIImageView {
     }
   }
 
-  /// Invalidate the displayLink so it releases this object.
+  /// Invalidate the displayLink so it releases its target.
   deinit {
+    // invalidate will also remove the link from all run loops
     displayLink.invalidate()
   }
 
@@ -102,5 +118,5 @@ public class AnimatableImageView: UIImageView {
   func attachDisplayLink() {
     displayLink.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
   }
-}
 
+}
