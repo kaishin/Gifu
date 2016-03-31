@@ -19,8 +19,12 @@ public class AnimatableImageView: UIImageView {
   /// An `Animator` instance that holds the frames of a specific image in memory.
   var animator: Animator?
 
+  /// A flag to avoid invalidating the displayLink on deinit if it was never created
+  private var displayLinkInitialized: Bool = false
+
   /// A display link that keeps calling the `updateFrame` method on every screen refresh.
   lazy var displayLink: CADisplayLink = {
+    self.displayLinkInitialized = true
     let display = CADisplayLink(target: TargetProxy(target: self), selector: #selector(TargetProxy.onScreenUpdate))
     display.paused = true
     return display
@@ -110,13 +114,13 @@ public class AnimatableImageView: UIImageView {
 
   /// Invalidate the displayLink so it releases its target.
   deinit {
-    // invalidate will also remove the link from all run loops
-    displayLink.invalidate()
+    if displayLinkInitialized {
+      displayLink.invalidate()
+    }
   }
 
   /// Attaches the display link.
   func attachDisplayLink() {
     displayLink.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
   }
-
 }
