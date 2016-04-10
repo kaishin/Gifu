@@ -32,6 +32,9 @@ public class AnimatableImageView: UIImageView {
 
   /// The size of the frame cache.
   public var framePreloadCount = 50
+  
+  /// A preview image extracted from the first frame of an animated GIF.
+  public var posterImage: UIImage?
 
   /// Specifies whether the GIF frames should be pre-scaled to save memory. Default is **true**.
   public var needsPrescaling = true
@@ -59,10 +62,11 @@ public class AnimatableImageView: UIImageView {
   ///
   /// - parameter data: GIF image data.
   public func prepareForAnimation(imageData data: NSData) {
-    image = UIImage(data: data)
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
     animator?.needsPrescaling = needsPrescaling
     animator?.prepareFrames()
+    posterImage = (animator?.animatedFrames.count > 0) ? animator?.animatedFrames[0].image : nil
+    image = posterImage
     attachDisplayLink()
   }
 
@@ -103,6 +107,8 @@ public class AnimatableImageView: UIImageView {
   public func prepareForReuse() {
     stopAnimatingGIF()
     animator = nil
+    posterImage = nil
+    image = nil
   }
 
   /// Update the current frame with the displayLink duration
