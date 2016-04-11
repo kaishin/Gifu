@@ -121,12 +121,12 @@ class Animator {
 
     timeSinceLastFrameChange -= frameDuration
     let lastFrameIndex = currentFrameIndex
-    currentFrameIndex = ++currentFrameIndex % animatedFrames.count
+    currentFrameIndex = (currentFrameIndex + 1) % animatedFrames.count
     
     // Loads the next needed frame for progressive loading
     if animatedFrames.count < frameCount {
       animatedFrames[lastFrameIndex] = prepareFrame(currentPreloadIndex)
-      currentPreloadIndex = ++currentPreloadIndex % frameCount
+      currentPreloadIndex = (currentFrameIndex + 1) % frameCount
     }
     
     return true
