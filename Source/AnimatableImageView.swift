@@ -20,6 +20,10 @@ public class AnimatableImageView: UIImageView {
   var animator: Animator?
   /// Specifies the number of times the animation has been played.
   var playCount = 0
+
+  /// A flag to avoid invalidating the displayLink on deinit if it was never created
+  private var displayLinkInitialized: Bool = false
+
   /// A display link that keeps calling the `updateFrame` method on every screen refresh.
   lazy var displayLink: CADisplayLink = {
     self.displayLinkInitialized = true
