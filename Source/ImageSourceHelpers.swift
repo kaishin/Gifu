@@ -51,16 +51,17 @@ func capDuration(duration: Double) -> Double? {
 ///
 /// - returns: A frame duration.
 func durationFromGIFProperties(properties: GIFProperties) -> Double? {
-  let unclampedDelayTime = properties[String(kCGImagePropertyGIFUnclampedDelayTime)]
-  let delayTime = properties[String(kCGImagePropertyGIFDelayTime)]
+  guard let unclampedDelayTime = properties[String(kCGImagePropertyGIFUnclampedDelayTime)],
+    let delayTime = properties[String(kCGImagePropertyGIFDelayTime)]
+    else { return .None }
 
-  return duration <^> unclampedDelayTime <*> delayTime
+  return duration(unclampedDelayTime, delayTime: delayTime)
 }
 
 /// Calculates frame duration based on both clamped and unclamped times.
 ///
 /// - returns: A frame duration.
-func duration(unclampedDelayTime: Double)(delayTime: Double) -> Double {
+func duration(unclampedDelayTime: Double, delayTime: Double) -> Double {
   let delayArray = [unclampedDelayTime, delayTime]
   return delayArray.filter(isPositive).first ?? defaultDuration
 }
