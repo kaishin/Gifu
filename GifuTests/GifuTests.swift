@@ -3,58 +3,70 @@ import ImageIO
 @testable import Gifu
 
 private let imageData = testImageDataNamed("mugen.gif")
-private let staticImage = UIImage(data: imageData!)
+private let staticImage = UIImage(data: imageData)!
+private let preloadFrameCount = 20
 
 class GifuTests: XCTestCase {
-  var animator: Animator?
-  var originalFrameCount: Int?
-  var preloadedFrameCount: Int?
+  var animator: Animator!
+  var originalFrameCount: Int!
 
   override func setUp() {
     super.setUp()
-    animator = Animator(data: imageData!, size: CGSizeZero, contentMode: .ScaleToFill, framePreloadCount: 20)
-    animator!.prepareFrames()
-    originalFrameCount = Int(CGImageSourceGetCount(animator!.imageSource))
-    preloadedFrameCount = animator!.animatedFrames.count
-  }
-  
-  override func tearDown() {
-    super.tearDown()
+    animator = Animator(data: imageData, size: CGSizeZero, contentMode: .ScaleToFill, framePreloadCount: preloadFrameCount)
+    originalFrameCount = Int(CGImageSourceGetCount(animator.imageSource))
   }
   
   func testIsAnimatable() {
-    XCTAssertTrue(animator!.isAnimatable)
+    XCTAssertTrue(animator.isAnimatable)
   }
 
   func testFramePreload() {
-    XCTAssertLessThanOrEqual(preloadedFrameCount!, originalFrameCount!)
+    let expectation = expectationWithDescription("frameDuration")
+
+    animator.prepareFrames {
+      let animatedFrameCount = self.animator.animatedFrames.count
+      XCTAssertEqual(animatedFrameCount, self.originalFrameCount)
+      XCTAssertNotNil(self.animator.frameAtIndex(preloadFrameCount - 1))
+      XCTAssertNil(self.animator.frameAtIndex(preloadFrameCount + 1)?.images)
+      XCTAssertEqual(self.animator.currentFrameIndex, 0)
+
+      self.animator.shouldChangeFrame(1.0) { hasNewFrame in
+        XCTAssertTrue(hasNewFrame)
+        XCTAssertEqual(self.animator.currentFrameIndex, 1)
+        expectation.fulfill()
+      }
+    }
+
+    waitForExpectationsWithTimeout(1.0) { error in
+      if let error = error {
+        print("Error: \(error.localizedDescription)")
+      }
+    }
   }
 
-  func testFrameAtIndex() {
-    XCTAssertNotNil(animator!.frameAtIndex(preloadedFrameCount! - 1))
-  }
+  func testFrameInfo() {
+    let expectation = expectationWithDescription("testFrameInfoIsAccurate")
 
-  func testFrameDurationPrecision() {
-    let image = animator!.frameAtIndex(5)
-    XCTAssertTrue((image!.duration - 0.05) < 0.00001)
-  }
+    animator.prepareFrames {
+      let frameDuration = self.animator.frameAtIndex(5)?.duration ?? 0
+      XCTAssertTrue((frameDuration - 0.05) < 0.00001)
 
-  func testFrameSize() {
-    let image = animator!.frameAtIndex(5)
-    XCTAssertEqual(image!.size, staticImage!.size)
-  }
+      let imageSize = self.animator.frameAtIndex(5)?.size ?? CGSizeZero
+      XCTAssertEqual(imageSize, staticImage.size)
 
-  func testPrepareFramesPerformance() {
-    let tempAnimator = Animator(data: imageData!, size: CGSizeZero, contentMode: .ScaleToFill, framePreloadCount: 50)
+      expectation.fulfill()
+    }
 
-    self.measureBlock() {
-      tempAnimator.prepareFrames()
+    waitForExpectationsWithTimeout(1.0) { error in
+      if let error = error {
+        print("Error: \(error.localizedDescription)")
+      }
     }
   }
 }
 
-private func testImageDataNamed(name: String) -> NSData? {
+private func testImageDataNamed(name: String) -> NSData {
   let testBundle = NSBundle(forClass: GifuTests.self)
   let imagePath = testBundle.bundleURL.URLByAppendingPathComponent(name)
-  return NSData(contentsOfURL: imagePath)
+  return NSData(contentsOfURL: imagePath)!
 }
