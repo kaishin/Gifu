@@ -11,11 +11,12 @@ let defaultDuration: Double = 0
 func CGImageSourceGIFFrameDuration(imageSource: CGImageSource, index: Int) -> NSTimeInterval {
   if !imageSource.isAnimatedGIF { return 0.0 }
 
-  let duration = imageSource.GIFPropertiesAtIndex(index)
-    >>- durationFromGIFProperties
-    >>- capDuration
+  guard let properties = imageSource.GIFPropertiesAtIndex(index),
+    let duration = durationFromGIFProperties(properties),
+    let cappedDuration = capDuration(duration)
+    else { return defaultDuration }
 
-  return duration ?? defaultDuration
+  return cappedDuration
 }
 
 /// Ensures that a duration is never smaller than a threshold value.

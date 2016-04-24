@@ -55,7 +55,7 @@ class Animator {
     frameCount = Int(CGImageSourceGetCount(imageSource))
     let framesToProcess = min(frameCount, maxFrameCount)
     animatedFrames.reserveCapacity(framesToProcess)
-    animatedFrames = (0..<framesToProcess).reduce([]) { $0 + pure(prepareFrame($1)) }
+    animatedFrames = (0..<framesToProcess).reduce([]) { $0 + [prepareFrame($1)] }
     currentPreloadIndex = framesToProcess
   }
 
