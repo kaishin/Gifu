@@ -18,6 +18,8 @@ public class AnimatableImageView: UIImageView {
 
   /// An `Animator` instance that holds the frames of a specific image in memory.
   var animator: Animator?
+  /// Specifies the number of times the animation has been played.
+  var playCount = 0
 
   /// A flag to avoid invalidating the displayLink on deinit if it was never created
   private var displayLinkInitialized: Bool = false
@@ -33,6 +35,9 @@ public class AnimatableImageView: UIImageView {
   /// The size of the frame cache.
   public var framePreloadCount = 50
 
+  /// The required number of times the GIF animation is to cycle though the image sequence before stopping. The default is __0__ that means repeating the animation indefinitely. __-1__ means using loop count setting extracted from the GIF data.
+  public var loopCount = 0
+  
   /// Specifies whether the GIF frames should be pre-scaled to save memory. Default is **true**.
   public var needsPrescaling = true
 
@@ -60,6 +65,7 @@ public class AnimatableImageView: UIImageView {
   ///
   /// - parameter data: GIF image data.
   public func prepareForAnimation(imageData data: NSData) {
+    playCount = 0
     image = UIImage(data: data)
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
     animator?.needsPrescaling = needsPrescaling
@@ -86,6 +92,7 @@ public class AnimatableImageView: UIImageView {
   /// Updates the `image` property of the image view if necessary. This method should not be called manually.
   override public func displayLayer(layer: CALayer) {
     image = animator?.currentFrame
+    stopAnimatingIfNeeded()
   }
 
   /// Starts the image view animation.
@@ -106,6 +113,39 @@ public class AnimatableImageView: UIImageView {
     animator = nil
   }
 
+  /// Stops the animation in accordance with the loop count settings.
+  func stopAnimatingIfNeeded() {
+    if let animator = animator {
+      // Check whether the currently displayed animation frame is the last one.
+      if animator.currentAnimationPosition == (animator.frameCount - 1) {
+        playCount += 1
+        if shouldStopLooping() == true {
+          playCount = 0
+          stopAnimatingGIF()
+        }
+      }
+    }
+  }
+  
+  /// Specifies whether all of the required animation iterations have been finished.
+  /// - returns: true if the animation should stop looping, false otherwise.
+  func shouldStopLooping() -> Bool {
+    let sourceLoopCount = animator?.sourceLoopCount ?? 0
+    if loopCount == 0 || sourceLoopCount == 0 {
+      // Infinite animation loop.
+      return false
+    }
+    
+    if loopCount > 0 {
+      // Control iterations with user-defined loop count.
+      if loopCount == playCount { return true }
+    }
+    // Control iterations with loop count from the GIF data.
+    else if sourceLoopCount == playCount { return true }
+    
+    return false
+  }
+  
   /// Update the current frame with the displayLink duration
   func updateFrame() {
     if animator?.updateCurrentFrame(displayLink.duration) ?? false {

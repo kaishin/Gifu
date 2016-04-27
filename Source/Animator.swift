@@ -23,6 +23,8 @@ class Animator {
   var currentPreloadIndex = 0
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
   var timeSinceLastFrameChange: NSTimeInterval = 0.0
+  /// The loop count value extracted from the GIF data.
+  var sourceLoopCount = 0
   /// Specifies whether GIF frames should be pre-scaled.
   /// - seealso: `needsPrescaling` in AnimatableImageView.
   var needsPrescaling = true
@@ -36,6 +38,18 @@ class Animator {
   var isAnimatable: Bool {
     return imageSource.isAnimatedGIF
   }
+  
+  /// The index of the currently displayed GIF frame.
+  var currentAnimationPosition: Int {
+      // Check whether current cache index matches current animation position.
+      if animatedFrames.count == frameCount {
+        return currentFrameIndex
+      } else {
+        // Compute the animation position using currentPreloadIndex and current cache count properties.
+        let animationPosition = currentPreloadIndex - animatedFrames.count
+        return (animationPosition < 0) ? (animationPosition + frameCount) : animationPosition
+      }
+  }
 
   /// Initializes an animator instance from raw GIF image data and an `Animatable` delegate.
   ///
@@ -44,6 +58,7 @@ class Animator {
   init(data: NSData, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int) {
     let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse]
     self.imageSource = CGImageSourceCreateWithData(data, options) ?? CGImageSourceCreateIncremental(options)
+    self.sourceLoopCount = CGImageSourceGIFLoopCount(imageSource)
     self.size = size
     self.contentMode = contentMode
     self.maxFrameCount = framePreloadCount
