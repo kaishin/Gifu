@@ -45,7 +45,7 @@ it using `imageView.startAnimatingGIF()`.
 
 The `isAnimatingGIF()` method returns the current animation state of the view if it has an animatable image.
 
-See the [full documentation](http://kaishin.github.io/gifu/).
+See the [full documentation](http://kaishin.github.io/Gifu/).
 
 #### Demo App
 
