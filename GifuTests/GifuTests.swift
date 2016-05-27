@@ -20,6 +20,12 @@ class GifuTests: XCTestCase {
     XCTAssertTrue(animator.isAnimatable)
   }
 
+  func testCurrentFrame() {
+    XCTAssertEqual(animator.currentFrameIndex, 0)
+    XCTAssertEqual(animator.currentFrameDuration, NSTimeInterval.infinity)
+    XCTAssertNil(animator.currentFrameImage)
+  }
+
   func testFramePreload() {
     let expectation = expectationWithDescription("frameDuration")
 

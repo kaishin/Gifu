@@ -92,7 +92,7 @@ class Animator {
   /// - parameter index: The index of the duration.
   /// - returns: The duration of the given frame.
   func durationAtIndex(index: Int) -> NSTimeInterval {
-    return animatedFrames[index].duration
+	return animatedFrames[safe: index]?.duration ?? NSTimeInterval.infinity
   }
 
   /// Checks whether the frame should be changed and calls a handler with the results.
