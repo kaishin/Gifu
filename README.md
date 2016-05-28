@@ -1,6 +1,6 @@
 # ![Gifu](https://db.tt/mZ1iMNXO)
 
-[![Travis](https://travis-ci.org/kaishin/Gifu.svg?branch=master)](https://travis-ci.org/kaishin/Gifu) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Join the chat at https://gitter.im/kaishin/gifu](https://badges.gitter.im/kaishin/gifu.svg)](https://gitter.im/kaishin/gifu)
+[![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg?maxAge=2592000)](https://github.com/kaishin/Gifu/releases/latest) [![Travis](https://travis-ci.org/kaishin/Gifu.svg?branch=master)](https://travis-ci.org/kaishin/Gifu) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Join the chat at https://gitter.im/kaishin/gifu](https://badges.gitter.im/kaishin/gifu.svg)](https://gitter.im/kaishin/gifu)
 
 Adds performant animated GIF support to UIKit. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
