@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0009FCE71D16A4AB0038DC85 /* earth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0009FCE61D16A4AB0038DC85 /* earth.gif */; };
+		002A1BFC1D1624D0005ABBD0 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 002A1BFB1D1624D0005ABBD0 /* mugen.gif */; };
+		002FF5141D3A91340069CA56 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002A1BF91D161D33005ABBD0 /* Gifu.framework */; };
 		007380231B279644008DAD5C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007380221B279644008DAD5C /* Default-568h@2x.png */; };
 		9D98823D19BC69CA00B790C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823C19BC69CA00B790C6 /* AppDelegate.swift */; };
 		9D98823F19BC69CA00B790C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823E19BC69CA00B790C6 /* ViewController.swift */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0009FCE61D16A4AB0038DC85 /* earth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = earth.gif; path = GIFs/earth.gif; sourceTree = SOURCE_ROOT; };
+		002A1BF91D161D33005ABBD0 /* Gifu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gifu.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Gifu-gwslszlwadetledwfipapwloqzrw/Build/Products/Debug-iphonesimulator/Gifu.framework"; sourceTree = "<group>"; };
+		002A1BFB1D1624D0005ABBD0 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = ../GIFs/mugen.gif; sourceTree = "<group>"; };
 		007380221B279644008DAD5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		9D25870519BCCB0F00A55A18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D98823719BC69CA00B790C6 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,17 +35,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002FF5141D3A91340069CA56 /* Gifu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		002A1BF81D161D32005ABBD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				002A1BF91D161D33005ABBD0 /* Gifu.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9D98822E19BC69CA00B790C6 = {
 			isa = PBXGroup;
 			children = (
 				9D98823919BC69CA00B790C6 /* Source */,
 				9D98823819BC69CA00B790C6 /* Products */,
+				002A1BF81D161D32005ABBD0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +83,8 @@
 		9D98823A19BC69CA00B790C6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0009FCE61D16A4AB0038DC85 /* earth.gif */,
+				002A1BFB1D1624D0005ABBD0 /* mugen.gif */,
 				007380221B279644008DAD5C /* Default-568h@2x.png */,
 				9D25870519BCCB0F00A55A18 /* Info.plist */,
 			);
@@ -100,11 +118,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Kaishin & Co";
 				TargetAttributes = {
 					9D98823619BC69CA00B790C6 = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -131,7 +151,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0009FCE71D16A4AB0038DC85 /* earth.gif in Resources */,
 				9D98824419BC69CA00B790C6 /* Images.xcassets in Resources */,
+				002A1BFC1D1624D0005ABBD0 /* mugen.gif in Resources */,
 				007380231B279644008DAD5C /* Default-568h@2x.png in Resources */,
 				9D98825A19BC69F600B790C6 /* Main.storyboard in Resources */,
 			);
@@ -175,6 +197,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -217,6 +240,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -236,10 +260,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -250,10 +275,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

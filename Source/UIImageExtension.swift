@@ -5,9 +5,9 @@ extension UIImage {
   ///
   /// - parameter size: The new size of the image.
   /// - returns: A new resized image instance.
-  func resize(size: CGSize) -> UIImage {
+  func resized(to size: CGSize) -> UIImage {
     UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-    self.drawInRect(CGRect(origin: CGPointZero, size: size))
+    self.draw(in: CGRect(origin: CGPoint.zero, size: size))
     let newImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     return newImage ?? self
@@ -17,18 +17,18 @@ extension UIImage {
   ///
   /// - parameter size: The constraining size of the image.
   /// - returns: A new resized image instance.
-  func resizeAspectFit(size: CGSize) -> UIImage {
-    let newSize = self.size.sizeConstrainedBySize(size)
-    return resize(newSize)
+  func constrained(by size: CGSize) -> UIImage {
+    let newSize = size.constrained(by: size)
+    return resized(to: newSize)
   }
 
   /// Resizes an image instance to fill a constraining size while keeping the aspect ratio.
   ///
   /// - parameter size: The constraining size of the image.
   /// - returns: A new resized image instance.
-  func resizeAspectFill(size: CGSize) -> UIImage {
-    let newSize = self.size.sizeFillingSize(size)
-    return resize(newSize)
+  func filling(size: CGSize) -> UIImage {
+    let newSize = size.filling(size: size)
+    return resized(to: newSize)
   }
 
   /// Returns a new `UIImage` instance using raw image data and a size.
@@ -36,15 +36,15 @@ extension UIImage {
   /// - parameter data: Raw image data.
   /// - parameter size: The size to be used to resize the new image instance.
   /// - returns: A new image instance from the passed in data.
-  class func imageWithData(data: NSData, size: CGSize) -> UIImage? {
-    return UIImage(data: data)?.resize(size)
+  class func image(with data: Data, size: CGSize) -> UIImage? {
+    return UIImage(data: data)?.resized(to: size)
   }
 
   /// Returns an image size from raw image data.
   ///
   /// - parameter data: Raw image data.
   /// - returns: The size of the image contained in the data.
-  class func sizeForImageData(data: NSData) -> CGSize? {
+  class func size(withImageData data: Data) -> CGSize? {
     return UIImage(data: data)?.size
   }
 }
