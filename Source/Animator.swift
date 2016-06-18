@@ -16,7 +16,7 @@ class Animator {
   /// The total number of frames in the GIF.
   var frameCount = 0
   /// A reference to the original image source.
-  var imageSource: CGImageSourceRef
+  var imageSource: CGImageSource
 
   /// The index of the current GIF frame.
   var currentFrameIndex = 0 {
@@ -28,27 +28,28 @@ class Animator {
   /// The index of the previous GIF frame.
   var previousFrameIndex = 0 {
     didSet {
-      dispatch_async(preloadFrameQueue) {
+      preloadFrameQueue.async {
         self.updatePreloadedFrames()
       }
     }
   }
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
-  var timeSinceLastFrameChange: NSTimeInterval = 0.0
+  var timeSinceLastFrameChange: TimeInterval = 0.0
   /// Specifies whether GIF frames should be pre-scaled.
   /// - seealso: `needsPrescaling` in AnimatableImageView.
   var needsPrescaling = true
   /// Dispatch queue used for preloading images.
-  private lazy var preloadFrameQueue = dispatch_queue_create("co.kaishin.Gifu.preloadQueue", DISPATCH_QUEUE_SERIAL)
-
+  private lazy var preloadFrameQueue: DispatchQueue = {
+    return DispatchQueue(label: "co.kaishin.Gifu.preloadQueue")
+  }()
   /// The current image frame to show.
   var currentFrameImage: UIImage? {
-    return frameAtIndex(currentFrameIndex)
+    return frame(at: currentFrameIndex)
   }
 
   /// The current frame duration
-  var currentFrameDuration: NSTimeInterval {
-    return durationAtIndex(currentFrameIndex)
+  var currentFrameDuration: TimeInterval {
+    return duration(at: currentFrameIndex)
   }
 
   /// Is this image animatable?
@@ -60,9 +61,9 @@ class Animator {
   ///
   /// - parameter data: The raw GIF image data.
   /// - parameter delegate: An `Animatable` delegate.
-  init(data: NSData, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int) {
-    let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse]
-    self.imageSource = CGImageSourceCreateWithData(data, options) ?? CGImageSourceCreateIncremental(options)
+  init(data: Data, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int) {
+    let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse] as CFDictionary
+    self.imageSource = CGImageSourceCreateWithData(data as CFData, options) ?? CGImageSourceCreateIncremental(options)
     self.size = size
     self.contentMode = contentMode
     self.preloadFrameCount = framePreloadCount
@@ -70,10 +71,10 @@ class Animator {
 
   // MARK: - Frames
   /// Loads the frames from an image source, resizes them, then caches them in `animatedFrames`.
-  func prepareFrames(completionHandler: (Void -> Void)? = .None) {
+  func prepareFrames(_ completionHandler: ((Void) -> Void)? = .none) {
     frameCount = Int(CGImageSourceGetCount(imageSource))
     animatedFrames.reserveCapacity(frameCount)
-    dispatch_async(preloadFrameQueue) {
+    preloadFrameQueue.async {
       self.setupAnimatedFrames()
       if let handler = completionHandler { handler() }
     }
@@ -83,7 +84,7 @@ class Animator {
   ///
   /// - parameter index: The index of the frame.
   /// - returns: An optional image at a given frame.
-  func frameAtIndex(index: Int) -> UIImage? {
+  func frame(at index: Int) -> UIImage? {
     return animatedFrames[safe: index]?.image
   }
 
@@ -91,16 +92,16 @@ class Animator {
   ///
   /// - parameter index: The index of the duration.
   /// - returns: The duration of the given frame.
-  func durationAtIndex(index: Int) -> NSTimeInterval {
-	return animatedFrames[safe: index]?.duration ?? NSTimeInterval.infinity
+  func duration(at index: Int) -> TimeInterval {
+	return animatedFrames[safe: index]?.duration ?? TimeInterval.infinity
   }
 
   /// Checks whether the frame should be changed and calls a handler with the results.
   ///
   /// - parameter duration: A `CFTimeInterval` value that will be used to determine whether frame should be changed.
   /// - parameter handler: A function that takes a `Bool` and returns nothing. It will be called with the frame change result.
-  func shouldChangeFrame(duration: CFTimeInterval, handler: Bool -> Void) {
-    incrementTimeSinceLastFrameChangeWithDuration(duration)
+  func shouldChangeFrame(with duration: CFTimeInterval, handler: (Bool) -> Void) {
+    incrementTimeSinceLastFrameChange(with: duration)
 
     if currentFrameDuration > timeSinceLastFrameChange {
       handler(false)
@@ -122,16 +123,16 @@ private extension Animator {
   ///
   /// - parameter index: The index of the frame to load.
   /// - returns: An optional `UIImage` instance.
-  func loadFrameAtIndex(index: Int) -> UIImage? {
-    guard let imageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil) else { return .None }
-    let image = UIImage(CGImage: imageRef)
+  func loadFrame(at index: Int) -> UIImage? {
+    guard let imageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil) else { return .none }
+    let image = UIImage(cgImage: imageRef)
     let scaledImage: UIImage?
 
     if needsPrescaling {
       switch self.contentMode {
-      case .ScaleAspectFit: scaledImage = image.resizeAspectFit(size)
-      case .ScaleAspectFill: scaledImage = image.resizeAspectFill(size)
-      default: scaledImage = image.resize(size)
+      case .scaleAspectFit: scaledImage = image.constrained(by: size)
+      case .scaleAspectFill: scaledImage = image.filling(size: size)
+      default: scaledImage = image.resized(to: size)
       }
     } else {
       scaledImage = image
@@ -145,17 +146,17 @@ private extension Animator {
     if !preloadingIsNeeded { return }
     animatedFrames[previousFrameIndex] = animatedFrames[previousFrameIndex].placeholderFrame
 
-    preloadIndexesWithStartingIndex(currentFrameIndex).forEach { index in
+    preloadIndexes(withStartingIndex: currentFrameIndex).forEach { index in
       let currentAnimatedFrame = animatedFrames[index]
       if !currentAnimatedFrame.isPlaceholder { return }
-      animatedFrames[index] = currentAnimatedFrame.frameWithImage(loadFrameAtIndex(index))
+      animatedFrames[index] = currentAnimatedFrame.animatedFrame(with: loadFrame(at: index))
     }
   }
 
   /// Increments the `timeSinceLastFrameChange` property with a given duration.
   ///
   /// - parameter duration: An `NSTimeInterval` value to increment the `timeSinceLastFrameChange` property with.
-  func incrementTimeSinceLastFrameChangeWithDuration(duration: NSTimeInterval) {
+  func incrementTimeSinceLastFrameChange(with duration: TimeInterval) {
     timeSinceLastFrameChange += min(maxTimeStep, duration)
   }
 
@@ -166,7 +167,7 @@ private extension Animator {
 
   /// Increments the `currentFrameIndex` property.
   func incrementCurrentFrameIndex() {
-    currentFrameIndex = incrementFrameIndex(currentFrameIndex)
+    currentFrameIndex = increment(index: currentFrameIndex)
   }
 
   /// Increments a given frame index, taking into account the `frameCount` and looping when necessary.
@@ -174,7 +175,7 @@ private extension Animator {
   /// - parameter index: The `Int` value to increment.
   /// - parameter byValue: The `Int` value to increment with.
   /// - returns: A new `Int` value.
-  func incrementFrameIndex(index: Int, byValue value: Int = 1) -> Int {
+  func increment(index: Int, by value: Int = 1) -> Int {
     return (index + value) % frameCount
   }
 
@@ -182,9 +183,9 @@ private extension Animator {
   ///
   /// - parameter index: Starting index.
   /// - returns: An array of indexes to preload.
-  func preloadIndexesWithStartingIndex(index: Int) -> [Int] {
-    let nextIndex = incrementFrameIndex(index)
-    let lastIndex = incrementFrameIndex(index, byValue: preloadFrameCount)
+  func preloadIndexes(withStartingIndex index: Int) -> [Int] {
+    let nextIndex = increment(index: index)
+    let lastIndex = increment(index: index, by: preloadFrameCount)
 
     if lastIndex >= nextIndex {
       return [Int](nextIndex...lastIndex)
@@ -198,11 +199,11 @@ private extension Animator {
     resetAnimatedFrames()
 
     (0..<frameCount).forEach { index in
-      let frameDuration = CGImageSourceGIFFrameDuration(imageSource, index: index)
-      animatedFrames += [AnimatedFrame(image: .None, duration: frameDuration)]
+      let frameDuration = CGImageFrameDuration(with: imageSource, atIndex: index)
+      animatedFrames += [AnimatedFrame(image: .none, duration: frameDuration)]
 
       if index > preloadFrameCount { return }
-      animatedFrames[index] = animatedFrames[index].frameWithImage(loadFrameAtIndex(index))
+      animatedFrames[index] = animatedFrames[index].animatedFrame(with: loadFrame(at: index))
     }
   }
 
