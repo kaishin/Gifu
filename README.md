@@ -4,6 +4,8 @@
 
 Adds performant animated GIF support to UIKit. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
+⚠ Swift 3.0 support is in progress on the [swift3](https://github.com/kaishin/Gifu/tree/swift3) branch.
+
 #### How?
 
 Gifu uses a `UIImageView` subclass and an animator that keeps track of frames and their durations.
