@@ -2,4 +2,4 @@
 
 set -o pipefail
 
-xcodebuild test -project Gifu.xcodeproj -scheme Gifu -sdk iphonesimulator BUILD_ACTIVE_ARCH=NO | xcpretty -t -c
+xcodebuild test -project Gifu.xcodeproj -scheme Gifu -destination "platform=iOS Simulator,name=iPhone 6,OS=10.0" BUILD_ACTIVE_ARCH=NO | xcpretty -t -c
