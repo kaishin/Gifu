@@ -74,5 +74,5 @@ class GifuTests: XCTestCase {
 private func testImageDataNamed(name: String) -> NSData {
   let testBundle = NSBundle(forClass: GifuTests.self)
   let imagePath = testBundle.bundleURL.URLByAppendingPathComponent(name)
-  return NSData(contentsOfURL: imagePath)!
+  return NSData(contentsOfURL: imagePath!)!
 }
