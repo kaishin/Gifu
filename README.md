@@ -4,7 +4,11 @@
 
 Adds performant animated GIF support to UIKit. If you're looking for the Japanese prefecture, click [here](https://goo.gl/maps/CCeAc).
 
-⚠ Swift 3.0 support is in progress on the [swift3](https://github.com/kaishin/Gifu/tree/swift3) branch.
+⚠ **Swift 3.0** support is in progress on the [swift3](https://github.com/kaishin/Gifu/tree/swift3) branch.
+
+⚠ **Swift 2.3** support is on the [swift2.3](https://github.com/kaishin/Gifu/tree/swift2.3) branch. **This branch will not be getting any future updates**.
+
+
 
 #### How?
 
@@ -56,15 +60,6 @@ Clone or download the repository and open `Gifu.xcworkspace` to check out the de
 #### Compatibility
 
 - iOS 8+
-
-#### Roadmap
-
-- Add ability to set the frame-rate
-
-#### Contributors
-
-- [Reda Lemeden](https://github.com/kaishin)
-- [Tony DiPasquale](https://github.com/tonyd256)
 
 #### Misc
 
