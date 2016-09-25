@@ -127,4 +127,8 @@ public class AnimatableImageView: UIImageView {
   func attachDisplayLink() {
     displayLink.add(to: .main, forMode: RunLoopMode.commonModes)
   }
+
+  public override var intrinsicContentSize: CGSize {
+    return image?.size ?? CGSize.zero
+  }
 }
