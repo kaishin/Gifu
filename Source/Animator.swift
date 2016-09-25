@@ -28,7 +28,7 @@ class Animator {
   /// The index of the previous GIF frame.
   var previousFrameIndex = 0 {
     didSet {
-      dispatch_async(preloadFrameQueue) {
+      dispatch_async(preloadFrameQueue!) {
         self.updatePreloadedFrames()
       }
     }
@@ -39,7 +39,7 @@ class Animator {
   /// - seealso: `needsPrescaling` in AnimatableImageView.
   var needsPrescaling = true
   /// Dispatch queue used for preloading images.
-  private lazy var preloadFrameQueue = dispatch_queue_create("co.kaishin.Gifu.preloadQueue", DISPATCH_QUEUE_SERIAL)
+  private lazy var preloadFrameQueue: dispatch_queue_t? = dispatch_queue_create("co.kaishin.Gifu.preloadQueue", DISPATCH_QUEUE_SERIAL)
 
   /// The current image frame to show.
   var currentFrameImage: UIImage? {
@@ -73,7 +73,7 @@ class Animator {
   func prepareFrames(completionHandler: (Void -> Void)? = .None) {
     frameCount = Int(CGImageSourceGetCount(imageSource))
     animatedFrames.reserveCapacity(frameCount)
-    dispatch_async(preloadFrameQueue) {
+    dispatch_async(preloadFrameQueue!) {
       self.setupAnimatedFrames()
       if let handler = completionHandler { handler() }
     }
