@@ -6,39 +6,50 @@ private let imageData = testImageDataNamed("mugen.gif")
 private let staticImage = UIImage(data: imageData)!
 private let preloadFrameCount = 20
 
+class DummyAnimatorDelegate: AnimatorDelegate {
+  func animatorHasNewFrame() { }
+}
+
 class GifuTests: XCTestCase {
   var animator: Animator!
   var originalFrameCount: Int!
+  let delegate = DummyAnimatorDelegate()
 
   override func setUp() {
     super.setUp()
-    animator = Animator(data: imageData, size: CGSize.zero, contentMode: .scaleToFill, framePreloadCount: preloadFrameCount)
-    originalFrameCount = Int(CGImageSourceGetCount(animator.imageSource))
+    animator = Animator(withDelegate: delegate)
+    animator.prepareForAnimation(withGIFData: imageData, size: staticImage.size, contentMode: .scaleToFill)
+    originalFrameCount = 44
   }
   
   func testIsAnimatable() {
-    XCTAssertTrue(animator.isAnimatable)
+    XCTAssertNotNil(animator.frameStore)
+    guard let store = animator.frameStore else { return }
+    XCTAssertTrue(store.isAnimatable)
   }
 
   func testCurrentFrame() {
-    XCTAssertEqual(animator.currentFrameIndex, 0)
-    XCTAssertEqual(animator.currentFrameDuration, TimeInterval.infinity)
-    XCTAssertNil(animator.currentFrameImage)
+    XCTAssertNotNil(animator.frameStore)
+    guard let store = animator.frameStore else { return }
+    XCTAssertEqual(store.currentFrameIndex, 0)
   }
 
   func testFramePreload() {
+    XCTAssertNotNil(animator.frameStore)
+    guard let store = animator.frameStore else { return }
+
     let expectation = self.expectation(description: "frameDuration")
 
-    animator.prepareFrames {
-      let animatedFrameCount = self.animator.animatedFrames.count
+    store.prepareFrames {
+      let animatedFrameCount = store.animatedFrames.count
       XCTAssertEqual(animatedFrameCount, self.originalFrameCount)
-      XCTAssertNotNil(self.animator.frame(at: preloadFrameCount - 1))
-      XCTAssertNil(self.animator.frame(at: preloadFrameCount + 1)?.images)
-      XCTAssertEqual(self.animator.currentFrameIndex, 0)
+      XCTAssertNotNil(store.frame(at: preloadFrameCount - 1))
+      XCTAssertNil(store.frame(at: preloadFrameCount + 1)?.images)
+      XCTAssertEqual(store.currentFrameIndex, 0)
 
-      self.animator.shouldChangeFrame(with: 1.0) { hasNewFrame in
+      store.shouldChangeFrame(with: 1.0) { hasNewFrame in
         XCTAssertTrue(hasNewFrame)
-        XCTAssertEqual(self.animator.currentFrameIndex, 1)
+        XCTAssertEqual(store.currentFrameIndex, 1)
         expectation.fulfill()
       }
     }
@@ -51,13 +62,16 @@ class GifuTests: XCTestCase {
   }
 
   func testFrameInfo() {
+    XCTAssertNotNil(animator.frameStore)
+    guard let store = animator.frameStore else { return }
+
     let expectation = self.expectation(description: "testFrameInfoIsAccurate")
 
-    animator.prepareFrames {
-      let frameDuration = self.animator.frame(at: 5)?.duration ?? 0
+    store.prepareFrames {
+      let frameDuration = store.frame(at: 5)?.duration ?? 0
       XCTAssertTrue((frameDuration - 0.05) < 0.00001)
 
-      let imageSize = self.animator.frame(at: 5)?.size ?? CGSize.zero
+      let imageSize = store.frame(at: 5)?.size ?? CGSize.zero
       XCTAssertEqual(imageSize, staticImage.size)
 
       expectation.fulfill()
