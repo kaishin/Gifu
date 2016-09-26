@@ -1,8 +1,10 @@
-/// Keeps a reference to an `UIImage` instance and its duration as a GIF frame.
+/// Represents a single frame in a GIF.
 struct AnimatedFrame {
-  /// The image that should be used for this frame.
+
+  /// The image to display for this frame. Its value is nil when the frame is removed from the buffer.
   let image: UIImage?
-  /// The duration that the frame image should be displayed.
+  
+  /// The duration that this frame should remain active.
   let duration: TimeInterval
 
   /// A placeholder frame with no image assigned.
@@ -11,15 +13,15 @@ struct AnimatedFrame {
     return AnimatedFrame(image: nil, duration: duration)
   }
 
-  /// Whether the AnimatedFrame instance contains an image or not.
+  /// Whether this frame instance contains an image or not.
   var isPlaceholder: Bool {
     return image == .none
   }
 
-  /// Takes an optional image and returns an non-placeholder `AnimatedFrame`.
+  /// Returns a new instance from an ptional image.
   ///
   /// - parameter image: An optional `UIImage` instance to be assigned to the new frame.
-  /// - returns: A non-placeholder `AnimatedFrame` instance.
+  /// - returns: An `AnimatedFrame` instance.
   func animatedFrame(with newImage: UIImage?) -> AnimatedFrame {
     return AnimatedFrame(image: newImage, duration: duration)
   }
