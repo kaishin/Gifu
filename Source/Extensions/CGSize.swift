@@ -26,7 +26,7 @@ extension CGSize {
   ///
   /// - parameter size: The contraining size.
   /// - returns: size A new size that fills the contraining size keeping the same aspect ratio.
-  func filling(size: CGSize) -> CGSize {
+  func filling(_ size: CGSize) -> CGSize {
     let aspectWidth = round(aspectRatio * size.height)
     let aspectHeight = round(size.width / aspectRatio)
 

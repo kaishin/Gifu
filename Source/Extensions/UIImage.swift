@@ -27,7 +27,7 @@ extension UIImage {
   /// - parameter size: The constraining size of the image.
   /// - returns: A new resized image instance.
   func filling(size: CGSize) -> UIImage {
-    let newSize = size.filling(size: size)
+    let newSize = size.filling(size)
     return resized(to: newSize)
   }
 

@@ -22,7 +22,7 @@ struct AnimatedFrame {
   ///
   /// - parameter image: An optional `UIImage` instance to be assigned to the new frame.
   /// - returns: An `AnimatedFrame` instance.
-  func animatedFrame(with newImage: UIImage?) -> AnimatedFrame {
+  func makeAnimatedFrame(with newImage: UIImage?) -> AnimatedFrame {
     return AnimatedFrame(image: newImage, duration: duration)
   }
 }

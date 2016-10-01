@@ -18,14 +18,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0009FCE61D16A4AB0038DC85 /* earth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = earth.gif; path = GIFs/earth.gif; sourceTree = SOURCE_ROOT; };
+		0009FCE61D16A4AB0038DC85 /* earth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = earth.gif; sourceTree = "<group>"; };
 		002A1BF91D161D33005ABBD0 /* Gifu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gifu.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Gifu-gwslszlwadetledwfipapwloqzrw/Build/Products/Debug-iphonesimulator/Gifu.framework"; sourceTree = "<group>"; };
-		002A1BFB1D1624D0005ABBD0 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = ../GIFs/mugen.gif; sourceTree = "<group>"; };
-		007380221B279644008DAD5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		002A1BFB1D1624D0005ABBD0 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = ../../../GifuTests/Images/mugen.gif; sourceTree = "<group>"; };
+		007380221B279644008DAD5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9D25870519BCCB0F00A55A18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D98823719BC69CA00B790C6 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D98823C19BC69CA00B790C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = classes/AppDelegate.swift; sourceTree = "<group>"; };
-		9D98823E19BC69CA00B790C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = classes/ViewController.swift; sourceTree = "<group>"; };
+		9D98823C19BC69CA00B790C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9D98823E19BC69CA00B790C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9D98824319BC69CA00B790C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9D98825919BC69F600B790C6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,9 +53,9 @@
 		9D98822E19BC69CA00B790C6 = {
 			isa = PBXGroup;
 			children = (
-				9D98823919BC69CA00B790C6 /* Source */,
-				9D98823819BC69CA00B790C6 /* Products */,
 				002A1BF81D161D32005ABBD0 /* Frameworks */,
+				9D98823819BC69CA00B790C6 /* Products */,
+				9D98823919BC69CA00B790C6 /* Source */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,25 +70,24 @@
 		9D98823919BC69CA00B790C6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				9D98823C19BC69CA00B790C6 /* AppDelegate.swift */,
-				9D98823E19BC69CA00B790C6 /* ViewController.swift */,
-				9D98825919BC69F600B790C6 /* Main.storyboard */,
-				9D98824319BC69CA00B790C6 /* Images.xcassets */,
 				9D98823A19BC69CA00B790C6 /* Supporting Files */,
+				9D98823C19BC69CA00B790C6 /* AppDelegate.swift */,
+				9D98824319BC69CA00B790C6 /* Images.xcassets */,
+				9D98825919BC69F600B790C6 /* Main.storyboard */,
+				9D98823E19BC69CA00B790C6 /* ViewController.swift */,
 			);
-			name = Source;
-			path = demo;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		9D98823A19BC69CA00B790C6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0009FCE61D16A4AB0038DC85 /* earth.gif */,
-				002A1BFB1D1624D0005ABBD0 /* mugen.gif */,
 				007380221B279644008DAD5C /* Default-568h@2x.png */,
 				9D25870519BCCB0F00A55A18 /* Info.plist */,
+				0009FCE61D16A4AB0038DC85 /* earth.gif */,
+				002A1BFB1D1624D0005ABBD0 /* mugen.gif */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +258,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = demo/Info.plist;
+				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu.demo;
@@ -274,7 +273,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = demo/Info.plist;
+				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu.demo;

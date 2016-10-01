@@ -6,14 +6,20 @@ private let imageData = testImageDataNamed("mugen.gif")
 private let staticImage = UIImage(data: imageData)!
 private let preloadFrameCount = 20
 
-class DummyAnimatorDelegate: AnimatorDelegate {
-  func animatorHasNewFrame() { }
+class DummyAnimatable: GIFAnimatable {
+  init() {}
+  var animator: Animator? = nil
+  var image: UIImage? = nil
+  var layer = CALayer()
+  var frame: CGRect = .zero
+  var contentMode: UIViewContentMode = .scaleToFill
+  func animatorHasNewFrame() {}
 }
 
 class GifuTests: XCTestCase {
   var animator: Animator!
   var originalFrameCount: Int!
-  let delegate = DummyAnimatorDelegate()
+  let delegate = DummyAnimatable()
 
   override func setUp() {
     super.setUp()
