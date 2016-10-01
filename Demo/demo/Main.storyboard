@@ -18,7 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Tap the image to pause/resume" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsv-cU-WO5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Tap the image to pause/resume. Swipe to change GIF." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsv-cU-WO5">
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="73c-sg-Egr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.99144423007965088" green="0.56549066305160522" blue="0.033751130104064941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -30,6 +33,9 @@
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="yth-9a-24x" appends="YES" id="21e-1P-Idk"/>
+                                    <outletCollection property="gestureRecognizers" destination="gvf-wz-Kzk" appends="YES" id="Kkd-Hz-wbi"/>
+                                    <outletCollection property="gestureRecognizers" destination="NVK-NG-och" appends="YES" id="3ji-eJ-4O8"/>
+                                    <outletCollection property="gestureRecognizers" destination="Fbo-8y-XRb" appends="YES" id="CHw-iK-bv5"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Gifu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-41-BaC">
@@ -64,8 +70,89 @@
                         <action selector="toggleAnimation:" destination="vXZ-lx-hvc" id="AKP-V2-BPy"/>
                     </connections>
                 </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="gvf-wz-Kzk">
+                    <connections>
+                        <action selector="swapImage:" destination="vXZ-lx-hvc" id="1Tz-ve-aVe"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="NVK-NG-och">
+                    <connections>
+                        <action selector="swapImage:" destination="vXZ-lx-hvc" id="k3n-7z-6CO"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="Fbo-8y-XRb">
+                    <connections>
+                        <segue destination="OGk-7x-6ul" kind="presentation" id="ThB-Q3-gct"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="330" y="360"/>
+            <point key="canvasLocation" x="878" y="369"/>
+        </scene>
+        <!--Gifu-->
+        <scene sceneID="nSL-py-yiM">
+            <objects>
+                <viewController title="Gifu" id="OGk-7x-6ul" customClass="ViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="83f-xL-xEu"/>
+                        <viewControllerLayoutGuide type="bottom" id="wIQ-rE-qNC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1bA-xd-73D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="Us4-12-3Mt" customClass="GIFImageView" customModule="Gifu">
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Us4-12-3Mt" secondAttribute="height" multiplier="5:4" id="VBo-I2-vrW"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="sDg-Sn-tgG" appends="YES" id="LK2-Ob-xA0"/>
+                                    <outletCollection property="gestureRecognizers" destination="Du1-nm-zDx" appends="YES" id="1Zg-qV-6uY"/>
+                                    <outletCollection property="gestureRecognizers" destination="Qf9-Bc-h4A" appends="YES" id="ipw-mE-Ond"/>
+                                    <outletCollection property="gestureRecognizers" destination="PPi-1H-WJu" appends="YES" id="IF1-AA-nOg"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="tintColor" red="0.99144423010000005" green="0.56549066309999996" blue="0.033751130099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Us4-12-3Mt" firstAttribute="leading" secondItem="1bA-xd-73D" secondAttribute="leading" id="3P4-3G-m6R"/>
+                            <constraint firstAttribute="centerX" secondItem="Us4-12-3Mt" secondAttribute="centerX" id="NOV-1r-J9a"/>
+                            <constraint firstAttribute="trailing" secondItem="Us4-12-3Mt" secondAttribute="trailing" id="X4P-2x-NZ3"/>
+                            <constraint firstItem="Us4-12-3Mt" firstAttribute="top" secondItem="83f-xL-xEu" secondAttribute="bottom" constant="146" id="d4f-TL-sWp"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="imageView" destination="Us4-12-3Mt" id="ykg-l2-pu5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BPd-O7-zUj" sceneMemberID="firstResponder"/>
+                <exit id="nol-GV-A6h" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="sDg-Sn-tgG">
+                    <connections>
+                        <action selector="toggleAnimation:" destination="OGk-7x-6ul" id="xml-SS-qIE"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="Du1-nm-zDx">
+                    <connections>
+                        <action selector="swapImage:" destination="OGk-7x-6ul" id="Xtg-kL-34h"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="Qf9-Bc-h4A">
+                    <connections>
+                        <action selector="swapImage:" destination="OGk-7x-6ul" id="YWz-aX-ljo"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="PPi-1H-WJu">
+                    <connections>
+                        <segue destination="nol-GV-A6h" kind="unwind" unwindAction="unwindToRootViewControllerWithSegue:" id="tcK-vV-ERk"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1626" y="368"/>
         </scene>
     </scenes>
 </document>
