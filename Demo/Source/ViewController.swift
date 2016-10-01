@@ -3,6 +3,8 @@ import Gifu
 
 class ViewController: UIViewController {
   @IBOutlet weak var imageView: GIFImageView!
+  @IBAction func unwindToRootViewController(segue: UIStoryboardSegue) { }
+
   var currentGIFName: String = "mugen" {
     didSet {
       imageView.animate(withGIFNamed: currentGIFName)
@@ -33,6 +35,4 @@ class ViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     imageView.animate(withGIFNamed: currentGIFName)
   }
-
-  @IBAction func unwindToRootViewController(segue: UIStoryboardSegue) { }
 }

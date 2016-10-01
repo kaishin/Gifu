@@ -11,16 +11,15 @@
 		0036ABB91BBD1D1400C6CC3D /* nailed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0036ABB81BBD1D1400C6CC3D /* nailed.gif */; };
 		005656ED1A6F14D6008A0ED1 /* FrameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EC1A6F14D6008A0ED1 /* FrameStore.swift */; };
 		005656EF1A6F1C26008A0ED1 /* GIFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EE1A6F1C26008A0ED1 /* GIFImageView.swift */; };
-		007E08441BD95E6200883D0C /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E08431BD95E6200883D0C /* ArrayExtension.swift */; };
+		007E08441BD95E6200883D0C /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E08431BD95E6200883D0C /* Array.swift */; };
 		00978B6C1D9C6D2A00A6575F /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00978B6B1D9C6D2A00A6575F /* Animator.swift */; };
-		00978B6E1D9FA99D00A6575F /* AnimatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00978B6D1D9FA99D00A6575F /* AnimatorDelegate.swift */; };
 		009BD1391BBC7F6500FC982B /* GifuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BD1381BBC7F6500FC982B /* GifuTests.swift */; };
 		009BD13B1BBC7F6500FC982B /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B8C73E1A364DA400C188E7 /* Gifu.framework */; };
-		009BD1441BBC93C800FC982B /* CGSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BD1431BBC93C800FC982B /* CGSizeExtension.swift */; };
+		009BD1441BBC93C800FC982B /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BD1431BBC93C800FC982B /* CGSize.swift */; };
 		00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */; };
 		00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8C7951A3650EE00C188E7 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00BF42CC1D99A1DC00C6F28D /* GIFAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */; };
-		EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */; };
+		EAF49C7F1A3A4DE000B395DF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImage.swift */; };
 		EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,23 +34,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0036ABB61BBD1D0B00C6CC3D /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = Demo/GIFs/mugen.gif; sourceTree = SOURCE_ROOT; };
-		0036ABB81BBD1D1400C6CC3D /* nailed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = nailed.gif; path = Demo/GIFs/nailed.gif; sourceTree = SOURCE_ROOT; };
+		0036ABB61BBD1D0B00C6CC3D /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mugen.gif; sourceTree = "<group>"; };
+		0036ABB81BBD1D1400C6CC3D /* nailed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = nailed.gif; sourceTree = "<group>"; };
 		005656EC1A6F14D6008A0ED1 /* FrameStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameStore.swift; sourceTree = "<group>"; };
 		005656EE1A6F1C26008A0ED1 /* GIFImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFImageView.swift; sourceTree = "<group>"; };
-		007E08431BD95E6200883D0C /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		007E08431BD95E6200883D0C /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		00978B6B1D9C6D2A00A6575F /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
-		00978B6D1D9FA99D00A6575F /* AnimatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatorDelegate.swift; sourceTree = "<group>"; };
 		009BD1361BBC7F6500FC982B /* GifuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GifuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		009BD1381BBC7F6500FC982B /* GifuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifuTests.swift; sourceTree = "<group>"; };
 		009BD13A1BBC7F6500FC982B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		009BD1431BBC93C800FC982B /* CGSizeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSizeExtension.swift; sourceTree = "<group>"; };
+		009BD1431BBC93C800FC982B /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
 		00B8C73E1A364DA400C188E7 /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		00B8C7421A364DA400C188E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
+		00B8C7421A364DA400C188E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
 		00B8C7951A3650EE00C188E7 /* Gifu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gifu.h; sourceTree = "<group>"; };
 		00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFAnimatable.swift; sourceTree = "<group>"; };
-		EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		EAF49C7E1A3A4DE000B395DF /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,17 +78,17 @@
 				0036ABB61BBD1D0B00C6CC3D /* mugen.gif */,
 				0036ABB81BBD1D1400C6CC3D /* nailed.gif */,
 			);
-			name = Images;
+			path = Images;
 			sourceTree = "<group>";
 		};
 		007E08401BD95BE900883D0C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				009BD1431BBC93C800FC982B /* CGSizeExtension.swift */,
-				EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */,
-				007E08431BD95E6200883D0C /* ArrayExtension.swift */,
+				007E08431BD95E6200883D0C /* Array.swift */,
+				009BD1431BBC93C800FC982B /* CGSize.swift */,
+				EAF49C7E1A3A4DE000B395DF /* UIImage.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		007E08411BD95C0200883D0C /* Helpers */ = {
@@ -98,7 +96,7 @@
 			children = (
 				00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */,
 			);
-			name = Helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		007E08421BD95C6100883D0C /* Classes */ = {
@@ -109,17 +107,16 @@
 				005656EC1A6F14D6008A0ED1 /* FrameStore.swift */,
 				00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */,
 				005656EE1A6F1C26008A0ED1 /* GIFImageView.swift */,
-				00978B6D1D9FA99D00A6575F /* AnimatorDelegate.swift */,
 			);
-			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		009BD1371BBC7F6500FC982B /* GifuTests */ = {
 			isa = PBXGroup;
 			children = (
+				0036ABBA1BBD1D1700C6CC3D /* Images */,
 				009BD1381BBC7F6500FC982B /* GifuTests.swift */,
 				009BD13A1BBC7F6500FC982B /* Info.plist */,
-				0036ABBA1BBD1D1700C6CC3D /* Images */,
 			);
 			path = GifuTests;
 			sourceTree = "<group>";
@@ -127,10 +124,10 @@
 		00B8C7341A364DA400C188E7 = {
 			isa = PBXGroup;
 			children = (
-				00B8C75A1A364DBE00C188E7 /* Source */,
-				00B8C7411A364DA400C188E7 /* Supporting Files */,
 				009BD1371BBC7F6500FC982B /* GifuTests */,
 				00B8C73F1A364DA400C188E7 /* Products */,
+				00B8C75A1A364DBE00C188E7 /* Source */,
+				00B8C7411A364DA400C188E7 /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,16 +145,15 @@
 			children = (
 				00B8C7421A364DA400C188E7 /* Info.plist */,
 			);
-			name = "Supporting Files";
-			path = Source;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		00B8C75A1A364DBE00C188E7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				007E08421BD95C6100883D0C /* Classes */,
-				007E08411BD95C0200883D0C /* Helpers */,
 				007E08401BD95BE900883D0C /* Extensions */,
+				007E08411BD95C0200883D0C /* Helpers */,
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
 			);
 			path = Source;
@@ -303,15 +299,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				005656EF1A6F1C26008A0ED1 /* GIFImageView.swift in Sources */,
-				00978B6E1D9FA99D00A6575F /* AnimatorDelegate.swift in Sources */,
 				00BF42CC1D99A1DC00C6F28D /* GIFAnimatable.swift in Sources */,
 				005656ED1A6F14D6008A0ED1 /* FrameStore.swift in Sources */,
-				009BD1441BBC93C800FC982B /* CGSizeExtension.swift in Sources */,
+				009BD1441BBC93C800FC982B /* CGSize.swift in Sources */,
 				EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */,
 				00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */,
 				00978B6C1D9C6D2A00A6575F /* Animator.swift in Sources */,
-				007E08441BD95E6200883D0C /* ArrayExtension.swift in Sources */,
-				EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */,
+				007E08441BD95E6200883D0C /* Array.swift in Sources */,
+				EAF49C7F1A3A4DE000B395DF /* UIImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +449,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -476,7 +471,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

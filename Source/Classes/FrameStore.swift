@@ -67,7 +67,7 @@ class FrameStore {
     return imageSource.isAnimatedGIF
   }
 
-  /// Initializes an animator instance from raw GIF image data and an `Animatable` delegate.
+  /// Creates an animator instance from raw GIF image data and an `Animatable` delegate.
   ///
   /// - parameter data: The raw GIF image data.
   /// - parameter delegate: An `Animatable` delegate.
@@ -159,7 +159,7 @@ private extension FrameStore {
     preloadIndexes(withStartingIndex: currentFrameIndex).forEach { index in
       let currentAnimatedFrame = animatedFrames[index]
       if !currentAnimatedFrame.isPlaceholder { return }
-      animatedFrames[index] = currentAnimatedFrame.animatedFrame(with: loadFrame(at: index))
+      animatedFrames[index] = currentAnimatedFrame.makeAnimatedFrame(with: loadFrame(at: index))
     }
   }
 
@@ -177,7 +177,7 @@ private extension FrameStore {
 
   /// Increments the `currentFrameIndex` property.
   func incrementCurrentFrameIndex() {
-    currentFrameIndex = increment(index: currentFrameIndex)
+    currentFrameIndex = increment(frameIndex: currentFrameIndex)
   }
 
   /// Increments a given frame index, taking into account the `frameCount` and looping when necessary.
@@ -185,8 +185,8 @@ private extension FrameStore {
   /// - parameter index: The `Int` value to increment.
   /// - parameter byValue: The `Int` value to increment with.
   /// - returns: A new `Int` value.
-  func increment(index: Int, by value: Int = 1) -> Int {
-    return (index + value) % frameCount
+  func increment(frameIndex: Int, by value: Int = 1) -> Int {
+    return (frameIndex + value) % frameCount
   }
 
   /// Returns the indexes of the frames to preload based on a starting frame index.
@@ -194,8 +194,8 @@ private extension FrameStore {
   /// - parameter index: Starting index.
   /// - returns: An array of indexes to preload.
   func preloadIndexes(withStartingIndex index: Int) -> [Int] {
-    let nextIndex = increment(index: index)
-    let lastIndex = increment(index: index, by: bufferFrameCount)
+    let nextIndex = increment(frameIndex: index)
+    let lastIndex = increment(frameIndex: index, by: bufferFrameCount)
 
     if lastIndex >= nextIndex {
       return [Int](nextIndex...lastIndex)
@@ -213,7 +213,7 @@ private extension FrameStore {
       animatedFrames += [AnimatedFrame(image: .none, duration: frameDuration)]
 
       if index > bufferFrameCount { return }
-      animatedFrames[index] = animatedFrames[index].animatedFrame(with: loadFrame(at: index))
+      animatedFrames[index] = animatedFrames[index].makeAnimatedFrame(with: loadFrame(at: index))
     }
   }
 
