@@ -3,10 +3,10 @@ import Gifu
 
 class ViewController: UIViewController {
   @IBOutlet weak var imageView: GIFImageView!
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    imageView.animate(withGIFNamed: "mugen")
+  var currentGIFName: String = "mugen" {
+    didSet {
+      imageView.animate(withGIFNamed: currentGIFName)
+    }
   }
 
   @IBAction func toggleAnimation(_ sender: AnyObject) {
@@ -16,4 +16,23 @@ class ViewController: UIViewController {
       imageView.startAnimatingGIF()
     }
   }
+
+  @IBAction func swapImage(_ sender: AnyObject) {
+    switch currentGIFName {
+    case "mugen":
+      currentGIFName = "earth"
+    default:
+      currentGIFName = "mugen"
+    }
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    imageView.prepareForReuse()
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    imageView.animate(withGIFNamed: currentGIFName)
+  }
+
+  @IBAction func unwindToRootViewController(segue: UIStoryboardSegue) { }
 }
