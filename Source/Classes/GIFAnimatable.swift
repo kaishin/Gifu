@@ -85,7 +85,8 @@ extension GIFAnimatable {
 
   /// Updates the image with a new frame if necessary.
   public func updateImageIfNeeded() {
-    image = animator?.activeFrame() ?? image
+    let frame = animator?.activeFrame() ?? image
+    if image != frame { image = frame }
   }
 }
 
