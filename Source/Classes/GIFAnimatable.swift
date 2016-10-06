@@ -23,16 +23,33 @@ extension GIFAnimatable {
     return image?.size ?? CGSize.zero
   }
 
-  /// Prepare for animation and start animating immediately.
-  ///
-  /// - parameter imageName:   The file name of the GIF in the main bundle.
-  public func animate(withGIFNamed imageName: String) {
-    animator?.animate(withGIFNamed: imageName, size: frame.size, contentMode: contentMode)
+  /// Returns the active frame if available.
+  public var activeFrame: UIImage? {
+    return animator?.activeFrame()
+  }
+
+  /// Total frame count of the GIF.
+  public var frameCount: Int {
+    return animator?.frameCount ?? 0
   }
 
   /// Introspect whether the instance is animating.
   public var isAnimatingGIF: Bool {
     return animator?.isAnimating ?? false
+  }
+
+  /// Prepare for animation and start animating immediately.
+  ///
+  /// - parameter imageName: The file name of the GIF in the main bundle.
+  public func animate(withGIFNamed imageName: String) {
+    animator?.animate(withGIFNamed: imageName, size: frame.size, contentMode: contentMode)
+  }
+
+  /// Prepare for animation and start animating immediately.
+  ///
+  /// - parameter imageData: GIF image data.
+  public func animate(withGIFData imageData: Data) {
+    animator?.animate(withGIFData: imageData, size: frame.size, contentMode: contentMode)
   }
 
   /// Prepares the animator instance for animation.
@@ -50,10 +67,6 @@ extension GIFAnimatable {
     animator?.prepareForAnimation(withGIFData: imageData, size: frame.size, contentMode: contentMode)
   }
 
-  /// Total frame count of the GIF.
-  public var frameCount: Int {
-    return animator?.frameCount ?? 0
-  }
 
   /// Stop animating and free up GIF data from memory.
   public func prepareForReuse() {
@@ -74,16 +87,11 @@ extension GIFAnimatable {
   public func updateImageIfNeeded() {
     image = animator?.activeFrame() ?? image
   }
-
-  /// Returns the active frame if available.
-  public func activeFrame() -> UIImage? {
-    return animator?.activeFrame()
-  }
 }
 
 extension GIFAnimatable {
   /// Calls setNeedsDisplay on the layer whenever the animator has a new frame. Should *not* be called directly.
-  public func animatorHasNewFrame() {
+  func animatorHasNewFrame() {
     layer.setNeedsDisplay()
   }
 }
