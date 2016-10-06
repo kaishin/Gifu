@@ -1,4 +1,4 @@
-<h1><img src="https://github.com/kaishin/Gifu/raw/swift3/header.gif" alt="Gifu Logo" style="border-radius: 6px"></h1>
+# ![Logo](https://github.com/kaishin/Gifu/raw/master/header.gif)
 
 [![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg?maxAge=2592000)](https://github.com/kaishin/Gifu/releases/latest) [![Travis](https://travis-ci.org/kaishin/Gifu.svg?branch=master)](https://travis-ci.org/kaishin/Gifu) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Join the chat at https://gitter.im/kaishin/gifu](https://badges.gitter.im/kaishin/gifu.svg)](https://gitter.im/kaishin/gifu) ![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg)
 
