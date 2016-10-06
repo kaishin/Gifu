@@ -51,11 +51,10 @@ public class Animator {
     }
   }
 
-
   /// Prepares the animator instance for animation.
   ///
-  /// - parameter imageName:   The file name of the GIF in the main bundle.
-  /// - parameter size:        The target size of the individual frames.
+  /// - parameter imageName: The file name of the GIF in the main bundle.
+  /// - parameter size: The target size of the individual frames.
   /// - parameter contentMode: The view content mode to use for the individual frames.
   func prepareForAnimation(withGIFNamed imageName: String, size: CGSize, contentMode: UIViewContentMode) {
     guard let extensionRemoved = imageName.components(separatedBy: ".")[safe: 0],
@@ -67,8 +66,8 @@ public class Animator {
 
   /// Prepares the animator instance for animation.
   ///
-  /// - parameter imageData:   GIF image data.
-  /// - parameter size:        The target size of the individual frames.
+  /// - parameter imageData: GIF image data.
+  /// - parameter size: The target size of the individual frames.
   /// - parameter contentMode: The view content mode to use for the individual frames.
   func prepareForAnimation(withGIFData imageData: Data, size: CGSize, contentMode: UIViewContentMode) {
     frameStore = FrameStore(data: imageData, size: size, contentMode: contentMode, framePreloadCount: frameBufferCount)
@@ -103,8 +102,8 @@ public class Animator {
 
   /// Prepare for animation and start animating immediately.
   ///
-  /// - parameter imageName:   The file name of the GIF in the main bundle.
-  /// - parameter size:        The target size of the individual frames.
+  /// - parameter imageName: The file name of the GIF in the main bundle.
+  /// - parameter size: The target size of the individual frames.
   /// - parameter contentMode: The view content mode to use for the individual frames.
   func animate(withGIFNamed imageName: String, size: CGSize, contentMode: UIViewContentMode) {
     prepareForAnimation(withGIFNamed: imageName, size: size, contentMode: contentMode)
@@ -113,11 +112,11 @@ public class Animator {
 
   /// Prepare for animation and start animating immediately.
   ///
-  /// - parameter imageData:   GIF image data.
-  /// - parameter size:        The target size of the individual frames.
+  /// - parameter imageData: GIF image data.
+  /// - parameter size: The target size of the individual frames.
   /// - parameter contentMode: The view content mode to use for the individual frames.
-  func animate(withGIFData data: Data, size: CGSize, contentMode: UIViewContentMode) {
-    prepareForAnimation(withGIFData: data, size: size, contentMode: contentMode)
+  func animate(withGIFData imageData: Data, size: CGSize, contentMode: UIViewContentMode) {
+    prepareForAnimation(withGIFData: imageData, size: size, contentMode: contentMode)
     startAnimating()
   }
 
