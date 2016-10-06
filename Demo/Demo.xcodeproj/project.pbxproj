@@ -11,6 +11,7 @@
 		002A1BFC1D1624D0005ABBD0 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 002A1BFB1D1624D0005ABBD0 /* mugen.gif */; };
 		002FF5141D3A91340069CA56 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002A1BF91D161D33005ABBD0 /* Gifu.framework */; };
 		007380231B279644008DAD5C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007380221B279644008DAD5C /* Default-568h@2x.png */; };
+		00DD26EB1DA5968500A0F683 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD26EA1DA5968500A0F683 /* EmptyViewController.swift */; };
 		9D98823D19BC69CA00B790C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823C19BC69CA00B790C6 /* AppDelegate.swift */; };
 		9D98823F19BC69CA00B790C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823E19BC69CA00B790C6 /* ViewController.swift */; };
 		9D98824419BC69CA00B790C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D98824319BC69CA00B790C6 /* Images.xcassets */; };
@@ -22,6 +23,7 @@
 		002A1BF91D161D33005ABBD0 /* Gifu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gifu.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Gifu-gwslszlwadetledwfipapwloqzrw/Build/Products/Debug-iphonesimulator/Gifu.framework"; sourceTree = "<group>"; };
 		002A1BFB1D1624D0005ABBD0 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = ../../../GifuTests/Images/mugen.gif; sourceTree = "<group>"; };
 		007380221B279644008DAD5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		00DD26EA1DA5968500A0F683 /* EmptyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		9D25870519BCCB0F00A55A18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D98823719BC69CA00B790C6 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D98823C19BC69CA00B790C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				9D98824319BC69CA00B790C6 /* Images.xcassets */,
 				9D98825919BC69F600B790C6 /* Main.storyboard */,
 				9D98823E19BC69CA00B790C6 /* ViewController.swift */,
+				00DD26EA1DA5968500A0F683 /* EmptyViewController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00DD26EB1DA5968500A0F683 /* EmptyViewController.swift in Sources */,
 				9D98823F19BC69CA00B790C6 /* ViewController.swift in Sources */,
 				9D98823D19BC69CA00B790C6 /* AppDelegate.swift in Sources */,
 			);
