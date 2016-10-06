@@ -7,10 +7,10 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    imageView.animateWithImage(named: "mugen.gif")
+    imageView.animateWithImage(named: "mugen1.gif")
   }
 
-  @IBAction func toggleAnimation(sender: AnyObject) {
+  @IBAction func toggleAnimation(_ sender: AnyObject) {
     if imageView.isAnimatingGIF {
       imageView.stopAnimatingGIF()
     } else {

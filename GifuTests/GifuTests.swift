@@ -12,7 +12,7 @@ class GifuTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    animator = Animator(data: imageData, size: CGSizeZero, contentMode: .ScaleToFill, framePreloadCount: preloadFrameCount)
+    animator = Animator(data: imageData, size: CGSize.zero, contentMode: .scaleToFill, framePreloadCount: preloadFrameCount)
     originalFrameCount = Int(CGImageSourceGetCount(animator.imageSource))
   }
   
@@ -22,12 +22,12 @@ class GifuTests: XCTestCase {
 
   func testCurrentFrame() {
     XCTAssertEqual(animator.currentFrameIndex, 0)
-    XCTAssertEqual(animator.currentFrameDuration, NSTimeInterval.infinity)
+    XCTAssertEqual(animator.currentFrameDuration, TimeInterval.infinity)
     XCTAssertNil(animator.currentFrameImage)
   }
 
   func testFramePreload() {
-    let expectation = expectationWithDescription("frameDuration")
+    let expectation = self.expectation(description: "frameDuration")
 
     animator.prepareFrames {
       let animatedFrameCount = self.animator.animatedFrames.count
@@ -43,7 +43,7 @@ class GifuTests: XCTestCase {
       }
     }
 
-    waitForExpectationsWithTimeout(1.0) { error in
+    waitForExpectations(timeout: 1.0) { error in
       if let error = error {
         print("Error: \(error.localizedDescription)")
       }
@@ -51,19 +51,19 @@ class GifuTests: XCTestCase {
   }
 
   func testFrameInfo() {
-    let expectation = expectationWithDescription("testFrameInfoIsAccurate")
+    let expectation = self.expectation(description: "testFrameInfoIsAccurate")
 
     animator.prepareFrames {
       let frameDuration = self.animator.frameAtIndex(5)?.duration ?? 0
       XCTAssertTrue((frameDuration - 0.05) < 0.00001)
 
-      let imageSize = self.animator.frameAtIndex(5)?.size ?? CGSizeZero
+      let imageSize = self.animator.frameAtIndex(5)?.size ?? CGSize.zero
       XCTAssertEqual(imageSize, staticImage.size)
 
       expectation.fulfill()
     }
 
-    waitForExpectationsWithTimeout(1.0) { error in
+    waitForExpectations(timeout: 1.0) { error in
       if let error = error {
         print("Error: \(error.localizedDescription)")
       }
@@ -71,8 +71,8 @@ class GifuTests: XCTestCase {
   }
 }
 
-private func testImageDataNamed(name: String) -> NSData {
-  let testBundle = NSBundle(forClass: GifuTests.self)
-  let imagePath = testBundle.bundleURL.URLByAppendingPathComponent(name)
-  return NSData(contentsOfURL: imagePath)!
+private func testImageDataNamed(_ name: String) -> Data {
+  let testBundle = Bundle(for: GifuTests.self)
+  let imagePath = testBundle.bundleURL.appendingPathComponent(name)
+  return (try! Data(contentsOf: imagePath))
 }

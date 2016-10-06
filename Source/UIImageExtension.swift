@@ -5,9 +5,9 @@ extension UIImage {
   ///
   /// - parameter size: The new size of the image.
   /// - returns: A new resized image instance.
-  func resize(size: CGSize) -> UIImage {
+  func resize(_ size: CGSize) -> UIImage {
     UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-    self.drawInRect(CGRect(origin: CGPointZero, size: size))
+    self.draw(in: CGRect(origin: CGPoint.zero, size: size))
     let newImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     return newImage ?? self
@@ -17,7 +17,7 @@ extension UIImage {
   ///
   /// - parameter size: The constraining size of the image.
   /// - returns: A new resized image instance.
-  func resizeAspectFit(size: CGSize) -> UIImage {
+  func resizeAspectFit(_ size: CGSize) -> UIImage {
     let newSize = self.size.sizeConstrainedBySize(size)
     return resize(newSize)
   }
@@ -26,7 +26,7 @@ extension UIImage {
   ///
   /// - parameter size: The constraining size of the image.
   /// - returns: A new resized image instance.
-  func resizeAspectFill(size: CGSize) -> UIImage {
+  func resizeAspectFill(_ size: CGSize) -> UIImage {
     let newSize = self.size.sizeFillingSize(size)
     return resize(newSize)
   }
@@ -36,7 +36,7 @@ extension UIImage {
   /// - parameter data: Raw image data.
   /// - parameter size: The size to be used to resize the new image instance.
   /// - returns: A new image instance from the passed in data.
-  class func imageWithData(data: NSData, size: CGSize) -> UIImage? {
+  class func imageWithData(_ data: Data, size: CGSize) -> UIImage? {
     return UIImage(data: data)?.resize(size)
   }
 
@@ -44,7 +44,7 @@ extension UIImage {
   ///
   /// - parameter data: Raw image data.
   /// - returns: The size of the image contained in the data.
-  class func sizeForImageData(data: NSData) -> CGSize? {
+  class func sizeForImageData(_ data: Data) -> CGSize? {
     return UIImage(data: data)?.size
   }
 }

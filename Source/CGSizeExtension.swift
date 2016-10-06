@@ -11,7 +11,7 @@ extension CGSize {
   ///
   /// - parameter size: The contraining size.
   /// - returns: size A new size that fits inside the contraining size with the same aspect ratio.
-  func sizeConstrainedBySize(size: CGSize) -> CGSize {
+  func sizeConstrainedBySize(_ size: CGSize) -> CGSize {
     let aspectWidth = round(aspectRatio * size.height)
     let aspectHeight = round(size.width / aspectRatio)
 
@@ -26,7 +26,7 @@ extension CGSize {
   ///
   /// - parameter size: The contraining size.
   /// - returns: size A new size that fills the contraining size keeping the same aspect ratio.
-  func sizeFillingSize(size: CGSize) -> CGSize {
+  func sizeFillingSize(_ size: CGSize) -> CGSize {
     let aspectWidth = round(aspectRatio * size.height)
     let aspectHeight = round(size.width / aspectRatio)
 

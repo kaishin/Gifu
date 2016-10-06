@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Gifu-->
@@ -14,40 +15,35 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Tap the image to pause/resume" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsv-cU-WO5">
-                                <rect key="frame" x="211" y="79" width="178.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="1" green="0.6334223747253418" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.99144423007965088" green="0.56549066305160522" blue="0.033751130104064941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="FSz-xF-Xds" customClass="AnimatableImageView" customModule="Gifu">
-                                <rect key="frame" x="0.0" y="143" width="600" height="300"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="300" image="mugen1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="FSz-xF-Xds" customClass="AnimatableImageView" customModule="Gifu">
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="yth-9a-24x" appends="YES" id="21e-1P-Idk"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Gifu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-41-BaC">
-                                <rect key="frame" x="283" y="55" width="34" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.6334223747253418" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.99144423007965088" green="0.56549066305160522" blue="0.033751130104064941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.98160680789999999" green="0.98160680789999999" blue="0.98160680789999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="1" green="0.6334223747253418" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98160680789999999" green="0.98160680789999999" blue="0.98160680789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.99144423007965088" green="0.56549066305160522" blue="0.033751130104064941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="FSz-xF-Xds" secondAttribute="trailing" id="8kQ-x1-WJl"/>
-                            <constraint firstItem="c8Y-41-BaC" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="55" id="JHy-q1-JuJ"/>
-                            <constraint firstAttribute="centerX" secondItem="c8Y-41-BaC" secondAttribute="centerX" id="Kc0-P5-KMZ"/>
-                            <constraint firstItem="FSz-xF-Xds" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="O4L-QH-SvV"/>
-                            <constraint firstItem="FSz-xF-Xds" firstAttribute="top" secondItem="wsv-cU-WO5" secondAttribute="bottom" constant="50" id="ODd-UW-Pca"/>
-                            <constraint firstItem="wsv-cU-WO5" firstAttribute="top" secondItem="c8Y-41-BaC" secondAttribute="bottom" constant="4" id="ZG4-fK-WvN"/>
-                            <constraint firstAttribute="centerX" secondItem="FSz-xF-Xds" secondAttribute="centerX" id="oih-yH-vRh"/>
-                            <constraint firstAttribute="centerX" secondItem="wsv-cU-WO5" secondAttribute="centerX" id="yLb-zR-gfU"/>
+                            <constraint firstItem="FSz-xF-Xds" firstAttribute="top" secondItem="wsv-cU-WO5" secondAttribute="bottom" constant="49" id="SwV-kj-G77"/>
+                            <constraint firstItem="c8Y-41-BaC" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="55" id="WNb-MR-6xh"/>
+                            <constraint firstItem="wsv-cU-WO5" firstAttribute="top" secondItem="c8Y-41-BaC" secondAttribute="bottom" constant="3" id="f3S-Tx-awy"/>
+                            <constraint firstItem="FSz-xF-Xds" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="sJp-ng-5o3"/>
+                            <constraint firstItem="wsv-cU-WO5" firstAttribute="centerX" secondItem="FSz-xF-Xds" secondAttribute="centerX" id="yei-JU-m3q"/>
+                            <constraint firstItem="c8Y-41-BaC" firstAttribute="centerX" secondItem="wsv-cU-WO5" secondAttribute="centerX" id="yry-RP-TvL"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -67,4 +63,7 @@
             <point key="canvasLocation" x="330" y="360"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="mugen1.gif" width="500" height="341"/>
+    </resources>
 </document>
