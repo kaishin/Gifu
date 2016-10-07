@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = "Gifu"
-  s.version = "1.2.1"
-  s.summary = "Highly performant animated GIF support for iOS "
+  s.version = "2.0.0-rc"
+  s.summary = "High-performance animated GIF support for iOS "
   s.homepage = "https://github.com/kaishin/Gifu"
   s.social_media_url = "http://twitter.com/kaishin"
   s.license = { :type => "MIT", :file => "LICENSE" }
