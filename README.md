@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg?maxAge=2592000)](https://github.com/kaishin/Gifu/releases/latest) [![Travis](https://travis-ci.org/kaishin/Gifu.svg?branch=master)](https://travis-ci.org/kaishin/Gifu) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Join the chat at https://gitter.im/kaishin/gifu](https://badges.gitter.im/kaishin/gifu.svg)](https://gitter.im/kaishin/gifu) ![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg)
 
-Gifu adds protocol-based, performance-aware animated GIF support to UIKit, without forcing you to use a `UIImageView` subclass. (It's also a [prefecture in Japan](https://goo.gl/maps/CCeAc)).
+Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It's also a [prefecture in Japan](https://goo.gl/maps/CCeAc)).
 
 ⚠ **Swift 2.3** support is on the [swift2.3](https://github.com/kaishin/Gifu/tree/swift2.3) branch. **This branch will not be getting any future updates**.
 
@@ -25,7 +25,7 @@ for up to date installation instructions.
 
 ## How It Works
 
-`Gifu` does not rely on subclassing `UIImageView`. The `Animator` class does the heavy-lifting, while the `GIFAnimatable` protocol exposes the functionality to the view classes that conform to it, using protocol extensions.
+`Gifu` does not force you to use a specific subclass `UIImageView`. The `Animator` class does the heavy-lifting, while the `GIFAnimatable` protocol exposes the functionality to the view classes that conform to it, using protocol extensions.
 
 The `Animator` has a `FrameStore` that only keeps a limited number of frames in-memory, effectively creating a buffer for the animation without consuming all the available memory. This approach makes loading large GIFs a lot more resource-friendly.
 
@@ -39,7 +39,7 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 There are two options that should cover any situation:
 
 - Use the built-in `GIFImageView` subclass.
-- Make `UIImageView` or any of its subclasses conform to `GIFAnimatable`.
+- Make any class conform to `GIFAnimatable`. Subclassing `UIImageView` is the easiest since you get most of the required properties for free.
 
 ### GIFImageView
 
@@ -69,6 +69,14 @@ That's it. Now `MyImageView` is fully GIF-compatible, and any of these methods c
 - `frameCount`, `isAnimatingGIF`, and `activeFrame` to inspect the GIF view.
 - `prepareForReuse()` to free up resources.
 - `updateImageIfNeeded()` to update the image property if necessary.
+
+This approach is especially powerful when you want to combine the functionality of different image libraries.
+
+~~~swift
+class MyImageView: OtherImageClass, GIFAnimatable {}
+~~~
+
+Keep in mind that you need to have control over the class implementing `GIFAnimatable` since you cannot add the stored `Animator` property in an extension.
 
 ### Examples
 
