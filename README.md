@@ -25,7 +25,7 @@ for up to date installation instructions.
 
 ## How It Works
 
-`Gifu` does not force you to use a specific subclass `UIImageView`. The `Animator` class does the heavy-lifting, while the `GIFAnimatable` protocol exposes the functionality to the view classes that conform to it, using protocol extensions.
+`Gifu` does not force you to use a specific subclass of `UIImageView`. The `Animator` class does the heavy-lifting, while the `GIFAnimatable` protocol exposes the functionality to the view classes that conform to it, using protocol extensions.
 
 The `Animator` has a `FrameStore` that only keeps a limited number of frames in-memory, effectively creating a buffer for the animation without consuming all the available memory. This approach makes loading large GIFs a lot more resource-friendly.
 
