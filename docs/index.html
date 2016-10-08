@@ -45,6 +45,9 @@
               <li class="nav-group-task">
                 <a href="Protocols/GIFAnimatable.html">GIFAnimatable</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ImageContainer.html">ImageContainer</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -53,11 +56,11 @@
         <section>
           <section class="section">
             
-            <h1><img src="https://github.com/kaishin/Gifu/raw/swift3/header.gif" alt="Gifu Logo" style="border-radius: 6px"></h1>
+            <a href='#img-src-https-github-com-kaishin-gifu-raw-master-header-gif-alt-logo' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='img-src-https-github-com-kaishin-gifu-raw-master-header-gif-alt-logo'><img src="https://github.com/kaishin/Gifu/raw/master/header.gif" alt="Logo"></h1>
 
 <p><a href="https://github.com/kaishin/Gifu/releases/latest"><img src="https://img.shields.io/github/release/kaishin/Gifu.svg?maxAge=2592000" alt="GitHub release"></a> <a href="https://travis-ci.org/kaishin/Gifu"><img src="https://travis-ci.org/kaishin/Gifu.svg?branch=master" alt="Travis"></a> <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a> <a href="https://gitter.im/kaishin/gifu"><img src="https://badges.gitter.im/kaishin/gifu.svg" alt="Join the chat at https://gitter.im/kaishin/gifu"></a> <img src="https://img.shields.io/badge/Swift-3.0.x-orange.svg" alt="Swift 3.0.x"> <img src="https://img.shields.io/badge/platforms-iOS-lightgrey.svg" alt="platforms"></p>
 
-<p>Gifu adds protocol-based, performance-aware animated GIF support to UIKit, without forcing you to use a <code>UIImageView</code> subclass. (It&rsquo;s also a <a href="https://goo.gl/maps/CCeAc">prefecture in Japan</a>).</p>
+<p>Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It&rsquo;s also a <a href="https://goo.gl/maps/CCeAc">prefecture in Japan</a>).</p>
 
 <p>⚠ <strong>Swift 2.3</strong> support is on the <a href="https://github.com/kaishin/Gifu/tree/swift2.3">swift2.3</a> branch. <strong>This branch will not be getting any future updates</strong>.</p>
 <a href='#install' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='install'>Install</h2>
@@ -78,7 +81,7 @@ for up to date installation instructions.</li>
 </ul>
 <a href='#how-it-works' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='how-it-works'>How It Works</h2>
 
-<p><code>Gifu</code> does not rely on subclassing <code>UIImageView</code>. The <code>Animator</code> class does the heavy-lifting, while the <code>GIFAnimatable</code> protocol exposes the functionality to the view classes that conform to it, using protocol extensions.</p>
+<p><code>Gifu</code> does not force you to use a specific subclass of <code>UIImageView</code>. The <code>Animator</code> class does the heavy-lifting, while the <code>GIFAnimatable</code> protocol exposes the functionality to the view classes that conform to it, using protocol extensions.</p>
 
 <p>The <code>Animator</code> has a <code>FrameStore</code> that only keeps a limited number of frames in-memory, effectively creating a buffer for the animation without consuming all the available memory. This approach makes loading large GIFs a lot more resource-friendly.</p>
 
@@ -92,7 +95,7 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 
 <ul>
 <li>Use the built-in <code>GIFImageView</code> subclass.</li>
-<li>Make <code>UIImageView</code> or any of its subclasses conform to <code>GIFAnimatable</code>.</li>
+<li>Make any class conform to <code>GIFAnimatable</code>. Subclassing <code>UIImageView</code> is the easiest since you get most of the required properties for free.</li>
 </ul>
 <a href='#gifimageview' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='gifimageview'>GIFImageView</h3>
 
@@ -121,6 +124,12 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 <li><code>prepareForReuse()</code> to free up resources.</li>
 <li><code>updateImageIfNeeded()</code> to update the image property if necessary.</li>
 </ul>
+
+<p>This approach is especially powerful when you want to combine the functionality of different image libraries.</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyImageView</span><span class="p">:</span> <span class="kt">OtherImageClass</span><span class="p">,</span> <span class="kt">GIFAnimatable</span> <span class="p">{}</span>
+</code></pre>
+
+<p>Keep in mind that you need to have control over the class implementing <code>GIFAnimatable</code> since you cannot add the stored <code>Animator</code> property in an extension.</p>
 <a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3>
 
 <p>The simplest way to get started is initializing a <code>GIFAnimatable</code> class in code or in a storyboard, then calling <code>animate(:)</code> on it.</p>

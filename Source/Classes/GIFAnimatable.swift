@@ -4,9 +4,6 @@ public protocol GIFAnimatable: class {
   /// Responsible for managing the animation frames.
   var animator: Animator? { get set }
 
-  /// Used for displaying the animation frames.
-  var image: UIImage? { get set }
-
   /// Notifies the instance that it needs display.
   var layer: CALayer { get }
 
@@ -17,12 +14,21 @@ public protocol GIFAnimatable: class {
   var contentMode: UIViewContentMode { get set }
 }
 
-extension GIFAnimatable {
+
+/// A single-property protocol that animatable classes can optionally conform to.
+public protocol ImageContainer {
+  /// Used for displaying the animation frames.
+  var image: UIImage? { get set }
+}
+
+extension GIFAnimatable where Self: ImageContainer {
   /// Returns the intrinsic content size based on the size of the image.
   public var intrinsicContentSize: CGSize {
     return image?.size ?? CGSize.zero
   }
+}
 
+extension GIFAnimatable {
   /// Returns the active frame if available.
   public var activeFrame: UIImage? {
     return animator?.activeFrame()
@@ -63,7 +69,10 @@ extension GIFAnimatable {
   ///
   /// - parameter imageData: GIF image data.
   public func prepareForAnimation(withGIFData imageData: Data) {
-    image = UIImage(data: imageData)
+    if var imageContainer = self as? ImageContainer {
+      imageContainer.image = UIImage(data: imageData)
+    }
+
     animator?.prepareForAnimation(withGIFData: imageData, size: frame.size, contentMode: contentMode)
   }
 
@@ -85,8 +94,11 @@ extension GIFAnimatable {
 
   /// Updates the image with a new frame if necessary.
   public func updateImageIfNeeded() {
-    let frame = animator?.activeFrame() ?? image
-    if image != frame { image = frame }
+    if var imageContainer = self as? ImageContainer {
+      imageContainer.image = activeFrame ?? imageContainer.image
+    } else {
+      layer.contents = activeFrame?.cgImage
+    }
   }
 }
 
