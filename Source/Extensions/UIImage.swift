@@ -1,5 +1,4 @@
 /// A `UIImage` extension that makes it easier to resize the image and inspect its size.
-
 extension UIImage {
   /// Resizes an image instance.
   ///
