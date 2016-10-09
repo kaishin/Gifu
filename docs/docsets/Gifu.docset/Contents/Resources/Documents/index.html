@@ -63,6 +63,8 @@
 <p>Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It&rsquo;s also a <a href="https://goo.gl/maps/CCeAc">prefecture in Japan</a>).</p>
 
 <p>⚠ <strong>Swift 2.3</strong> support is on the <a href="https://github.com/kaishin/Gifu/tree/swift2.3">swift2.3</a> branch. <strong>This branch will not be getting any future updates</strong>.</p>
+
+<p>⚠ What follows applies to the yet unreleased <code>2.0</code> on <code>master</code>.</p>
 <a href='#install' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='install'>Install</h2>
 <a href='#a-href-https-github-com-carthage-carthage-carthage-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='a-href-https-github-com-carthage-carthage-carthage-a'><a href="https://github.com/Carthage/Carthage">Carthage</a></h3>
 
@@ -81,7 +83,7 @@ for up to date installation instructions.</li>
 </ul>
 <a href='#how-it-works' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='how-it-works'>How It Works</h2>
 
-<p><code>Gifu</code> does not force you to use a specific subclass of <code>UIImageView</code>. The <code>Animator</code> class does the heavy-lifting, while the <code>GIFAnimatable</code> protocol exposes the functionality to the view classes that conform to it, using protocol extensions.</p>
+<p><code>Gifu</code> does not force you to use the built-in <code>GIFImageView</code> subclass. The <code>Animator</code> does the heavy-lifting, while the <code>GIFAnimatable</code> protocol exposes the functionality to the view classes that conform to it, using protocol extensions.</p>
 
 <p>The <code>Animator</code> has a <code>FrameStore</code> that only keeps a limited number of frames in-memory, effectively creating a buffer for the animation without consuming all the available memory. This approach makes loading large GIFs a lot more resource-friendly.</p>
 
@@ -94,15 +96,12 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 <p>There are two options that should cover any situation:</p>
 
 <ul>
-<li>Use the built-in <code>GIFImageView</code> subclass.</li>
-<li>Make any class conform to <code>GIFAnimatable</code>. Subclassing <code>UIImageView</code> is the easiest since you get most of the required properties for free.</li>
+<li>Use the built-in <code>GIFImageView</code> subclass if you don&rsquo;t need to combine GIF support with another image library.</li>
+<li>If you need more flexibility and composability, make your class conform to <code>GIFAnimatable</code>. In practice, any <code>UIView</code> subclass would do, since you get most of the required properties for free. For best results, make your <code>UIImageView</code> subclass conform to <code>GIFAnimatable</code> to get other niceties such as intrinsic content size.</li>
 </ul>
-<a href='#gifimageview' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='gifimageview'>GIFImageView</h3>
-
-<p>A subclass of <code>UIImageView</code> that conforms to <code>GIFAnimatable</code>. You can use this class as-is or subclass it for further customization (not recommended).</p>
 <a href='#gifanimatable' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='gifanimatable'>GIFAnimatable</h3>
 
-<p>The bread and butter of Gifu. Through protocol extensions, <code>GIFAnimatable</code> exposes all the APIs of the library, and with very little boilerplate, any <code>UIImageView</code> subclass can conform to it.</p>
+<p>The bread and butter of Gifu. Through protocol extensions, <code>GIFAnimatable</code> exposes all the APIs of the library, and with very little boilerplate, any class can conform to it.</p>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyImageView</span><span class="p">:</span> <span class="kt">UIImageView</span><span class="p">,</span> <span class="kt">GIFAnimatable</span> <span class="p">{</span>
   <span class="kd">public</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">animator</span><span class="p">:</span> <span class="kt">Animator</span><span class="p">?</span> <span class="o">=</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kt">Animator</span><span class="p">(</span><span class="nv">withDelegate</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
@@ -114,7 +113,7 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 <span class="p">}</span>
 </code></pre>
 
-<p>That&rsquo;s it. Now <code>MyImageView</code> is fully GIF-compatible, and any of these methods can be called on it:</p>
+<p>That&rsquo;s it. Now <code>MyImageView</code> has access to all these methods and properties:</p>
 
 <ul>
 <li><code>prepareForAnimation(withGIFNamed:)</code> and <code>prepareForAnimation(withGIFData:)</code> to prepare the animator property for animation.</li>
@@ -125,8 +124,16 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 <li><code>updateImageIfNeeded()</code> to update the image property if necessary.</li>
 </ul>
 
-<p>This approach is especially powerful when you want to combine the functionality of different image libraries.</p>
-<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyImageView</span><span class="p">:</span> <span class="kt">OtherImageClass</span><span class="p">,</span> <span class="kt">GIFAnimatable</span> <span class="p">{}</span>
+<p>Furthermore, you can make any class GIF-animatable, starting with <code>UIView</code> subclasses:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CustomAnimatedView</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="kt">GIFAnimatable</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">animator</span><span class="p">:</span> <span class="kt">Animator</span><span class="p">?</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">Animator</span><span class="p">(</span><span class="nv">withDelegate</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
+  <span class="p">}()</span>
+
+  <span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">display</span><span class="p">(</span><span class="n">_</span> <span class="nv">layer</span><span class="p">:</span> <span class="kt">CALayer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">updateImageIfNeeded</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 
 <p>Keep in mind that you need to have control over the class implementing <code>GIFAnimatable</code> since you cannot add the stored <code>Animator</code> property in an extension.</p>

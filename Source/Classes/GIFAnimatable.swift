@@ -76,7 +76,6 @@ extension GIFAnimatable {
     animator?.prepareForAnimation(withGIFData: imageData, size: frame.size, contentMode: contentMode)
   }
 
-
   /// Stop animating and free up GIF data from memory.
   public func prepareForReuse() {
     animator?.prepareForReuse()
@@ -90,6 +89,20 @@ extension GIFAnimatable {
   /// Stop animating GIF.
   public func stopAnimatingGIF() {
     animator?.stopAnimating()
+  }
+
+  /// Whether the frame images should be resized or not. The default is `false`, which means that the frame images retain their original size.
+  ///
+  /// - parameter resize: Boolean value indicating whether individual frames should be resized.
+  public func setShouldResizeFrames(_ resize: Bool) {
+    animator?.shouldResizeFrames = resize
+  }
+
+  /// Sets the number of frames that should be buffered. Default is 50. A high number will result in more memory usage and less CPU load, and vice versa.
+  ///
+  /// - parameter frames: The number of frames to buffer.
+  public func setFrameBufferCount(_ frames: Int) {
+    animator?.frameBufferCount = frames
   }
 
   /// Updates the image with a new frame if necessary.
