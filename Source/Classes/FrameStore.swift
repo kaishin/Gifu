@@ -6,6 +6,15 @@ class FrameStore {
   /// Total duration of one animation loop
   var loopDuration: TimeInterval = 0
     
+  /// Flag indicating if number of loops has been reached
+  var isFinished: Bool = false
+    
+  /// Desired number of loops, <= 0 for infinite loop
+  let loopCount: Int
+    
+  /// Number of current loop
+  var currentLoop = 0
+    
   /// Maximum duration to increment the frame timer with.
   let maxTimeStep = 1.0
 
@@ -73,12 +82,13 @@ class FrameStore {
   ///
   /// - parameter data: The raw GIF image data.
   /// - parameter delegate: An `Animatable` delegate.
-  init(data: Data, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int) {
+  init(data: Data, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int, loopCount: Int) {
     let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse] as CFDictionary
     self.imageSource = CGImageSourceCreateWithData(data as CFData, options) ?? CGImageSourceCreateIncremental(options)
     self.size = size
     self.contentMode = contentMode
     self.bufferFrameCount = framePreloadCount
+    self.loopCount = loopCount
   }
 
   // MARK: - Frames
@@ -180,6 +190,11 @@ private extension FrameStore {
   /// Increments the `currentFrameIndex` property.
   func incrementCurrentFrameIndex() {
     currentFrameIndex = increment(frameIndex: currentFrameIndex)
+    if currentFrameIndex == frameCount - 1 && currentLoop == loopCount - 1 {
+        isFinished = true
+    } else if currentFrameIndex == 0 {
+        currentLoop = currentLoop + 1
+    }
   }
 
   /// Increments a given frame index, taking into account the `frameCount` and looping when necessary.

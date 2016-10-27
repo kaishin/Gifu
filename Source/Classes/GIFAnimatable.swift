@@ -53,21 +53,21 @@ extension GIFAnimatable {
   ///
   /// - parameter imageName: The file name of the GIF in the main bundle.
   public func animate(withGIFNamed imageName: String, loopCount: Int = 0) {
-        animator?.animate(withGIFNamed: imageName, size: frame.size, contentMode: contentMode)
+        animator?.animate(withGIFNamed: imageName, size: frame.size, contentMode: contentMode, loopCount: loopCount)
   }
 
   /// Prepare for animation and start animating immediately.
   ///
   /// - parameter imageData: GIF image data.
   public func animate(withGIFData imageData: Data, loopCount: Int = 0) {
-    animator?.animate(withGIFData: imageData, size: frame.size, contentMode: contentMode)
+    animator?.animate(withGIFData: imageData, size: frame.size, contentMode: contentMode, loopCount: loopCount)
   }
 
   /// Prepares the animator instance for animation.
   ///
   /// - parameter imageName: The file name of the GIF in the main bundle.
   public func prepareForAnimation(withGIFNamed imageName: String, loopCount: Int = 0, completionHandler: ((Void) -> Void)? = .none) {
-    animator?.prepareForAnimation(withGIFNamed: imageName, size: frame.size, contentMode: contentMode, completionHandler: completionHandler)
+    animator?.prepareForAnimation(withGIFNamed: imageName, size: frame.size, contentMode: contentMode, loopCount: loopCount, completionHandler: completionHandler)
   }
 
   /// Prepare for animation and start animating immediately.
@@ -78,7 +78,7 @@ extension GIFAnimatable {
       imageContainer.image = UIImage(data: imageData)
     }
 
-    animator?.prepareForAnimation(withGIFData: imageData, size: frame.size, contentMode: contentMode, completionHandler: completionHandler)
+    animator?.prepareForAnimation(withGIFData: imageData, size: frame.size, contentMode: contentMode, loopCount: loopCount, completionHandler: completionHandler)
   }
 
   /// Stop animating and free up GIF data from memory.
