@@ -3,6 +3,9 @@ import ImageIO
 /// Responsible for storing and updating the frames of a single GIF.
 class FrameStore {
 
+  /// Total duration of one animation loop
+  var loopDuration: TimeInterval = 0
+    
   /// Maximum duration to increment the frame timer with.
   let maxTimeStep = 1.0
 
@@ -202,18 +205,22 @@ private extension FrameStore {
       return [Int](nextIndex..<frameCount) + [Int](0...lastIndex)
     }
   }
-
-  /// Set up animated frames after resetting them if necessary.
+    
   func setupAnimatedFrames() {
-    resetAnimatedFrames()
-
-    (0..<frameCount).forEach { index in
-      let frameDuration = CGImageFrameDuration(with: imageSource, atIndex: index)
-      animatedFrames += [AnimatedFrame(image: .none, duration: frameDuration)]
-
-      if index > bufferFrameCount { return }
-      animatedFrames[index] = animatedFrames[index].makeAnimatedFrame(with: loadFrame(at: index))
-    }
+      resetAnimatedFrames()
+        
+      var duration: TimeInterval = 0
+        
+      (0..<frameCount).forEach { index in
+          let frameDuration = CGImageFrameDuration(with: imageSource, atIndex: index)
+          duration += min(frameDuration, maxTimeStep)
+          animatedFrames += [AnimatedFrame(image: .none, duration: frameDuration)]
+            
+          if index > bufferFrameCount { return }
+          animatedFrames[index] = animatedFrames[index].makeAnimatedFrame(with: loadFrame(at: index))
+      }
+        
+      self.loopDuration = duration
   }
 
   /// Reset animated frames.

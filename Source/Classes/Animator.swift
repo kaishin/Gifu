@@ -1,6 +1,11 @@
 /// Responsible for parsing GIF data and decoding the individual frames.
 public class Animator {
 
+  /// Total duration of one animation loop
+  var loopDuration: TimeInterval {
+    return frameStore?.loopDuration ?? 0
+  }
+    
   /// Number of frame to buffer.
   var frameBufferCount = 50
 
@@ -56,12 +61,12 @@ public class Animator {
   /// - parameter imageName: The file name of the GIF in the main bundle.
   /// - parameter size: The target size of the individual frames.
   /// - parameter contentMode: The view content mode to use for the individual frames.
-  func prepareForAnimation(withGIFNamed imageName: String, size: CGSize, contentMode: UIViewContentMode) {
+  func prepareForAnimation(withGIFNamed imageName: String, size: CGSize, contentMode: UIViewContentMode, completionHandler: ((Void) -> Void)? = .none) {
     guard let extensionRemoved = imageName.components(separatedBy: ".")[safe: 0],
       let imagePath = Bundle.main.url(forResource: extensionRemoved, withExtension: "gif"),
       let data = try? Data(contentsOf: imagePath) else { return }
 
-    prepareForAnimation(withGIFData: data, size: size, contentMode: contentMode)
+    prepareForAnimation(withGIFData: data, size: size, contentMode: contentMode, completionHandler: completionHandler)
   }
 
   /// Prepares the animator instance for animation.
@@ -69,10 +74,10 @@ public class Animator {
   /// - parameter imageData: GIF image data.
   /// - parameter size: The target size of the individual frames.
   /// - parameter contentMode: The view content mode to use for the individual frames.
-  func prepareForAnimation(withGIFData imageData: Data, size: CGSize, contentMode: UIViewContentMode) {
+  func prepareForAnimation(withGIFData imageData: Data, size: CGSize, contentMode: UIViewContentMode, completionHandler: ((Void) -> Void)? = .none) {
     frameStore = FrameStore(data: imageData, size: size, contentMode: contentMode, framePreloadCount: frameBufferCount)
     frameStore?.shouldResizeFrames = shouldResizeFrames
-    frameStore?.prepareFrames()
+    frameStore?.prepareFrames(completionHandler)
     attachDisplayLink()
   }
 
