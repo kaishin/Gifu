@@ -21,6 +21,8 @@ class EmptyViewController: UIViewController {
 }
 
 class CustomAnimatedView: UIView, GIFAnimatable {
+  var image: UIImage?
+    
   public lazy var animator: Animator? = {
     return Animator(withDelegate: self)
   }()
