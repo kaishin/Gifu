@@ -1,3 +1,0 @@
-language: swift
-script: ./bin/test
-osx_image: xcode8
