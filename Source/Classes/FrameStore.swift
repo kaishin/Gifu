@@ -12,7 +12,7 @@ class FrameStore {
   /// Desired number of loops, <= 0 for infinite loop
   let loopCount: Int
     
-  /// Number of current loop
+  /// Index of current loop
   var currentLoop = 0
     
   /// Maximum duration to increment the frame timer with.
