@@ -29,6 +29,11 @@ extension GIFAnimatable where Self: ImageContainer {
 }
 
 extension GIFAnimatable {
+  /// Total duration of one animation loop
+  public var gifLoopDuration: TimeInterval {
+    return animator?.loopDuration ?? 0
+  }
+    
   /// Returns the active frame if available.
   public var activeFrame: UIImage? {
     return animator?.activeFrame()
@@ -47,33 +52,37 @@ extension GIFAnimatable {
   /// Prepare for animation and start animating immediately.
   ///
   /// - parameter imageName: The file name of the GIF in the main bundle.
-  public func animate(withGIFNamed imageName: String) {
-    animator?.animate(withGIFNamed: imageName, size: frame.size, contentMode: contentMode)
+  /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
+  public func animate(withGIFNamed imageName: String, loopCount: Int = 0) {
+        animator?.animate(withGIFNamed: imageName, size: frame.size, contentMode: contentMode, loopCount: loopCount)
   }
 
   /// Prepare for animation and start animating immediately.
   ///
   /// - parameter imageData: GIF image data.
-  public func animate(withGIFData imageData: Data) {
-    animator?.animate(withGIFData: imageData, size: frame.size, contentMode: contentMode)
+  /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
+  public func animate(withGIFData imageData: Data, loopCount: Int = 0) {
+    animator?.animate(withGIFData: imageData, size: frame.size, contentMode: contentMode, loopCount: loopCount)
   }
 
   /// Prepares the animator instance for animation.
   ///
   /// - parameter imageName: The file name of the GIF in the main bundle.
-  public func prepareForAnimation(withGIFNamed imageName: String) {
-    animator?.prepareForAnimation(withGIFNamed: imageName, size: frame.size, contentMode: contentMode)
+  /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
+  public func prepareForAnimation(withGIFNamed imageName: String, loopCount: Int = 0, completionHandler: ((Void) -> Void)? = .none) {
+    animator?.prepareForAnimation(withGIFNamed: imageName, size: frame.size, contentMode: contentMode, loopCount: loopCount, completionHandler: completionHandler)
   }
 
   /// Prepare for animation and start animating immediately.
   ///
   /// - parameter imageData: GIF image data.
-  public func prepareForAnimation(withGIFData imageData: Data) {
+  /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
+  public func prepareForAnimation(withGIFData imageData: Data, loopCount: Int = 0, completionHandler: ((Void) -> Void)? = .none) {
     if var imageContainer = self as? ImageContainer {
       imageContainer.image = UIImage(data: imageData)
     }
 
-    animator?.prepareForAnimation(withGIFData: imageData, size: frame.size, contentMode: contentMode)
+    animator?.prepareForAnimation(withGIFData: imageData, size: frame.size, contentMode: contentMode, loopCount: loopCount, completionHandler: completionHandler)
   }
 
   /// Stop animating and free up GIF data from memory.

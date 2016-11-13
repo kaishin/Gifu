@@ -3,6 +3,18 @@ import ImageIO
 /// Responsible for storing and updating the frames of a single GIF.
 class FrameStore {
 
+  /// Total duration of one animation loop
+  var loopDuration: TimeInterval = 0
+    
+  /// Flag indicating if number of loops has been reached
+  var isFinished: Bool = false
+    
+  /// Desired number of loops, <= 0 for infinite loop
+  let loopCount: Int
+    
+  /// Index of current loop
+  var currentLoop = 0
+    
   /// Maximum duration to increment the frame timer with.
   let maxTimeStep = 1.0
 
@@ -70,12 +82,13 @@ class FrameStore {
   ///
   /// - parameter data: The raw GIF image data.
   /// - parameter delegate: An `Animatable` delegate.
-  init(data: Data, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int) {
+  init(data: Data, size: CGSize, contentMode: UIViewContentMode, framePreloadCount: Int, loopCount: Int) {
     let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse] as CFDictionary
     self.imageSource = CGImageSourceCreateWithData(data as CFData, options) ?? CGImageSourceCreateIncremental(options)
     self.size = size
     self.contentMode = contentMode
     self.bufferFrameCount = framePreloadCount
+    self.loopCount = loopCount
   }
 
   // MARK: - Frames
@@ -177,6 +190,11 @@ private extension FrameStore {
   /// Increments the `currentFrameIndex` property.
   func incrementCurrentFrameIndex() {
     currentFrameIndex = increment(frameIndex: currentFrameIndex)
+    if isLastLoop(loopIndex: currentLoop) && isLastFrame(frameIndex: currentFrameIndex) {
+        isFinished = true
+    } else if currentFrameIndex == 0 {
+        currentLoop = currentLoop + 1
+    }
   }
 
   /// Increments a given frame index, taking into account the `frameCount` and looping when necessary.
@@ -188,6 +206,20 @@ private extension FrameStore {
     return (frameIndex + value) % frameCount
   }
 
+  /// Indicates if current frame is the last one.
+  /// - parameter frameIndex: Index of current frame.
+  /// - returns: True if current frame is the last one.
+  func isLastFrame(frameIndex: Int) -> Bool {
+    return frameIndex == frameCount - 1
+  }
+
+  /// Indicates if current loop is the last one. Always false for infinite loops.
+  /// - parameter loopIndex: Index of current loop.
+  /// - returns: True if current loop is the last one.
+  func isLastLoop(loopIndex: Int) -> Bool {
+    return loopIndex == loopCount - 1
+  }
+    
   /// Returns the indexes of the frames to preload based on a starting frame index.
   ///
   /// - parameter index: Starting index.
@@ -202,18 +234,22 @@ private extension FrameStore {
       return [Int](nextIndex..<frameCount) + [Int](0...lastIndex)
     }
   }
-
-  /// Set up animated frames after resetting them if necessary.
+    
   func setupAnimatedFrames() {
-    resetAnimatedFrames()
-
-    (0..<frameCount).forEach { index in
-      let frameDuration = CGImageFrameDuration(with: imageSource, atIndex: index)
-      animatedFrames += [AnimatedFrame(image: .none, duration: frameDuration)]
-
-      if index > bufferFrameCount { return }
-      animatedFrames[index] = animatedFrames[index].makeAnimatedFrame(with: loadFrame(at: index))
-    }
+      resetAnimatedFrames()
+        
+      var duration: TimeInterval = 0
+        
+      (0..<frameCount).forEach { index in
+          let frameDuration = CGImageFrameDuration(with: imageSource, atIndex: index)
+          duration += min(frameDuration, maxTimeStep)
+          animatedFrames += [AnimatedFrame(image: .none, duration: frameDuration)]
+            
+          if index > bufferFrameCount { return }
+          animatedFrames[index] = animatedFrames[index].makeAnimatedFrame(with: loadFrame(at: index))
+      }
+        
+      self.loopDuration = duration
   }
 
   /// Reset animated frames.
