@@ -190,7 +190,7 @@ private extension FrameStore {
   /// Increments the `currentFrameIndex` property.
   func incrementCurrentFrameIndex() {
     currentFrameIndex = increment(frameIndex: currentFrameIndex)
-    if currentFrameIndex == frameCount - 1 && currentLoop == loopCount - 1 {
+    if isLastLoop(loopIndex: currentLoop) && isLastFrame(frameIndex: currentFrameIndex) {
         isFinished = true
     } else if currentFrameIndex == 0 {
         currentLoop = currentLoop + 1
@@ -206,6 +206,20 @@ private extension FrameStore {
     return (frameIndex + value) % frameCount
   }
 
+  /// Indicates if current frame is the last one.
+  /// - parameter frameIndex: Index of current frame.
+  /// - returns: True if current frame is the last one.
+  func isLastFrame(frameIndex: Int) -> Bool {
+    return frameIndex == frameCount - 1
+  }
+
+  /// Indicates if current loop is the last one. Always false for infinite loops.
+  /// - parameter loopIndex: Index of current loop.
+  /// - returns: True if current loop is the last one.
+  func isLastLoop(loopIndex: Int) -> Bool {
+    return loopIndex == loopCount - 1
+  }
+    
   /// Returns the indexes of the frames to preload based on a starting frame index.
   ///
   /// - parameter index: Starting index.
