@@ -150,7 +150,7 @@ public class Animator {
   }
 }
 
-/// A proxy class to avoid a retain cycyle with the display link.
+/// A proxy class to avoid a retain cycle with the display link.
 fileprivate class DisplayLinkProxy {
 
   /// The target animator.
