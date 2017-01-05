@@ -1,6 +1,6 @@
 # ![Logo](https://github.com/kaishin/Gifu/raw/master/header.gif)
 
-[![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg?maxAge=2592000)](https://github.com/kaishin/Gifu/releases/latest) ![Bitrise](https://www.bitrise.io/app/a0eae2c9b6aa754c.svg?token=dDlRyPi2aOlZnvbl4kL8Kw&branch=master) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Join the chat at https://gitter.im/kaishin/gifu](https://badges.gitter.im/kaishin/gifu.svg)](https://gitter.im/kaishin/gifu) ![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg)
+[![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg)](https://github.com/kaishin/Gifu/releases/latest) ![Bitrise](https://www.bitrise.io/app/a0eae2c9b6aa754c.svg?token=dDlRyPi2aOlZnvbl4kL8Kw&branch=master) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Join the chat at https://gitter.im/kaishin/gifu](https://badges.gitter.im/kaishin/gifu.svg)](https://gitter.im/kaishin/gifu) ![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg)
 
 Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It's also a [prefecture in Japan](https://goo.gl/maps/CCeAc)).
 
