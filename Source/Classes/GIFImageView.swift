@@ -13,4 +13,3 @@ public class GIFImageView: UIImageView, GIFAnimatable {
     updateImageIfNeeded()
   }
 }
-

@@ -218,6 +218,36 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:vE4GifuPS_13GIFAnimatable15gifLoopDurationSd"></a>
+                    <a name="//apple_ref/swift/Property/gifLoopDuration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE4GifuPS_13GIFAnimatable15gifLoopDurationSd">gifLoopDuration</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Total duration of one animation loop</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">gifLoopDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:vE4GifuPS_13GIFAnimatable11activeFrameGSqCSo7UIImage_"></a>
                     <a name="//apple_ref/swift/Property/activeFrame" class="dashAnchor"></a>
                     <a class="token" href="#/s:vE4GifuPS_13GIFAnimatable11activeFrameGSqCSo7UIImage_">activeFrame</a>
@@ -308,9 +338,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE4GifuPS_13GIFAnimatable7animateFT12withGIFNamedSS_T_"></a>
-                    <a name="//apple_ref/swift/Method/animate(withGIFNamed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE4GifuPS_13GIFAnimatable7animateFT12withGIFNamedSS_T_">animate(withGIFNamed:)</a>
+                    <a name="/s:FE4GifuPS_13GIFAnimatable7animateFT12withGIFNamedSS9loopCountSi_T_"></a>
+                    <a name="//apple_ref/swift/Method/animate(withGIFNamed:loopCount:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE4GifuPS_13GIFAnimatable7animateFT12withGIFNamedSS9loopCountSi_T_">animate(withGIFNamed:loopCount:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -328,7 +358,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">animate</span><span class="p">(</span><span class="n">withGIFNamed</span> <span class="nv">imageName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">animate</span><span class="p">(</span><span class="n">withGIFNamed</span> <span class="nv">imageName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">loopCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -349,6 +379,19 @@
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loopCount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired number of loops, &lt;= 0 for infinite loop.</p>
+
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -358,9 +401,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE4GifuPS_13GIFAnimatable7animateFT11withGIFDataV10Foundation4Data_T_"></a>
-                    <a name="//apple_ref/swift/Method/animate(withGIFData:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE4GifuPS_13GIFAnimatable7animateFT11withGIFDataV10Foundation4Data_T_">animate(withGIFData:)</a>
+                    <a name="/s:FE4GifuPS_13GIFAnimatable7animateFT11withGIFDataV10Foundation4Data9loopCountSi_T_"></a>
+                    <a name="//apple_ref/swift/Method/animate(withGIFData:loopCount:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE4GifuPS_13GIFAnimatable7animateFT11withGIFDataV10Foundation4Data9loopCountSi_T_">animate(withGIFData:loopCount:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -378,7 +421,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">animate</span><span class="p">(</span><span class="n">withGIFData</span> <span class="nv">imageData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">animate</span><span class="p">(</span><span class="n">withGIFData</span> <span class="nv">imageData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">loopCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -399,6 +442,19 @@
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loopCount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired number of loops, &lt;= 0 for infinite loop.</p>
+
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -408,9 +464,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE4GifuPS_13GIFAnimatable19prepareForAnimationFT12withGIFNamedSS_T_"></a>
-                    <a name="//apple_ref/swift/Method/prepareForAnimation(withGIFNamed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE4GifuPS_13GIFAnimatable19prepareForAnimationFT12withGIFNamedSS_T_">prepareForAnimation(withGIFNamed:)</a>
+                    <a name="/s:FE4GifuPS_13GIFAnimatable19prepareForAnimationFT12withGIFNamedSS9loopCountSi17completionHandlerGSqFT_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/prepareForAnimation(withGIFNamed:loopCount:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE4GifuPS_13GIFAnimatable19prepareForAnimationFT12withGIFNamedSS9loopCountSi17completionHandlerGSqFT_T___T_">prepareForAnimation(withGIFNamed:loopCount:completionHandler:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -428,7 +484,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prepareForAnimation</span><span class="p">(</span><span class="n">withGIFNamed</span> <span class="nv">imageName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prepareForAnimation</span><span class="p">(</span><span class="n">withGIFNamed</span> <span class="nv">imageName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">loopCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -449,6 +505,19 @@
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loopCount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired number of loops, &lt;= 0 for infinite loop.</p>
+
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -458,9 +527,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE4GifuPS_13GIFAnimatable19prepareForAnimationFT11withGIFDataV10Foundation4Data_T_"></a>
-                    <a name="//apple_ref/swift/Method/prepareForAnimation(withGIFData:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE4GifuPS_13GIFAnimatable19prepareForAnimationFT11withGIFDataV10Foundation4Data_T_">prepareForAnimation(withGIFData:)</a>
+                    <a name="/s:FE4GifuPS_13GIFAnimatable19prepareForAnimationFT11withGIFDataV10Foundation4Data9loopCountSi17completionHandlerGSqFT_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/prepareForAnimation(withGIFData:loopCount:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE4GifuPS_13GIFAnimatable19prepareForAnimationFT11withGIFDataV10Foundation4Data9loopCountSi17completionHandlerGSqFT_T___T_">prepareForAnimation(withGIFData:loopCount:completionHandler:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -478,7 +547,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prepareForAnimation</span><span class="p">(</span><span class="n">withGIFData</span> <span class="nv">imageData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prepareForAnimation</span><span class="p">(</span><span class="n">withGIFData</span> <span class="nv">imageData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">loopCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -495,6 +564,19 @@
                               <td>
                                 <div>
                                   <p>GIF image data.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loopCount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired number of loops, &lt;= 0 for infinite loop.</p>
 
                                 </div>
                               </td>
@@ -731,7 +813,7 @@
         </section>
         <section id="footer">
           <p>2015 © Reda Lemeden. See LICENSE for more details.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

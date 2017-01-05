@@ -4,9 +4,7 @@
 
 Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It's also a [prefecture in Japan](https://goo.gl/maps/CCeAc)).
 
-⚠ **Swift 2.3** support is on the [swift2.3](https://github.com/kaishin/Gifu/tree/swift2.3) branch. **This branch will not be getting any future updates**.
-
-⚠ What follows applies to the yet unreleased `2.0` on `master`.
+⚠ **Swift 2.3** support is on the [swift2.3](https://github.com/kaishin/Gifu/tree/swift2.3) branch which will not be getting any future updates.
 
 ## Install
 
@@ -27,7 +25,7 @@ for up to date installation instructions.
 
 ## How It Works
 
-`Gifu` does not force you to use the built-in `GIFImageView` subclass. The `Animator` does the heavy-lifting, while the `GIFAnimatable` protocol exposes the functionality to the view classes that conform to it, using protocol extensions.
+`Gifu` does not require using the built-in `GIFImageView` subclass. The `Animator` class does the heavy-lifting, while the `GIFAnimatable` protocol exposes the functionality to the view classes that conform to it, using protocol extensions.
 
 The `Animator` has a `FrameStore` that only keeps a limited number of frames in-memory, effectively creating a buffer for the animation without consuming all the available memory. This approach makes loading large GIFs a lot more resource-friendly.
 
@@ -41,7 +39,7 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 There are two options that should cover any situation:
 
 - Use the built-in `GIFImageView` subclass if you don't need to combine GIF support with another image library.
-- If you need more flexibility and composability, make your class conform to `GIFAnimatable`. In practice, any `UIView` subclass would do, since you get most of the required properties for free. For best results, make your `UIImageView` subclass conform to `GIFAnimatable` to get other niceties such as intrinsic content size.
+- If you need more flexibility and composability, make your class conform to `GIFAnimatable`. In practice, any `UIView` subclass would do, since you get most of the required properties for free. For best results, make your `UIImageView` subclass conform to `GIFAnimatable` to get access to other features such as intrinsic content size.
 
 ### GIFAnimatable
 
@@ -82,7 +80,38 @@ class CustomAnimatedView: UIView, GIFAnimatable {
 }
 ~~~
 
-Keep in mind that you need to have control over the class implementing `GIFAnimatable` since you cannot add the stored `Animator` property in an extension.
+You can also make `UIKit` classes conform using associated objects may you wish:
+
+~~~swift
+import UIKit
+import Gifu
+
+extension UIImageView: GIFAnimatable {
+  private struct AssociatedKeys {
+    static var AnimatorKey = "gifu.animator.key"
+  }
+
+  override open func display(_ layer: CALayer) {
+    updateImageIfNeeded()
+  }
+
+  public var animator: Animator? {
+    get {
+      guard let animator = objc_getAssociatedObject(self, &AssociatedKeys.AnimatorKey) as? Animator else {
+        let animator = Animator(withDelegate: self)
+        self.animator = animator
+        return animator
+      }
+
+      return animator
+    }
+
+    set {
+      objc_setAssociatedObject(self, &AssociatedKeys.AnimatorKey, newValue as Animator?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+  }
+}
+~~~
 
 ### Examples
 
@@ -128,7 +157,6 @@ Clone or download the repository and open `Gifu.xcworkspace` to check out the de
 ## Documentation
 
 See the [full API documentation](http://kaishin.github.io/Gifu/).
-
 
 ## Compatibility
 

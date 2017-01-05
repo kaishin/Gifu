@@ -58,13 +58,11 @@
             
             <a href='#img-src-https-github-com-kaishin-gifu-raw-master-header-gif-alt-logo' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='img-src-https-github-com-kaishin-gifu-raw-master-header-gif-alt-logo'><img src="https://github.com/kaishin/Gifu/raw/master/header.gif" alt="Logo"></h1>
 
-<p><a href="https://github.com/kaishin/Gifu/releases/latest"><img src="https://img.shields.io/github/release/kaishin/Gifu.svg?maxAge=2592000" alt="GitHub release"></a> <a href="https://travis-ci.org/kaishin/Gifu"><img src="https://travis-ci.org/kaishin/Gifu.svg?branch=master" alt="Travis"></a> <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a> <a href="https://gitter.im/kaishin/gifu"><img src="https://badges.gitter.im/kaishin/gifu.svg" alt="Join the chat at https://gitter.im/kaishin/gifu"></a> <img src="https://img.shields.io/badge/Swift-3.0.x-orange.svg" alt="Swift 3.0.x"> <img src="https://img.shields.io/badge/platforms-iOS-lightgrey.svg" alt="platforms"></p>
+<p><a href="https://github.com/kaishin/Gifu/releases/latest"><img src="https://img.shields.io/github/release/kaishin/Gifu.svg?maxAge=2592000" alt="GitHub release"></a> <img src="https://www.bitrise.io/app/a0eae2c9b6aa754c.svg?token=dDlRyPi2aOlZnvbl4kL8Kw&amp;branch=master" alt="Bitrise"> <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a> <a href="https://gitter.im/kaishin/gifu"><img src="https://badges.gitter.im/kaishin/gifu.svg" alt="Join the chat at https://gitter.im/kaishin/gifu"></a> <img src="https://img.shields.io/badge/Swift-3.0.x-orange.svg" alt="Swift 3.0.x"> <img src="https://img.shields.io/badge/platforms-iOS-lightgrey.svg" alt="platforms"></p>
 
 <p>Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It&rsquo;s also a <a href="https://goo.gl/maps/CCeAc">prefecture in Japan</a>).</p>
 
-<p>⚠ <strong>Swift 2.3</strong> support is on the <a href="https://github.com/kaishin/Gifu/tree/swift2.3">swift2.3</a> branch. <strong>This branch will not be getting any future updates</strong>.</p>
-
-<p>⚠ What follows applies to the yet unreleased <code>2.0</code> on <code>master</code>.</p>
+<p>⚠ <strong>Swift 2.3</strong> support is on the <a href="https://github.com/kaishin/Gifu/tree/swift2.3">swift2.3</a> branch which will not be getting any future updates.</p>
 <a href='#install' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='install'>Install</h2>
 <a href='#a-href-https-github-com-carthage-carthage-carthage-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='a-href-https-github-com-carthage-carthage-carthage-a'><a href="https://github.com/Carthage/Carthage">Carthage</a></h3>
 
@@ -83,7 +81,7 @@ for up to date installation instructions.</li>
 </ul>
 <a href='#how-it-works' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='how-it-works'>How It Works</h2>
 
-<p><code>Gifu</code> does not force you to use the built-in <code>GIFImageView</code> subclass. The <code>Animator</code> does the heavy-lifting, while the <code>GIFAnimatable</code> protocol exposes the functionality to the view classes that conform to it, using protocol extensions.</p>
+<p><code>Gifu</code> does not require using the built-in <code>GIFImageView</code> subclass. The <code>Animator</code> class does the heavy-lifting, while the <code>GIFAnimatable</code> protocol exposes the functionality to the view classes that conform to it, using protocol extensions.</p>
 
 <p>The <code>Animator</code> has a <code>FrameStore</code> that only keeps a limited number of frames in-memory, effectively creating a buffer for the animation without consuming all the available memory. This approach makes loading large GIFs a lot more resource-friendly.</p>
 
@@ -97,7 +95,7 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 
 <ul>
 <li>Use the built-in <code>GIFImageView</code> subclass if you don&rsquo;t need to combine GIF support with another image library.</li>
-<li>If you need more flexibility and composability, make your class conform to <code>GIFAnimatable</code>. In practice, any <code>UIView</code> subclass would do, since you get most of the required properties for free. For best results, make your <code>UIImageView</code> subclass conform to <code>GIFAnimatable</code> to get other niceties such as intrinsic content size.</li>
+<li>If you need more flexibility and composability, make your class conform to <code>GIFAnimatable</code>. In practice, any <code>UIView</code> subclass would do, since you get most of the required properties for free. For best results, make your <code>UIImageView</code> subclass conform to <code>GIFAnimatable</code> to get access to other features such as intrinsic content size.</li>
 </ul>
 <a href='#gifanimatable' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='gifanimatable'>GIFAnimatable</h3>
 
@@ -136,7 +134,36 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 <span class="p">}</span>
 </code></pre>
 
-<p>Keep in mind that you need to have control over the class implementing <code>GIFAnimatable</code> since you cannot add the stored <code>Animator</code> property in an extension.</p>
+<p>You can also make <code>UIKit</code> classes conform using associated objects may you wish:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">Gifu</span>
+
+<span class="kd">extension</span> <span class="kt">UIImageView</span><span class="p">:</span> <span class="kt">GIFAnimatable</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="kd">struct</span> <span class="kt">AssociatedKeys</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">AnimatorKey</span> <span class="o">=</span> <span class="s">"gifu.animator.key"</span>
+  <span class="p">}</span>
+
+  <span class="k">override</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">display</span><span class="p">(</span><span class="n">_</span> <span class="nv">layer</span><span class="p">:</span> <span class="kt">CALayer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">updateImageIfNeeded</span><span class="p">()</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="k">var</span> <span class="nv">animator</span><span class="p">:</span> <span class="kt">Animator</span><span class="p">?</span> <span class="p">{</span>
+    <span class="k">get</span> <span class="p">{</span>
+      <span class="k">guard</span> <span class="k">let</span> <span class="nv">animator</span> <span class="o">=</span> <span class="nf">objc_getAssociatedObject</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="o">&amp;</span><span class="kt">AssociatedKeys</span><span class="o">.</span><span class="kt">AnimatorKey</span><span class="p">)</span> <span class="k">as?</span> <span class="kt">Animator</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">animator</span> <span class="o">=</span> <span class="kt">Animator</span><span class="p">(</span><span class="nv">withDelegate</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">animator</span> <span class="o">=</span> <span class="n">animator</span>
+        <span class="k">return</span> <span class="n">animator</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="n">animator</span>
+    <span class="p">}</span>
+
+    <span class="k">set</span> <span class="p">{</span>
+      <span class="nf">objc_setAssociatedObject</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="o">&amp;</span><span class="kt">AssociatedKeys</span><span class="o">.</span><span class="kt">AnimatorKey</span><span class="p">,</span> <span class="n">newValue</span> <span class="k">as</span> <span class="kt">Animator</span><span class="p">?,</span> <span class="o">.</span><span class="kt">OBJC_ASSOCIATION_RETAIN_NONATOMIC</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 <a href='#examples' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='examples'>Examples</h3>
 
 <p>The simplest way to get started is initializing a <code>GIFAnimatable</code> class in code or in a storyboard, then calling <code>animate(:)</code> on it.</p>
@@ -188,7 +215,7 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
         </section>
         <section id="footer">
           <p>2015 © Reda Lemeden. See LICENSE for more details.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
