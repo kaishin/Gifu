@@ -24,7 +24,7 @@ func CGImageFrameDuration(with imageSource: CGImageSource, atIndex index: Int) -
 /// - returns: A capped frame duration.
 func capDuration(with duration: Double) -> Double? {
   if duration < 0 { return .none }
-  let threshold = 0.02 - Double(FLT_EPSILON)
+  let threshold = 0.02 - Double.ulpOfOne
   let cappedDuration = duration < threshold ? 0.1 : duration
   return cappedDuration
 }
