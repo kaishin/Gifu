@@ -32,7 +32,7 @@ The `Animator` has a `FrameStore` that only keeps a limited number of frames in-
 The figure below summarizes how this works in practice. Given an image
 containing 10 frames, Gifu will load the current frame (red), buffer the next two frames in this example (orange), and empty up all the other frames to free up memory (gray):
 
-<img src="https://db.tt/ZLfx23hg" width="300" />
+<img src="https://github.com/kaishin/Gifu/raw/master/gifu-figure.gif" width="300" />
 
 ## Usage
 
