@@ -15,7 +15,7 @@ struct AnimatedFrame {
 
   /// Whether this frame instance contains an image or not.
   var isPlaceholder: Bool {
-    return image == .none
+    return image == nil
   }
 
   /// Returns a new instance from an ptional image.
