@@ -1,6 +1,7 @@
+import Foundation
+
 /// The protocol that view classes need to conform to to enable animated GIF support.
 public protocol GIFAnimatable: class {
-
   /// Responsible for managing the animation frames.
   var animator: Animator? { get set }
 
@@ -33,7 +34,7 @@ extension GIFAnimatable {
   public var gifLoopDuration: TimeInterval {
     return animator?.loopDuration ?? 0
   }
-    
+
   /// Returns the active frame if available.
   public var activeFrame: UIImage? {
     return animator?.activeFrame()
@@ -54,7 +55,10 @@ extension GIFAnimatable {
   /// - parameter imageName: The file name of the GIF in the main bundle.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
   public func animate(withGIFNamed imageName: String, loopCount: Int = 0) {
-        animator?.animate(withGIFNamed: imageName, size: frame.size, contentMode: contentMode, loopCount: loopCount)
+    animator?.animate(withGIFNamed: imageName,
+                      size: frame.size,
+                      contentMode: contentMode,
+                      loopCount: loopCount)
   }
 
   /// Prepare for animation and start animating immediately.
@@ -62,27 +66,89 @@ extension GIFAnimatable {
   /// - parameter imageData: GIF image data.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
   public func animate(withGIFData imageData: Data, loopCount: Int = 0) {
-    animator?.animate(withGIFData: imageData, size: frame.size, contentMode: contentMode, loopCount: loopCount)
+    animator?.animate(withGIFData: imageData,
+                      size: frame.size,
+                      contentMode: contentMode,
+                      loopCount: loopCount)
+  }
+
+  /// Prepare for animation and start animating immediately.
+  ///
+  /// - parameter imageURL: GIF image url.
+  /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
+  public func animate(withGIFURL imageURL: URL, loopCount: Int = 0) {
+    let session = URLSession.shared
+
+    let task = session.dataTask(with: imageURL) { (data, response, error) in
+      switch (data, response, error) {
+      case (.none, _, let error?):
+        print("Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
+      case (let data?, _, _):
+        DispatchQueue.main.async {
+          self.animate(withGIFData: data, loopCount: loopCount)
+        }
+      default: ()
+      }
+    }
+
+    task.resume()
   }
 
   /// Prepares the animator instance for animation.
   ///
   /// - parameter imageName: The file name of the GIF in the main bundle.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
-  public func prepareForAnimation(withGIFNamed imageName: String, loopCount: Int = 0, completionHandler: (() -> Void)? = nil) {
-    animator?.prepareForAnimation(withGIFNamed: imageName, size: frame.size, contentMode: contentMode, loopCount: loopCount, completionHandler: completionHandler)
+  public func prepareForAnimation(withGIFNamed imageName: String,
+                                  loopCount: Int = 0,
+                                  completionHandler: (() -> Void)? = nil) {
+    animator?.prepareForAnimation(withGIFNamed: imageName,
+                                  size: frame.size,
+                                  contentMode: contentMode,
+                                  loopCount: loopCount,
+                                  completionHandler: completionHandler)
   }
 
   /// Prepare for animation and start animating immediately.
   ///
   /// - parameter imageData: GIF image data.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
-  public func prepareForAnimation(withGIFData imageData: Data, loopCount: Int = 0, completionHandler: (() -> Void)? = nil) {
+  public func prepareForAnimation(withGIFData imageData: Data,
+                                  loopCount: Int = 0,
+                                  completionHandler: (() -> Void)? = nil) {
     if var imageContainer = self as? ImageContainer {
       imageContainer.image = UIImage(data: imageData)
     }
 
-    animator?.prepareForAnimation(withGIFData: imageData, size: frame.size, contentMode: contentMode, loopCount: loopCount, completionHandler: completionHandler)
+    animator?.prepareForAnimation(withGIFData: imageData,
+                                  size: frame.size,
+                                  contentMode: contentMode,
+                                  loopCount: loopCount,
+                                  completionHandler: completionHandler)
+  }
+
+  /// Prepare for animation and start animating immediately.
+  ///
+  /// - parameter imageURL: GIF image url.
+  /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
+  public func prepareForAnimation(withGIFURL imageURL: URL,
+                                  loopCount: Int = 0,
+                                  completionHandler: (() -> Void)? = nil) {
+    let session = URLSession.shared
+    let task = session.dataTask(with: imageURL) { (data, response, error) in
+      switch (data, response, error) {
+      case (.none, _, let error?):
+        print("Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
+      case (let data?, _, _):
+        DispatchQueue.main.async {
+          self.prepareForAnimation(withGIFData: data,
+                                   loopCount: loopCount,
+                                   completionHandler: completionHandler)
+        }
+      default: ()
+      }
+    }
+
+    task.resume()
   }
 
   /// Stop animating and free up GIF data from memory.
