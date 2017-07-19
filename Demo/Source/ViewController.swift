@@ -33,6 +33,8 @@ class ViewController: UIViewController {
   }
 
   override func viewDidAppear(_ animated: Bool) {
-    imageView.animate(withGIFNamed: currentGIFName)
+//    imageView.animate(withGIFNamed: currentGIFName)
+    /// Sample gif used from gify for demo purpose only.
+    imageView.animate(withURL: URL(string: "https://media.giphy.com/media/TObbUke0z8Mo/giphy.gif")!)
   }
 }
