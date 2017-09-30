@@ -1,0 +1,12 @@
+PODS:
+  - Gifu (2.0.0-rc)
+
+DEPENDENCIES:
+  - Gifu (= 2.0.0-rc)
+
+SPEC CHECKSUMS:
+  Gifu: ba59ea30a6bb0c3a258e80b6461db76ae301039f
+
+PODFILE CHECKSUM: 8d2e86b09b9126fe4d8c3fcc19e1ea775cd917c4
+
+COCOAPODS: 1.1.1
