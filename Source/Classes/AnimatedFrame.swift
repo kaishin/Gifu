@@ -18,7 +18,7 @@ struct AnimatedFrame {
     return image == nil
   }
 
-  /// Returns a new instance from an ptional image.
+  /// Returns a new instance from an optional image.
   ///
   /// - parameter image: An optional `UIImage` instance to be assigned to the new frame.
   /// - returns: An `AnimatedFrame` instance.
