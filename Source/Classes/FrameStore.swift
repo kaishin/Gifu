@@ -98,7 +98,7 @@ class FrameStore {
     animatedFrames.reserveCapacity(frameCount)
     preloadFrameQueue.async {
       self.setupAnimatedFrames()
-      if let handler = completionHandler { handler() }
+      completionHandler?()
     }
   }
 
