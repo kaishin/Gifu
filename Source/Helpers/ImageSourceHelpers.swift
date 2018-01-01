@@ -48,7 +48,7 @@ func duration(withUnclampedTime unclampedDelayTime: Double, andClampedTime delay
   return delayArray.filter({ $0 >= 0 }).first ?? defaultDuration
 }
 
-/// An extension of `CGImageSourceRef` that add GIF introspection and easier property retrieval.
+/// An extension of `CGImageSourceRef` that adds GIF introspection and easier property retrieval.
 extension CGImageSource {
   /// Returns whether the image source contains an animated GIF.
   ///
