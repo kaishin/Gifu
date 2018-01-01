@@ -15,7 +15,7 @@
       <div class="content-wrapper">
         <p><a href="index.html">Gifu Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/kaishin/gifu/"><img src="img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fpyroh%2Egithub%2Eio%2Fdocsets%2FGifu%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fkaishin%2Egithub%2Eio%2Fdocsets%2FGifu%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -58,11 +58,9 @@
             
             <h1 id='img-src-https-github-com-kaishin-gifu-raw-master-header-gif-alt-logo' class='heading'><img src="https://github.com/kaishin/Gifu/raw/master/header.gif" alt="Logo"></h1>
 
-<p><a href="https://github.com/kaishin/Gifu/releases/latest"><img src="https://img.shields.io/github/release/kaishin/Gifu.svg" alt="GitHub release"></a> <img src="https://www.bitrise.io/app/a0eae2c9b6aa754c.svg?token=dDlRyPi2aOlZnvbl4kL8Kw&branch=master" alt="Bitrise"> <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a> <a href="https://gitter.im/kaishin/gifu"><img src="https://badges.gitter.im/kaishin/gifu.svg" alt="Join the chat at https://gitter.im/kaishin/gifu"></a> <img src="https://img.shields.io/badge/Swift-3.0.x-orange.svg" alt="Swift 3.0.x"> <img src="https://img.shields.io/badge/platforms-iOS-lightgrey.svg" alt="platforms"></p>
+<p><a href="https://github.com/kaishin/Gifu/releases/latest"><img src="https://img.shields.io/github/release/kaishin/Gifu.svg" alt="GitHub release"></a> <img src="https://www.bitrise.io/app/a0eae2c9b6aa754c.svg?token=dDlRyPi2aOlZnvbl4kL8Kw&branch=master" alt="Bitrise"> <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a> <img src="https://img.shields.io/badge/Swift-4.0-orange.svg" alt="Swift 4.0"> <img src="https://img.shields.io/badge/platforms-iOS-lightgrey.svg" alt="platforms"></p>
 
 <p>Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It&rsquo;s also a <a href="https://goo.gl/maps/CCeAc">prefecture in Japan</a>).</p>
-
-<p>⚠ The <code>master</code> branch works with Xcode 9 and iOS 11, which are both in beta. Use <code>v2.0</code> for the stable version.</p>
 <h2 id='install' class='heading'>Install</h2>
 <h3 id='a-href-https-github-com-carthage-carthage-carthage-a' class='heading'><a href="https://github.com/Carthage/Carthage">Carthage</a></h3>
 
@@ -168,7 +166,9 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 
 <p>The simplest way to get started is initializing a <code><a href="Protocols/GIFAnimatable.html">GIFAnimatable</a></code> class in code or in a storyboard, then calling <code>animate(:)</code> on it.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">imageView</span> <span class="o">=</span> <span class="kt">GIFImageView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">100</span><span class="p">))</span>
-<span class="n">imageView</span><span class="o">.</span><span class="nf">animate</span><span class="p">(</span><span class="nv">withGIFNamed</span><span class="p">:</span> <span class="s">"mugen"</span><span class="p">)</span>
+<span class="n">imageView</span><span class="o">.</span><span class="nf">animate</span><span class="p">(</span><span class="nv">withGIFNamed</span><span class="p">:</span> <span class="s">"mugen"</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">"It's animating!"</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre>
 
 <p>You can also prepare for the animation when the view loads and only start animating after a user interaction.</p>
@@ -176,7 +176,9 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 
 <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
-  <span class="n">imageView</span><span class="o">.</span><span class="nf">prepareForAnimation</span><span class="p">(</span><span class="nv">withGIFNamed</span><span class="p">:</span> <span class="s">"mugen"</span><span class="p">)</span>
+  <span class="n">imageView</span><span class="o">.</span><span class="nf">prepareForAnimation</span><span class="p">(</span><span class="nv">withGIFNamed</span><span class="p">:</span> <span class="s">"mugen"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Ready to animate!"</span><span class="p">)</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">toggleAnimation</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="p">{</span>
@@ -204,8 +206,8 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
 
 <ul>
 <li>iOS 9.0+</li>
-<li>Swift 3.0</li>
-<li>Xcode 8.0</li>
+<li>Swift 4.0</li>
+<li>Xcode 9.0</li>
 </ul>
 <h2 id='license' class='heading'>License</h2>
 
@@ -214,7 +216,7 @@ containing 10 frames, Gifu will load the current frame (red), buffer the next tw
           </section>
         </section>
         <section id="footer">
-          <p>2015 © Reda Lemeden. See LICENSE for more details.</p>
+          <p>2018 © Reda Lemeden. See LICENSE for more details.</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
