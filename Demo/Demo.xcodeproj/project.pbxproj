@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0009FCE71D16A4AB0038DC85 /* earth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0009FCE61D16A4AB0038DC85 /* earth.gif */; };
+		001AC55C1FFA6C630079ED58 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 001AC55B1FFA6C630079ED58 /* Gifu.framework */; };
+		001AC55D1FFA6C630079ED58 /* Gifu.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 001AC55B1FFA6C630079ED58 /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		002A1BFC1D1624D0005ABBD0 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 002A1BFB1D1624D0005ABBD0 /* mugen.gif */; };
-		002FF5141D3A91340069CA56 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002A1BF91D161D33005ABBD0 /* Gifu.framework */; };
 		0032FE841FFA693500444203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0032FE831FFA693500444203 /* LaunchScreen.storyboard */; };
 		007380231B279644008DAD5C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007380221B279644008DAD5C /* Default-568h@2x.png */; };
 		00DD26EB1DA5968500A0F683 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD26EA1DA5968500A0F683 /* EmptyViewController.swift */; };
@@ -19,9 +20,23 @@
 		9D98825A19BC69F600B790C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D98825919BC69F600B790C6 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		001AC5591FFA6C180079ED58 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				001AC55D1FFA6C630079ED58 /* Gifu.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0009FCE61D16A4AB0038DC85 /* earth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = earth.gif; sourceTree = "<group>"; };
-		002A1BF91D161D33005ABBD0 /* Gifu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gifu.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Gifu-gwslszlwadetledwfipapwloqzrw/Build/Products/Debug-iphonesimulator/Gifu.framework"; sourceTree = "<group>"; };
+		001AC55B1FFA6C630079ED58 /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		002A1BFB1D1624D0005ABBD0 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = ../../../GifuTests/Images/mugen.gif; sourceTree = "<group>"; };
 		0032FE831FFA693500444203 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		007380221B279644008DAD5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -40,25 +55,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002FF5141D3A91340069CA56 /* Gifu.framework in Frameworks */,
+				001AC55C1FFA6C630079ED58 /* Gifu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		002A1BF81D161D32005ABBD0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				002A1BF91D161D33005ABBD0 /* Gifu.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		9D98822E19BC69CA00B790C6 = {
 			isa = PBXGroup;
 			children = (
-				002A1BF81D161D32005ABBD0 /* Frameworks */,
+				001AC55B1FFA6C630079ED58 /* Gifu.framework */,
 				9D98823819BC69CA00B790C6 /* Products */,
 				9D98823919BC69CA00B790C6 /* Source */,
 			);
@@ -107,6 +114,7 @@
 			buildPhases = (
 				9D98823319BC69CA00B790C6 /* Sources */,
 				9D98823419BC69CA00B790C6 /* Frameworks */,
+				001AC5591FFA6C180079ED58 /* Copy Frameworks */,
 				9D98823519BC69CA00B790C6 /* Resources */,
 			);
 			buildRules = (
@@ -130,8 +138,9 @@
 				TargetAttributes = {
 					9D98823619BC69CA00B790C6 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 5G38N4D8G2;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -181,17 +190,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		0032FE621FF982FC00444203 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0032FE631FF982FC00444203 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9D98825119BC69CA00B790C6 /* Debug */ = {
@@ -294,12 +292,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5G38N4D8G2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -310,12 +312,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5G38N4D8G2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
