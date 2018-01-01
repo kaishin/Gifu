@@ -1,9 +1,9 @@
 clean: true
 author: Reda Lemeden
 author_url: https://redalemeden.com
-copyright: "2015 © Reda Lemeden. See LICENSE for more details."
+copyright: "2018 © Reda Lemeden. See LICENSE for more details."
 github_url: https://github.com/kaishin/gifu/
 module: Gifu
-module_version: 1.2.1
+module_version: 3.0.0
 skip_undocumented: true
-root_url: https://pyroh.github.io/
+root_url: https://kaishin.github.io/
