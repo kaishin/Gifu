@@ -21,7 +21,6 @@
 		00BF42CC1D99A1DC00C6F28D /* GIFAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */; };
 		00DD26EE1DA9643800A0F683 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD26ED1DA9643800A0F683 /* UIImageView.swift */; };
 		71E8B2E620387D830037BA62 /* Gifu_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E8B2DD20387D830037BA62 /* Gifu_tvOS.framework */; };
-		71E8B2EB20387D830037BA62 /* Gifu_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B2EA20387D830037BA62 /* Gifu_tvOSTests.swift */; };
 		71E8B2ED20387D830037BA62 /* Gifu_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 71E8B2DF20387D830037BA62 /* Gifu_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		71E8B2F420387D8E0037BA62 /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */; };
 		71E8B2F520387D8E0037BA62 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00978B6B1D9C6D2A00A6575F /* Animator.swift */; };
@@ -35,6 +34,7 @@
 		71E8B2FD20387D950037BA62 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */; };
 		71E8B30220387E1E0037BA62 /* nailed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 71E8B30020387E1E0037BA62 /* nailed.gif */; };
 		71E8B30320387E1E0037BA62 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 71E8B30120387E1E0037BA62 /* mugen.gif */; };
+		71E8B30420387ED70037BA62 /* Gifu_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B2CE20387CE60037BA62 /* Gifu_tvOSTests.swift */; };
 		EAF49C7F1A3A4DE000B395DF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImage.swift */; };
 		EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */; };
 /* End PBXBuildFile section */
@@ -80,8 +80,6 @@
 		71E8B2DF20387D830037BA62 /* Gifu_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gifu_tvOS.h; sourceTree = "<group>"; };
 		71E8B2E020387D830037BA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71E8B2E520387D830037BA62 /* Gifu_tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Gifu_tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		71E8B2EA20387D830037BA62 /* Gifu_tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gifu_tvOSTests.swift; sourceTree = "<group>"; };
-		71E8B2EC20387D830037BA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71E8B30020387E1E0037BA62 /* nailed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = nailed.gif; sourceTree = "<group>"; };
 		71E8B30120387E1E0037BA62 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mugen.gif; sourceTree = "<group>"; };
 		EAF49C7E1A3A4DE000B395DF /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 				009BD1371BBC7F6500FC982B /* GifuTests */,
 				71E8B2CD20387CE60037BA62 /* Gifu_tvOSTests */,
 				71E8B2DE20387D830037BA62 /* Gifu_tvOS */,
-				71E8B2E920387D830037BA62 /* Gifu_tvOSTests */,
 				00B8C73F1A364DA400C188E7 /* Products */,
 				00B8C75A1A364DBE00C188E7 /* Source */,
 				00B8C7411A364DA400C188E7 /* Supporting Files */,
@@ -233,15 +230,6 @@
 				71E8B2E020387D830037BA62 /* Info.plist */,
 			);
 			path = Gifu_tvOS;
-			sourceTree = "<group>";
-		};
-		71E8B2E920387D830037BA62 /* Gifu_tvOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				71E8B2EA20387D830037BA62 /* Gifu_tvOSTests.swift */,
-				71E8B2EC20387D830037BA62 /* Info.plist */,
-			);
-			path = Gifu_tvOSTests;
 			sourceTree = "<group>";
 		};
 		71E8B2FF20387E1E0037BA62 /* Images */ = {
@@ -497,7 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71E8B2EB20387D830037BA62 /* Gifu_tvOSTests.swift in Sources */,
+				71E8B30420387ED70037BA62 /* Gifu_tvOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
