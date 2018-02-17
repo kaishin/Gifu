@@ -1,3 +1,5 @@
+import UIKit
+
 /// Responsible for parsing GIF data and decoding the individual frames.
 public class Animator {
 

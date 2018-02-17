@@ -1,3 +1,4 @@
+import UIKit
 /// Represents a single frame in a GIF.
 struct AnimatedFrame {
 

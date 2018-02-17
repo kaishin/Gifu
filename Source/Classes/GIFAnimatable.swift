@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 /// The protocol that view classes need to conform to to enable animated GIF support.
 public protocol GIFAnimatable: class {
