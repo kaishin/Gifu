@@ -1,4 +1,5 @@
 import ImageIO
+import UIKit
 
 /// Responsible for storing and updating the frames of a single GIF.
 class FrameStore {
