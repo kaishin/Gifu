@@ -13,7 +13,7 @@ public protocol GIFAnimatable: class {
   var frame: CGRect { get set }
 
   /// Content mode used for resizing the frames.
-  var contentMode: UIViewContentMode { get set }
+  var contentMode: UIView.ContentMode { get set }
 }
 
 
