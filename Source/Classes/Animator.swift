@@ -65,14 +65,15 @@ public class Animator {
 
   /// Prepares the animator instance for animation.
   ///
-  /// - parameter imageName: The file name of the GIF in the main bundle.
+  /// - parameter imageName: The file name of the GIF in the specified bundle.
+  /// - parameter bundle: The bundle where the GIF is located (default Bundle.main).
   /// - parameter size: The target size of the individual frames.
   /// - parameter contentMode: The view content mode to use for the individual frames.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
   /// - parameter completionHandler: Completion callback function
-  func prepareForAnimation(withGIFNamed imageName: String, size: CGSize, contentMode: UIView.ContentMode, loopCount: Int = 0, completionHandler: (() -> Void)? = nil) {
+  func prepareForAnimation(withGIFNamed imageName: String, inBundle bundle: Bundle = .main, size: CGSize, contentMode: UIView.ContentMode, loopCount: Int = 0, completionHandler: (() -> Void)? = nil) {
     guard let extensionRemoved = imageName.components(separatedBy: ".")[safe: 0],
-      let imagePath = Bundle.main.url(forResource: extensionRemoved, withExtension: "gif"),
+      let imagePath = bundle.url(forResource: extensionRemoved, withExtension: "gif"),
       let data = try? Data(contentsOf: imagePath) else { return }
 
     prepareForAnimation(withGIFData: data,
