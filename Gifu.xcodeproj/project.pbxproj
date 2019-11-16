@@ -51,13 +51,6 @@
 		00B8C7951A3650EE00C188E7 /* Gifu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gifu.h; sourceTree = "<group>"; };
 		00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFAnimatable.swift; sourceTree = "<group>"; };
 		00DD26ED1DA9643800A0F683 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		71E8B2B82038784C0037BA62 /* Gifu-tvOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Gifu-tvOS-Info.plist"; path = "/Users/gruppionim/Documents/Developer/Github/Gifu/Gifu-tvOS-Info.plist"; sourceTree = "<absolute>"; };
-		71E8B2CE20387CE60037BA62 /* Gifu-tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gifu-tvOSTests.swift"; sourceTree = "<group>"; };
-		71E8B2D020387CE60037BA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71E8B2DF20387D830037BA62 /* Gifu-tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gifu-tvOS.h"; sourceTree = "<group>"; };
-		71E8B2E020387D830037BA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71E8B30020387E1E0037BA62 /* nailed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = nailed.gif; sourceTree = "<group>"; };
-		71E8B30120387E1E0037BA62 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mugen.gif; sourceTree = "<group>"; };
 		EAF49C7E1A3A4DE000B395DF /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,12 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				009BD1371BBC7F6500FC982B /* GifuTests */,
-				71E8B2CD20387CE60037BA62 /* Gifu-tvOSTests */,
-				71E8B2DE20387D830037BA62 /* Gifu-tvOS */,
 				00B8C75A1A364DBE00C188E7 /* Sources */,
 				00B8C73F1A364DA400C188E7 /* Products */,
 				00B8C7411A364DA400C188E7 /* Supporting Files */,
-				71E8B2B82038784C0037BA62 /* Gifu-tvOS-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,35 +161,6 @@
 			);
 			path = Sources;
 			sourceTree = "<group>";
-		};
-		71E8B2CD20387CE60037BA62 /* Gifu-tvOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				71E8B2FF20387E1E0037BA62 /* Images */,
-				71E8B2CE20387CE60037BA62 /* Gifu-tvOSTests.swift */,
-				71E8B2D020387CE60037BA62 /* Info.plist */,
-			);
-			path = "Gifu-tvOSTests";
-			sourceTree = "<group>";
-		};
-		71E8B2DE20387D830037BA62 /* Gifu-tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				71E8B2DF20387D830037BA62 /* Gifu-tvOS.h */,
-				71E8B2E020387D830037BA62 /* Info.plist */,
-			);
-			path = "Gifu-tvOS";
-			sourceTree = "<group>";
-		};
-		71E8B2FF20387E1E0037BA62 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				71E8B30020387E1E0037BA62 /* nailed.gif */,
-				71E8B30120387E1E0037BA62 /* mugen.gif */,
-			);
-			name = Images;
-			path = GifuTests/Images;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
