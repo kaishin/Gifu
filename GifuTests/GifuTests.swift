@@ -12,7 +12,7 @@ class DummyAnimatable: GIFAnimatable {
   var image: UIImage? = nil
   var layer = CALayer()
   var frame: CGRect = .zero
-  var contentMode: UIViewContentMode = .scaleToFill
+  var contentMode: UIView.ContentMode = .scaleToFill
   func animatorHasNewFrame() {}
 }
 
