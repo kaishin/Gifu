@@ -176,8 +176,8 @@
 				009BD1371BBC7F6500FC982B /* GifuTests */,
 				71E8B2CD20387CE60037BA62 /* Gifu-tvOSTests */,
 				71E8B2DE20387D830037BA62 /* Gifu-tvOS */,
+				00B8C75A1A364DBE00C188E7 /* Sources */,
 				00B8C73F1A364DA400C188E7 /* Products */,
-				00B8C75A1A364DBE00C188E7 /* Source */,
 				00B8C7411A364DA400C188E7 /* Supporting Files */,
 				71E8B2B82038784C0037BA62 /* Gifu-tvOS-Info.plist */,
 			);
@@ -202,7 +202,7 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		00B8C75A1A364DBE00C188E7 /* Source */ = {
+		00B8C75A1A364DBE00C188E7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				007E08421BD95C6100883D0C /* Classes */,
@@ -210,7 +210,7 @@
 				007E08411BD95C0200883D0C /* Helpers */,
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		71E8B2CD20387CE60037BA62 /* Gifu-tvOSTests */ = {

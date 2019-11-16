@@ -10,8 +10,7 @@ let package = Package(
       name: "Gifu",
       targets: ["Gifu"]),
   ],
-  dependencies: [
-  ],
+  dependencies: [],
   targets: [
     .target(
       name: "Gifu",
