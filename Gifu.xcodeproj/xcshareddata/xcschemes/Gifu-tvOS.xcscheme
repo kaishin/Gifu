@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1120"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00B8C73D1A364DA400C188E7"
+               BlueprintIdentifier = "71E8B2DC20387D830037BA62"
                BuildableName = "Gifu.framework"
-               BlueprintName = "Gifu"
-               ReferencedContainer = "container:Gifu.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "009BD1351BBC7F6500FC982B"
-               BuildableName = "GifuTests.xctest"
-               BlueprintName = "GifuTests"
+               BlueprintName = "Gifu-tvOS"
                ReferencedContainer = "container:Gifu.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -41,23 +27,14 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00B8C73D1A364DA400C188E7"
-            BuildableName = "Gifu.framework"
-            BlueprintName = "Gifu"
-            ReferencedContainer = "container:Gifu.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "009BD1351BBC7F6500FC982B"
-               BuildableName = "GifuTests.xctest"
-               BlueprintName = "GifuTests"
+               BlueprintIdentifier = "71E8B2E420387D830037BA62"
+               BuildableName = "Gifu-tvOSTests.xctest"
+               BlueprintName = "Gifu-tvOSTests"
                ReferencedContainer = "container:Gifu.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -73,15 +50,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00B8C73D1A364DA400C188E7"
-            BuildableName = "Gifu.framework"
-            BlueprintName = "Gifu"
-            ReferencedContainer = "container:Gifu.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -92,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00B8C73D1A364DA400C188E7"
+            BlueprintIdentifier = "71E8B2DC20387D830037BA62"
             BuildableName = "Gifu.framework"
-            BlueprintName = "Gifu"
+            BlueprintName = "Gifu-tvOS"
             ReferencedContainer = "container:Gifu.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
