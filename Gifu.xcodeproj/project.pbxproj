@@ -114,21 +114,21 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		009BD1371BBC7F6500FC982B /* GifuTests */ = {
+		009BD1371BBC7F6500FC982B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				0036ABBA1BBD1D1700C6CC3D /* Images */,
 				009BD1381BBC7F6500FC982B /* GifuTests.swift */,
 				009BD13A1BBC7F6500FC982B /* Info.plist */,
 			);
-			path = GifuTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		00B8C7341A364DA400C188E7 = {
 			isa = PBXGroup;
 			children = (
-				009BD1371BBC7F6500FC982B /* GifuTests */,
 				00B8C75A1A364DBE00C188E7 /* Sources */,
+				009BD1371BBC7F6500FC982B /* Tests */,
 				00B8C73F1A364DA400C188E7 /* Products */,
 				00B8C7411A364DA400C188E7 /* Supporting Files */,
 			);
@@ -337,7 +337,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 5G38N4D8G2;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = GifuTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.GifuTests;
@@ -359,7 +359,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5G38N4D8G2;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = GifuTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.GifuTests;
