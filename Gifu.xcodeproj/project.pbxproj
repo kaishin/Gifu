@@ -74,6 +74,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0007E1E52381AADB000FED9F /* Gifu */ = {
+			isa = PBXGroup;
+			children = (
+				007E08421BD95C6100883D0C /* Classes */,
+				007E08401BD95BE900883D0C /* Extensions */,
+				007E08411BD95C0200883D0C /* Helpers */,
+			);
+			path = Gifu;
+			sourceTree = "<group>";
+		};
 		0036ABBA1BBD1D1700C6CC3D /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,9 +164,7 @@
 		00B8C75A1A364DBE00C188E7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				007E08421BD95C6100883D0C /* Classes */,
-				007E08401BD95BE900883D0C /* Extensions */,
-				007E08411BD95C0200883D0C /* Helpers */,
+				0007E1E52381AADB000FED9F /* Gifu */,
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
 			);
 			path = Sources;
