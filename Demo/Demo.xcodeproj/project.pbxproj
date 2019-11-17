@@ -13,6 +13,9 @@
 		0007E17023809E9D000FED9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0007E16F23809E9D000FED9F /* Assets.xcassets */; };
 		0007E17323809E9D000FED9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0007E17123809E9D000FED9F /* LaunchScreen.storyboard */; };
 		0007E18F2380A6DE000FED9F /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E18E2380A6DE000FED9F /* Gifu.framework */; };
+		0007E193238193E1000FED9F /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E192238193E1000FED9F /* Gifu.framework */; };
+		0007E194238193E1000FED9F /* Gifu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E192238193E1000FED9F /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0007E1962381978A000FED9F /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0007E1952381978A000FED9F /* mugen.gif */; };
 		002A1BFC1D1624D0005ABBD0 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 002A1BFB1D1624D0005ABBD0 /* mugen.gif */; };
 		0032FE841FFA693500444203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0032FE831FFA693500444203 /* LaunchScreen.storyboard */; };
 		00DD26EB1DA5968500A0F683 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD26EA1DA5968500A0F683 /* EmptyViewController.swift */; };
@@ -29,6 +32,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0007E194238193E1000FED9F /* Gifu.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,6 +48,8 @@
 		0007E17223809E9D000FED9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0007E17423809E9D000FED9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		0007E18E2380A6DE000FED9F /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0007E192238193E1000FED9F /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0007E1952381978A000FED9F /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = ../../../GifuTests/Images/mugen.gif; sourceTree = "<group>"; };
 		002A1BFB1D1624D0005ABBD0 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = ../../../GifuTests/Images/mugen.gif; sourceTree = "<group>"; };
 		0032FE831FFA693500444203 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00B2B8171E1DAB1C00A50D91 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
@@ -60,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0007E193238193E1000FED9F /* Gifu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +95,7 @@
 		0007E17823809EEF000FED9F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0007E1952381978A000FED9F /* mugen.gif */,
 				0007E16C23809E9C000FED9F /* Main.storyboard */,
 				0007E16F23809E9D000FED9F /* Assets.xcassets */,
 				0007E17123809E9D000FED9F /* LaunchScreen.storyboard */,
@@ -98,6 +106,7 @@
 		0007E18D2380A6DE000FED9F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0007E192238193E1000FED9F /* Gifu.framework */,
 				0007E18E2380A6DE000FED9F /* Gifu.framework */,
 			);
 			name = Frameworks;
@@ -231,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0007E17323809E9D000FED9F /* LaunchScreen.storyboard in Resources */,
+				0007E1962381978A000FED9F /* mugen.gif in Resources */,
 				0007E17023809E9D000FED9F /* Assets.xcassets in Resources */,
 				0007E16E23809E9C000FED9F /* Main.storyboard in Resources */,
 			);

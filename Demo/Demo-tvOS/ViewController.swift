@@ -1,20 +1,23 @@
-//
-//  ViewController.swift
-//  Gifu-tvOSDemo
-//
-//  Created by Reda Lemeden on 2019-11-16.
-//  Copyright © 2019 Kaishin & Co. All rights reserved.
-//
-
 import UIKit
+import Gifu
+
 
 class ViewController: UIViewController {
+
+  @IBOutlet weak var imageView: GIFImageView!
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
   }
 
+  override func viewDidAppear(_ animated: Bool) {
+    self.animate()
+  }
 
+  func animate() {
+    imageView.animate(withGIFNamed: "mugen")
+  }
 }
 
