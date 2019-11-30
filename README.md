@@ -9,6 +9,18 @@ Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It's
 
 ## Install
 
+#### Swift Package Manager
+
+Add the following to your `Package.switft` file:
+
+```swift
+let package = Package(
+    dependencies: [
+    .package(url: "https://github.com/kaishin/Gifu.git", from: "3.2.2")
+    ],
+)
+```
+
 ### [Carthage](https://github.com/Carthage/Carthage)
 
 - Add the following to your Cartfile: `github "kaishin/Gifu"`
