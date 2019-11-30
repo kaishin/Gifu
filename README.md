@@ -1,6 +1,9 @@
 # ![Logo](https://github.com/kaishin/Gifu/raw/master/header.gif)
 
-[![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg)](https://github.com/kaishin/Gifu/releases/latest) ![Bitrise](https://www.bitrise.io/app/a0eae2c9b6aa754c.svg?token=dDlRyPi2aOlZnvbl4kL8Kw&branch=master) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) ![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg)
+![Test](https://github.com/kaishin/Gifu/workflows/Test/badge.svg)
+[![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg)](https://github.com/kaishin/Gifu/releases/latest)  [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20tvOS-lightgrey.svg)
+
 
 Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It's also a [prefecture in Japan](https://goo.gl/maps/CCeAc)).
 
