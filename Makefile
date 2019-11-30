@@ -10,6 +10,6 @@ test-tvos:
 	set -o pipefail && \
 	xcodebuild test \
 		-project Gifu.xcodeproj \
-		-scheme Gifu-tvOS \
-		-destination platform="tvOS Simulator,name=Apple TV,OS=13.1" \
+		-scheme Gifu \
+		-destination platform="tvOS Simulator,name=Apple TV" \
 		| xcpretty
