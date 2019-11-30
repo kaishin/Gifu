@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-set -o pipefail
-
-xcodebuild test -project Gifu.xcodeproj -scheme Gifu -destination "platform=iOS Simulator,name=iPhone 6" BUILD_ACTIVE_ARCH=NO | xcpretty -t -c

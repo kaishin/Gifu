@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0009FCE71D16A4AB0038DC85 /* earth.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0009FCE61D16A4AB0038DC85 /* earth.gif */; };
-		001AC55C1FFA6C630079ED58 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 001AC55B1FFA6C630079ED58 /* Gifu.framework */; };
-		001AC55D1FFA6C630079ED58 /* Gifu.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 001AC55B1FFA6C630079ED58 /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0007E16923809E9C000FED9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0007E16823809E9C000FED9F /* AppDelegate.swift */; };
+		0007E16B23809E9C000FED9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0007E16A23809E9C000FED9F /* ViewController.swift */; };
+		0007E16E23809E9C000FED9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0007E16C23809E9C000FED9F /* Main.storyboard */; };
+		0007E17023809E9D000FED9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0007E16F23809E9D000FED9F /* Assets.xcassets */; };
+		0007E17323809E9D000FED9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0007E17123809E9D000FED9F /* LaunchScreen.storyboard */; };
+		0007E18F2380A6DE000FED9F /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E18E2380A6DE000FED9F /* Gifu.framework */; };
+		0007E193238193E1000FED9F /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E192238193E1000FED9F /* Gifu.framework */; };
+		0007E194238193E1000FED9F /* Gifu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E192238193E1000FED9F /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0007E1962381978A000FED9F /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0007E1952381978A000FED9F /* mugen.gif */; };
 		002A1BFC1D1624D0005ABBD0 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 002A1BFB1D1624D0005ABBD0 /* mugen.gif */; };
 		0032FE841FFA693500444203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0032FE831FFA693500444203 /* LaunchScreen.storyboard */; };
-		007380231B279644008DAD5C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007380221B279644008DAD5C /* Default-568h@2x.png */; };
 		00DD26EB1DA5968500A0F683 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD26EA1DA5968500A0F683 /* EmptyViewController.swift */; };
 		9D98823D19BC69CA00B790C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823C19BC69CA00B790C6 /* AppDelegate.swift */; };
 		9D98823F19BC69CA00B790C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823E19BC69CA00B790C6 /* ViewController.swift */; };
@@ -21,29 +26,35 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		001AC5591FFA6C180079ED58 /* Copy Frameworks */ = {
+		0007E18023809FE5000FED9F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				001AC55D1FFA6C630079ED58 /* Gifu.framework in Copy Frameworks */,
+				0007E194238193E1000FED9F /* Gifu.framework in Embed Frameworks */,
 			);
-			name = "Copy Frameworks";
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0009FCE61D16A4AB0038DC85 /* earth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = earth.gif; sourceTree = "<group>"; };
-		001AC55B1FFA6C630079ED58 /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0007E16623809E9C000FED9F /* Demo-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0007E16823809E9C000FED9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0007E16A23809E9C000FED9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0007E16D23809E9C000FED9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0007E16F23809E9D000FED9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0007E17223809E9D000FED9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0007E17423809E9D000FED9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
+		0007E18E2380A6DE000FED9F /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0007E192238193E1000FED9F /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0007E1952381978A000FED9F /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = ../../../GifuTests/Images/mugen.gif; sourceTree = "<group>"; };
 		002A1BFB1D1624D0005ABBD0 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mugen.gif; path = ../../../GifuTests/Images/mugen.gif; sourceTree = "<group>"; };
 		0032FE831FFA693500444203 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		007380221B279644008DAD5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		00B2B8171E1DAB1C00A50D91 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		00DD26EA1DA5968500A0F683 /* EmptyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
-		9D25870519BCCB0F00A55A18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9D98823719BC69CA00B790C6 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D98823719BC69CA00B790C6 /* Gifu-iOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gifu-iOSDemo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D98823C19BC69CA00B790C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D98823E19BC69CA00B790C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9D98824319BC69CA00B790C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -51,35 +62,76 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0007E16323809E9C000FED9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0007E193238193E1000FED9F /* Gifu.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9D98823419BC69CA00B790C6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				001AC55C1FFA6C630079ED58 /* Gifu.framework in Frameworks */,
+				0007E18F2380A6DE000FED9F /* Gifu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0007E16723809E9C000FED9F /* Demo-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				0007E16823809E9C000FED9F /* AppDelegate.swift */,
+				0007E16A23809E9C000FED9F /* ViewController.swift */,
+				0007E17423809E9D000FED9F /* Info.plist */,
+				0007E17823809EEF000FED9F /* Supporting Files */,
+			);
+			path = "Demo-tvOS";
+			sourceTree = "<group>";
+		};
+		0007E17823809EEF000FED9F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0007E1952381978A000FED9F /* mugen.gif */,
+				0007E16C23809E9C000FED9F /* Main.storyboard */,
+				0007E16F23809E9D000FED9F /* Assets.xcassets */,
+				0007E17123809E9D000FED9F /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0007E18D2380A6DE000FED9F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0007E192238193E1000FED9F /* Gifu.framework */,
+				0007E18E2380A6DE000FED9F /* Gifu.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9D98822E19BC69CA00B790C6 = {
 			isa = PBXGroup;
 			children = (
-				001AC55B1FFA6C630079ED58 /* Gifu.framework */,
+				9D98823919BC69CA00B790C6 /* Demo-iOS */,
+				0007E16723809E9C000FED9F /* Demo-tvOS */,
 				9D98823819BC69CA00B790C6 /* Products */,
-				9D98823919BC69CA00B790C6 /* Source */,
+				0007E18D2380A6DE000FED9F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		9D98823819BC69CA00B790C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9D98823719BC69CA00B790C6 /* Demo.app */,
+				9D98823719BC69CA00B790C6 /* Gifu-iOSDemo.app */,
+				0007E16623809E9C000FED9F /* Demo-tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9D98823919BC69CA00B790C6 /* Source */ = {
+		9D98823919BC69CA00B790C6 /* Demo-iOS */ = {
 			isa = PBXGroup;
 			children = (
 				9D98823A19BC69CA00B790C6 /* Supporting Files */,
@@ -91,15 +143,12 @@
 				00DD26EA1DA5968500A0F683 /* EmptyViewController.swift */,
 				00B2B8171E1DAB1C00A50D91 /* UIImageViewExtension.swift */,
 			);
-			path = Source;
+			path = "Demo-iOS";
 			sourceTree = "<group>";
 		};
 		9D98823A19BC69CA00B790C6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				007380221B279644008DAD5C /* Default-568h@2x.png */,
-				9D25870519BCCB0F00A55A18 /* Info.plist */,
-				0009FCE61D16A4AB0038DC85 /* earth.gif */,
 				002A1BFB1D1624D0005ABBD0 /* mugen.gif */,
 			);
 			path = "Supporting Files";
@@ -108,22 +157,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9D98823619BC69CA00B790C6 /* Demo */ = {
+		0007E16523809E9C000FED9F /* Demo-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9D98825319BC69CA00B790C6 /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildConfigurationList = 0007E17723809E9D000FED9F /* Build configuration list for PBXNativeTarget "Demo-tvOS" */;
+			buildPhases = (
+				0007E16223809E9C000FED9F /* Sources */,
+				0007E16323809E9C000FED9F /* Frameworks */,
+				0007E16423809E9C000FED9F /* Resources */,
+				0007E18023809FE5000FED9F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Demo-tvOS";
+			productName = "Gifu-tvOSDemo";
+			productReference = 0007E16623809E9C000FED9F /* Demo-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9D98823619BC69CA00B790C6 /* Demo-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D98825319BC69CA00B790C6 /* Build configuration list for PBXNativeTarget "Demo-iOS" */;
 			buildPhases = (
 				9D98823319BC69CA00B790C6 /* Sources */,
 				9D98823419BC69CA00B790C6 /* Frameworks */,
-				001AC5591FFA6C180079ED58 /* Copy Frameworks */,
 				9D98823519BC69CA00B790C6 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Demo;
+			name = "Demo-iOS";
 			productName = "gifu-demo";
-			productReference = 9D98823719BC69CA00B790C6 /* Demo.app */;
+			productReference = 9D98823719BC69CA00B790C6 /* Gifu-iOSDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -132,10 +198,15 @@
 		9D98822F19BC69CA00B790C6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Kaishin & Co";
 				TargetAttributes = {
+					0007E16523809E9C000FED9F = {
+						CreatedOnToolsVersion = 11.2.1;
+						DevelopmentTeam = 5G38N4D8G2;
+						ProvisioningStyle = Automatic;
+					};
 					9D98823619BC69CA00B790C6 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 5G38N4D8G2;
@@ -157,21 +228,31 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9D98823619BC69CA00B790C6 /* Demo */,
+				9D98823619BC69CA00B790C6 /* Demo-iOS */,
+				0007E16523809E9C000FED9F /* Demo-tvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0007E16423809E9C000FED9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0007E17323809E9D000FED9F /* LaunchScreen.storyboard in Resources */,
+				0007E1962381978A000FED9F /* mugen.gif in Resources */,
+				0007E17023809E9D000FED9F /* Assets.xcassets in Resources */,
+				0007E16E23809E9C000FED9F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9D98823519BC69CA00B790C6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0009FCE71D16A4AB0038DC85 /* earth.gif in Resources */,
 				9D98824419BC69CA00B790C6 /* Images.xcassets in Resources */,
 				002A1BFC1D1624D0005ABBD0 /* mugen.gif in Resources */,
 				0032FE841FFA693500444203 /* LaunchScreen.storyboard in Resources */,
-				007380231B279644008DAD5C /* Default-568h@2x.png in Resources */,
 				9D98825A19BC69F600B790C6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,6 +260,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0007E16223809E9C000FED9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0007E16B23809E9C000FED9F /* ViewController.swift in Sources */,
+				0007E16923809E9C000FED9F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9D98823319BC69CA00B790C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -191,7 +281,82 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		0007E16C23809E9C000FED9F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0007E16D23809E9C000FED9F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0007E17123809E9D000FED9F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0007E17223809E9D000FED9F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		0007E17523809E9D000FED9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5G38N4D8G2;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Demo-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.redalemeden.Gifu-tvOSDemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
+			};
+			name = Debug;
+		};
+		0007E17623809E9D000FED9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5G38N4D8G2;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Demo-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.redalemeden.Gifu-tvOSDemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
+			};
+			name = Release;
+		};
 		9D98825119BC69CA00B790C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -297,45 +462,52 @@
 		9D98825419BC69CA00B790C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5G38N4D8G2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Demo-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu.demo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.redalemeden.Gifu-iOSDemo";
+				PRODUCT_NAME = "Gifu-iOSDemo";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		9D98825519BC69CA00B790C6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5G38N4D8G2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Demo-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu.demo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.redalemeden.Gifu-iOSDemo";
+				PRODUCT_NAME = "Gifu-iOSDemo";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0007E17723809E9D000FED9F /* Build configuration list for PBXNativeTarget "Demo-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0007E17523809E9D000FED9F /* Debug */,
+				0007E17623809E9D000FED9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9D98823219BC69CA00B790C6 /* Build configuration list for PBXProject "Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -345,7 +517,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9D98825319BC69CA00B790C6 /* Build configuration list for PBXNativeTarget "Demo" */ = {
+		9D98825319BC69CA00B790C6 /* Build configuration list for PBXNativeTarget "Demo-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D98825419BC69CA00B790C6 /* Debug */,

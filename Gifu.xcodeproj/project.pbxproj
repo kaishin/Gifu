@@ -20,21 +20,6 @@
 		00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8C7951A3650EE00C188E7 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00BF42CC1D99A1DC00C6F28D /* GIFAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */; };
 		00DD26EE1DA9643800A0F683 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD26ED1DA9643800A0F683 /* UIImageView.swift */; };
-		71E8B2E620387D830037BA62 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E8B2DD20387D830037BA62 /* Gifu.framework */; };
-		71E8B2ED20387D830037BA62 /* Gifu-tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 71E8B2DF20387D830037BA62 /* Gifu-tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		71E8B2F420387D8E0037BA62 /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */; };
-		71E8B2F520387D8E0037BA62 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00978B6B1D9C6D2A00A6575F /* Animator.swift */; };
-		71E8B2F620387D8E0037BA62 /* FrameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EC1A6F14D6008A0ED1 /* FrameStore.swift */; };
-		71E8B2F720387D8E0037BA62 /* GIFAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */; };
-		71E8B2F820387D8E0037BA62 /* GIFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005656EE1A6F1C26008A0ED1 /* GIFImageView.swift */; };
-		71E8B2F920387D910037BA62 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007E08431BD95E6200883D0C /* Array.swift */; };
-		71E8B2FA20387D910037BA62 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BD1431BBC93C800FC982B /* CGSize.swift */; };
-		71E8B2FB20387D910037BA62 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImage.swift */; };
-		71E8B2FC20387D910037BA62 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD26ED1DA9643800A0F683 /* UIImageView.swift */; };
-		71E8B2FD20387D950037BA62 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */; };
-		71E8B30220387E1E0037BA62 /* nailed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 71E8B30020387E1E0037BA62 /* nailed.gif */; };
-		71E8B30320387E1E0037BA62 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 71E8B30120387E1E0037BA62 /* mugen.gif */; };
-		71E8B30420387ED70037BA62 /* Gifu-tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E8B2CE20387CE60037BA62 /* Gifu-tvOSTests.swift */; };
 		EAF49C7F1A3A4DE000B395DF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImage.swift */; };
 		EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */; };
 /* End PBXBuildFile section */
@@ -46,13 +31,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 00B8C73D1A364DA400C188E7;
 			remoteInfo = Gifu;
-		};
-		71E8B2E720387D830037BA62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00B8C7351A364DA400C188E7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 71E8B2DC20387D830037BA62;
-			remoteInfo = "Gifu-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -73,15 +51,6 @@
 		00B8C7951A3650EE00C188E7 /* Gifu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gifu.h; sourceTree = "<group>"; };
 		00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFAnimatable.swift; sourceTree = "<group>"; };
 		00DD26ED1DA9643800A0F683 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		71E8B2B82038784C0037BA62 /* Gifu-tvOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Gifu-tvOS-Info.plist"; path = "/Users/gruppionim/Documents/Developer/Github/Gifu/Gifu-tvOS-Info.plist"; sourceTree = "<absolute>"; };
-		71E8B2CE20387CE60037BA62 /* Gifu-tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gifu-tvOSTests.swift"; sourceTree = "<group>"; };
-		71E8B2D020387CE60037BA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71E8B2DD20387D830037BA62 /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gifu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		71E8B2DF20387D830037BA62 /* Gifu-tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gifu-tvOS.h"; sourceTree = "<group>"; };
-		71E8B2E020387D830037BA62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71E8B2E520387D830037BA62 /* Gifu-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gifu-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		71E8B30020387E1E0037BA62 /* nailed.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = nailed.gif; sourceTree = "<group>"; };
-		71E8B30120387E1E0037BA62 /* mugen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mugen.gif; sourceTree = "<group>"; };
 		EAF49C7E1A3A4DE000B395DF /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,24 +71,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		71E8B2D920387D830037BA62 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71E8B2E220387D830037BA62 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				71E8B2E620387D830037BA62 /* Gifu.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0007E1E52381AADB000FED9F /* Gifu */ = {
+			isa = PBXGroup;
+			children = (
+				007E08421BD95C6100883D0C /* Classes */,
+				007E08401BD95BE900883D0C /* Extensions */,
+				007E08411BD95C0200883D0C /* Helpers */,
+			);
+			path = Gifu;
+			sourceTree = "<group>";
+		};
 		0036ABBA1BBD1D1700C6CC3D /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,26 +124,23 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		009BD1371BBC7F6500FC982B /* GifuTests */ = {
+		009BD1371BBC7F6500FC982B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				0036ABBA1BBD1D1700C6CC3D /* Images */,
 				009BD1381BBC7F6500FC982B /* GifuTests.swift */,
 				009BD13A1BBC7F6500FC982B /* Info.plist */,
 			);
-			path = GifuTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		00B8C7341A364DA400C188E7 = {
 			isa = PBXGroup;
 			children = (
-				009BD1371BBC7F6500FC982B /* GifuTests */,
-				71E8B2CD20387CE60037BA62 /* Gifu-tvOSTests */,
-				71E8B2DE20387D830037BA62 /* Gifu-tvOS */,
+				00B8C75A1A364DBE00C188E7 /* Sources */,
+				009BD1371BBC7F6500FC982B /* Tests */,
 				00B8C73F1A364DA400C188E7 /* Products */,
-				00B8C75A1A364DBE00C188E7 /* Source */,
 				00B8C7411A364DA400C188E7 /* Supporting Files */,
-				71E8B2B82038784C0037BA62 /* Gifu-tvOS-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -188,8 +149,6 @@
 			children = (
 				00B8C73E1A364DA400C188E7 /* Gifu.framework */,
 				009BD1361BBC7F6500FC982B /* GifuTests.xctest */,
-				71E8B2DD20387D830037BA62 /* Gifu.framework */,
-				71E8B2E520387D830037BA62 /* Gifu-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,45 +161,14 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		00B8C75A1A364DBE00C188E7 /* Source */ = {
+		00B8C75A1A364DBE00C188E7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				007E08421BD95C6100883D0C /* Classes */,
-				007E08401BD95BE900883D0C /* Extensions */,
-				007E08411BD95C0200883D0C /* Helpers */,
+				0007E1E52381AADB000FED9F /* Gifu */,
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
-		};
-		71E8B2CD20387CE60037BA62 /* Gifu-tvOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				71E8B2FF20387E1E0037BA62 /* Images */,
-				71E8B2CE20387CE60037BA62 /* Gifu-tvOSTests.swift */,
-				71E8B2D020387CE60037BA62 /* Info.plist */,
-			);
-			path = "Gifu-tvOSTests";
-			sourceTree = "<group>";
-		};
-		71E8B2DE20387D830037BA62 /* Gifu-tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				71E8B2DF20387D830037BA62 /* Gifu-tvOS.h */,
-				71E8B2E020387D830037BA62 /* Info.plist */,
-			);
-			path = "Gifu-tvOS";
-			sourceTree = "<group>";
-		};
-		71E8B2FF20387E1E0037BA62 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				71E8B30020387E1E0037BA62 /* nailed.gif */,
-				71E8B30120387E1E0037BA62 /* mugen.gif */,
-			);
-			name = Images;
-			path = GifuTests/Images;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -250,14 +178,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71E8B2DA20387D830037BA62 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				71E8B2ED20387D830037BA62 /* Gifu-tvOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,42 +221,6 @@
 			productReference = 00B8C73E1A364DA400C188E7 /* Gifu.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		71E8B2DC20387D830037BA62 /* Gifu-tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 71E8B2EE20387D830037BA62 /* Build configuration list for PBXNativeTarget "Gifu-tvOS" */;
-			buildPhases = (
-				71E8B2D820387D830037BA62 /* Sources */,
-				71E8B2D920387D830037BA62 /* Frameworks */,
-				71E8B2DA20387D830037BA62 /* Headers */,
-				71E8B2DB20387D830037BA62 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Gifu-tvOS";
-			productName = "Gifu-tvOS";
-			productReference = 71E8B2DD20387D830037BA62 /* Gifu.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		71E8B2E420387D830037BA62 /* Gifu-tvOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 71E8B2F120387D830037BA62 /* Build configuration list for PBXNativeTarget "Gifu-tvOSTests" */;
-			buildPhases = (
-				71E8B2E120387D830037BA62 /* Sources */,
-				71E8B2E220387D830037BA62 /* Frameworks */,
-				71E8B2E320387D830037BA62 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				71E8B2E820387D830037BA62 /* PBXTargetDependency */,
-			);
-			name = "Gifu-tvOSTests";
-			productName = "Gifu-tvOSTests";
-			productReference = 71E8B2E520387D830037BA62 /* Gifu-tvOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -349,22 +233,14 @@
 				TargetAttributes = {
 					009BD1351BBC7F6500FC982B = {
 						CreatedOnToolsVersion = 7.0.1;
-						LastSwiftMigration = 0900;
+						DevelopmentTeam = 5G38N4D8G2;
+						LastSwiftMigration = 1120;
+						ProvisioningStyle = Automatic;
 					};
 					00B8C73D1A364DA400C188E7 = {
 						CreatedOnToolsVersion = 6.1.1;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Manual;
-					};
-					71E8B2DC20387D830037BA62 = {
-						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
-						ProvisioningStyle = Automatic;
-					};
-					71E8B2E420387D830037BA62 = {
-						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -383,8 +259,6 @@
 			targets = (
 				00B8C73D1A364DA400C188E7 /* Gifu */,
 				009BD1351BBC7F6500FC982B /* GifuTests */,
-				71E8B2DC20387D830037BA62 /* Gifu-tvOS */,
-				71E8B2E420387D830037BA62 /* Gifu-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -403,22 +277,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71E8B2DB20387D830037BA62 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71E8B2E320387D830037BA62 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				71E8B30220387E1E0037BA62 /* nailed.gif in Resources */,
-				71E8B30320387E1E0037BA62 /* mugen.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,31 +325,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		71E8B2D820387D830037BA62 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				71E8B2FD20387D950037BA62 /* ImageSourceHelpers.swift in Sources */,
-				71E8B2F820387D8E0037BA62 /* GIFImageView.swift in Sources */,
-				71E8B2FC20387D910037BA62 /* UIImageView.swift in Sources */,
-				71E8B2FB20387D910037BA62 /* UIImage.swift in Sources */,
-				71E8B2F520387D8E0037BA62 /* Animator.swift in Sources */,
-				71E8B2F620387D8E0037BA62 /* FrameStore.swift in Sources */,
-				71E8B2FA20387D910037BA62 /* CGSize.swift in Sources */,
-				71E8B2F920387D910037BA62 /* Array.swift in Sources */,
-				71E8B2F720387D8E0037BA62 /* GIFAnimatable.swift in Sources */,
-				71E8B2F420387D8E0037BA62 /* AnimatedFrame.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71E8B2E120387D830037BA62 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				71E8B30420387ED70037BA62 /* Gifu-tvOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -500,43 +333,50 @@
 			target = 00B8C73D1A364DA400C188E7 /* Gifu */;
 			targetProxy = 009BD13C1BBC7F6500FC982B /* PBXContainerItemProxy */;
 		};
-		71E8B2E820387D830037BA62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 71E8B2DC20387D830037BA62 /* Gifu-tvOS */;
-			targetProxy = 71E8B2E720387D830037BA62 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		009BD13E1BBC7F6500FC982B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5G38N4D8G2;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = GifuTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.GifuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		009BD13F1BBC7F6500FC982B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5G38N4D8G2;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = GifuTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.GifuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -668,8 +508,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
@@ -691,118 +533,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.kaishin.gifu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		71E8B2EF20387D830037BA62 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Gifu-tvOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "co.kaishin.gifu.Gifu-tvOS";
-				PRODUCT_NAME = Gifu;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
-			};
-			name = Debug;
-		};
-		71E8B2F020387D830037BA62 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Gifu-tvOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "co.kaishin.gifu.Gifu-tvOS";
-				PRODUCT_NAME = Gifu;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
-			};
-			name = Release;
-		};
-		71E8B2F220387D830037BA62 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Gifu-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "co.kaishin.gifu.Gifu-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
-			};
-			name = Debug;
-		};
-		71E8B2F320387D830037BA62 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Gifu-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "co.kaishin.gifu.Gifu-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};
@@ -832,24 +566,6 @@
 			buildConfigurations = (
 				00B8C7551A364DA500C188E7 /* Debug */,
 				00B8C7561A364DA500C188E7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		71E8B2EE20387D830037BA62 /* Build configuration list for PBXNativeTarget "Gifu-tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				71E8B2EF20387D830037BA62 /* Debug */,
-				71E8B2F020387D830037BA62 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		71E8B2F120387D830037BA62 /* Build configuration list for PBXNativeTarget "Gifu-tvOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				71E8B2F220387D830037BA62 /* Debug */,
-				71E8B2F320387D830037BA62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
