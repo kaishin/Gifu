@@ -3,7 +3,7 @@ test-ios:
 	xcodebuild test \
 		-project Gifu.xcodeproj \
 		-scheme Gifu \
-		-destination platform="iOS Simulator,name=iPhone 11,OS=13.2.2" \
+		-destination platform="iOS Simulator,name=iPhone 11,OS=13.1" \
 		| xcpretty
 
 test-tvos:
@@ -11,5 +11,5 @@ test-tvos:
 	xcodebuild test \
 		-project Gifu.xcodeproj \
 		-scheme Gifu-tvOS \
-		-destination platform="tvOS Simulator,name=Apple TV,OS=13.2" \
+		-destination platform="tvOS Simulator,name=Apple TV,OS=13.1" \
 		| xcpretty
