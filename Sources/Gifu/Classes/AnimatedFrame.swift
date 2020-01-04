@@ -1,4 +1,4 @@
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 /// Represents a single frame in a GIF.
 struct AnimatedFrame {

@@ -1,4 +1,4 @@
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 
 /// Responsible for parsing GIF data and decoding the individual frames.
