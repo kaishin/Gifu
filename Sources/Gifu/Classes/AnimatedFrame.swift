@@ -28,5 +28,4 @@ struct AnimatedFrame {
     return AnimatedFrame(image: newImage, duration: duration)
   }
 }
-
 #endif
