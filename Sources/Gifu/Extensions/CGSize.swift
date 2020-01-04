@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 import UIKit
 extension CGSize {
@@ -39,3 +40,4 @@ extension CGSize {
     }
   }
 }
+#endif

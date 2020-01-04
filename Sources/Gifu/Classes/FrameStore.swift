@@ -1,3 +1,4 @@
+#if os(iOS)
 import ImageIO
 import UIKit
 
@@ -258,3 +259,4 @@ private extension FrameStore {
     animatedFrames = []
   }
 }
+#endif

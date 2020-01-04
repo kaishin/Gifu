@@ -1,3 +1,4 @@
+#if os(iOS)
 import ImageIO
 import MobileCoreServices
 import UIKit
@@ -68,3 +69,4 @@ extension CGImageSource {
     return imageProperties[String(kCGImagePropertyGIFDictionary)] as? GIFProperties
   }
 }
+#endif

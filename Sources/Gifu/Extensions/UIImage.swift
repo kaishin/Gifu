@@ -1,3 +1,4 @@
+#if os(iOS)
 import UIKit
 /// A `UIImage` extension that makes it easier to resize the image and inspect its size.
 extension UIImage {
@@ -48,3 +49,4 @@ extension UIImage {
     return UIImage(data: data)?.size
   }
 }
+#endif

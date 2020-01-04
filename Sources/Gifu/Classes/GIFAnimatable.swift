@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 import UIKit
 
@@ -205,3 +206,4 @@ extension GIFAnimatable {
     layer.setNeedsDisplay()
   }
 }
+#endif
