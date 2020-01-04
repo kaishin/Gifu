@@ -1,3 +1,4 @@
+#if os(iOS)
 import UIKit
 /// Represents a single frame in a GIF.
 struct AnimatedFrame {
@@ -27,4 +28,4 @@ struct AnimatedFrame {
     return AnimatedFrame(image: newImage, duration: duration)
   }
 }
-
+#endif

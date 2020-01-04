@@ -1,3 +1,4 @@
+#if os(iOS)
 import UIKit
 
 /// Responsible for parsing GIF data and decoding the individual frames.
@@ -193,3 +194,4 @@ fileprivate class DisplayLinkProxy {
   /// Lets the target update the frame if needed.
   @objc func onScreenUpdate() { target?.updateFrameIfNeeded() }
 }
+#endif
