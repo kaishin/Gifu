@@ -1,3 +1,4 @@
+#if os(iOS)
 import XCTest
 import ImageIO
 @testable import Gifu
@@ -96,3 +97,4 @@ private func testImageDataNamed(_ name: String) -> Data {
   let imagePath = testBundle.bundleURL.appendingPathComponent(name)
   return (try! Data(contentsOf: imagePath))
 }
+#endif
