@@ -18,8 +18,8 @@ extension UIImage {
   ///
   /// - parameter size: The constraining size of the image.
   /// - returns: A new resized image instance.
-  func constrained(by size: CGSize) -> UIImage {
-    let newSize = size.constrained(by: size)
+  func constrained(by constrainingSize: CGSize) -> UIImage {
+    let newSize = size.constrained(by: constrainingSize)
     return resized(to: newSize)
   }
 
@@ -27,8 +27,8 @@ extension UIImage {
   ///
   /// - parameter size: The constraining size of the image.
   /// - returns: A new resized image instance.
-  func filling(size: CGSize) -> UIImage {
-    let newSize = size.filling(size)
+  func filling(size fillingSize: CGSize) -> UIImage {
+    let newSize = size.filling(fillingSize)
     return resized(to: newSize)
   }
 
