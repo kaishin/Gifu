@@ -12,7 +12,7 @@ public class GIFImageView: UIImageView, GIFAnimatable {
   ///
   /// - parameter layer: The delegated layer.
   override public func display(_ layer: CALayer) {
-    if super.responds(to: #selector(display(_:))) {
+    if UIImageView.instancesRespond(to: #selector(display(_:))) {
         super.display(layer)
     }
     updateImageIfNeeded()
