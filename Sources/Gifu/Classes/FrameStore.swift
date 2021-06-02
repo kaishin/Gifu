@@ -80,6 +80,8 @@ class FrameStore {
     return imageSource.isAnimatedGIF
   }
 
+  private let lock = NSLock()
+
   /// Creates an animator instance from raw GIF image data and an `Animatable` delegate.
   ///
   /// - parameter data: The raw GIF image data.
@@ -97,7 +99,9 @@ class FrameStore {
   /// Loads the frames from an image source, resizes them, then caches them in `animatedFrames`.
   func prepareFrames(_ completionHandler: (() -> Void)? = nil) {
     frameCount = Int(CGImageSourceGetCount(imageSource))
+    lock.lock()
     animatedFrames.reserveCapacity(frameCount)
+    lock.unlock()
     preloadFrameQueue.async {
       self.setupAnimatedFrames()
       completionHandler?()
@@ -109,6 +113,8 @@ class FrameStore {
   /// - parameter index: The index of the frame.
   /// - returns: An optional image at a given frame.
   func frame(at index: Int) -> UIImage? {
+    lock.lock()
+    defer { lock.unlock() }
     return animatedFrames[safe: index]?.image
   }
 
@@ -117,7 +123,9 @@ class FrameStore {
   /// - parameter index: The index of the duration.
   /// - returns: The duration of the given frame.
   func duration(at index: Int) -> TimeInterval {
-  return animatedFrames[safe: index]?.duration ?? TimeInterval.infinity
+    lock.lock()
+    defer { lock.unlock() }
+    return animatedFrames[safe: index]?.duration ?? TimeInterval.infinity
   }
 
   /// Checks whether the frame should be changed and calls a handler with the results.
@@ -168,13 +176,25 @@ private extension FrameStore {
   /// Updates the frames by preloading new ones and replacing the previous frame with a placeholder.
   func updatePreloadedFrames() {
     if !preloadingIsNeeded { return }
+    lock.lock()
     animatedFrames[previousFrameIndex] = animatedFrames[previousFrameIndex].placeholderFrame
+    lock.unlock()
 
-    preloadIndexes(withStartingIndex: currentFrameIndex).forEach { index in
-      let currentAnimatedFrame = animatedFrames[index]
-      if !currentAnimatedFrame.isPlaceholder { return }
-      animatedFrames[index] = currentAnimatedFrame.makeAnimatedFrame(with: loadFrame(at: index))
+    for index in preloadIndexes(withStartingIndex: currentFrameIndex) {
+      loadFrameAtIndexIfNeeded(index)
     }
+  }
+
+  func loadFrameAtIndexIfNeeded(_ index: Int) {
+    let frame: AnimatedFrame
+    lock.lock()
+    frame = animatedFrames[index]
+    lock.unlock()
+    if !frame.isPlaceholder { return }
+    let loadedFrame = frame.makeAnimatedFrame(with: loadFrame(at: index))
+    lock.lock()
+    animatedFrames[index] = loadedFrame
+    lock.unlock()
   }
 
   /// Increments the `timeSinceLastFrameChange` property with a given duration.
@@ -243,12 +263,14 @@ private extension FrameStore {
       var duration: TimeInterval = 0
         
       (0..<frameCount).forEach { index in
+          lock.lock()
           let frameDuration = CGImageFrameDuration(with: imageSource, atIndex: index)
           duration += min(frameDuration, maxTimeStep)
           animatedFrames += [AnimatedFrame(image: nil, duration: frameDuration)]
-            
+          lock.unlock()
+
           if index > bufferFrameCount { return }
-          animatedFrames[index] = animatedFrames[index].makeAnimatedFrame(with: loadFrame(at: index))
+          loadFrameAtIndexIfNeeded(index)
       }
         
       self.loopDuration = duration
