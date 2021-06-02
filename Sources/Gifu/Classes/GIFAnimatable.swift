@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 
 /// The protocol that view classes need to conform to to enable animated GIF support.
-public protocol GIFAnimatable: class {
+public protocol GIFAnimatable: AnyObject {
   /// Responsible for managing the animation frames.
   var animator: Animator? { get set }
 
