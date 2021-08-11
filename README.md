@@ -127,6 +127,7 @@ extension UIImageView: GIFAnimatable {
 ~~~
 
 ### Examples
+#### UIKit
 
 The simplest way to get started is initializing a `GIFAnimatable` class in code or in a storyboard, then calling `animate(:)` on it.
 
@@ -164,6 +165,34 @@ If you are using a `GIFAnimatable` class in a table or collection view, you can 
 override func prepareForReuse() {
   super.prepareForReuse()
   imageView.prepareForReuse()
+}
+~~~
+#### SwiftUI
+In SwiftUI, you'll have to wrap the UIKit View in a UIViewRepresentable Object and lower the compression resistance.
+~~~swift
+import Gifu
+import SwiftUI
+import UIKit
+
+public struct GifView: UIViewRepresentable {
+  let imageName: String
+
+  public func makeUIView(context: UIViewRepresentableContext<GifView>)
+    -> GIFImageView
+  {
+    let imageView = GIFImageView()
+    imageView.animate(withGIFNamed: imageName)
+    imageView.contentMode = .scaleAspectFit
+    imageView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+    return imageView
+  }
+
+  public func updateUIView(
+    _ uiView: GIFImageView,
+    context: UIViewRepresentableContext<GifView>
+  ) {
+  }
 }
 ~~~
 
