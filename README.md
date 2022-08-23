@@ -169,7 +169,7 @@ override func prepareForReuse() {
 
 ### Demo App
 
-Clone or download the repository and open `Gifu.xcworkspace` to check out the demo app.
+Clone or download the repository and open `Demo/Demo.xcworkspace` to check out the demo app.
 
 ## Documentation
 
