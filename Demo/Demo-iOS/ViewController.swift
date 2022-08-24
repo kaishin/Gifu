@@ -23,11 +23,10 @@ class ViewController: UIViewController {
   }
 
   @IBAction func swapImage(_ sender: AnyObject) {
-    switch currentGIFName {
-    case "mugen":
-      currentGIFName = "earth"
-    default:
-      currentGIFName = "mugen"
+    let gifs = ["mugen", "earth", "nailed"]
+    if let index = gifs.firstIndex(of: currentGIFName) {
+      let nextIndex = (index + 1) % gifs.count
+      currentGIFName = gifs[nextIndex]
     }
   }
 
@@ -40,7 +39,7 @@ class ViewController: UIViewController {
   }
 
   func animate() {
-    imageView.animate(withGIFNamed: currentGIFName, animationBlock:  {
+    imageView.animate(withGIFNamed: currentGIFName, preparationBlock:  {
       DispatchQueue.main.async {
         self.imageDataLabel.text = self.currentGIFName.capitalized + " (\(self.imageView.frameCount) frames / \(String(format: "%.2f", self.imageView.gifLoopDuration))s)"
       }
