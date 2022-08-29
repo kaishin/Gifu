@@ -20,6 +20,7 @@
 		00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8C7951A3650EE00C188E7 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00BF42CC1D99A1DC00C6F28D /* GIFAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */; };
 		00DD26EE1DA9643800A0F683 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD26ED1DA9643800A0F683 /* UIImageView.swift */; };
+		A5D726EA28B53D6400821347 /* earth.gif in Resources */ = {isa = PBXBuildFile; fileRef = A5D726E928B53D6400821347 /* earth.gif */; };
 		EAF49C7F1A3A4DE000B395DF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImage.swift */; };
 		EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		00BF42CB1D99A1DC00C6F28D /* GIFAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFAnimatable.swift; sourceTree = "<group>"; };
 		00C50CFB2392BA9900CBE23C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		00DD26ED1DA9643800A0F683 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		A5D726E928B53D6400821347 /* earth.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = earth.gif; sourceTree = "<group>"; };
 		EAF49C7E1A3A4DE000B395DF /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 		0036ABBA1BBD1D1700C6CC3D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A5D726E928B53D6400821347 /* earth.gif */,
 				0036ABB61BBD1D0B00C6CC3D /* mugen.gif */,
 				0036ABB81BBD1D1400C6CC3D /* nailed.gif */,
 			);
@@ -271,6 +274,7 @@
 			files = (
 				0036ABB71BBD1D0B00C6CC3D /* mugen.gif in Resources */,
 				0036ABB91BBD1D1400C6CC3D /* nailed.gif in Resources */,
+				A5D726EA28B53D6400821347 /* earth.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
