@@ -43,6 +43,8 @@ class ViewController: UIViewController {
       DispatchQueue.main.async {
         self.imageDataLabel.text = self.currentGIFName.capitalized + " (\(self.imageView.frameCount) frames / \(String(format: "%.2f", self.imageView.gifLoopDuration))s)"
       }
+    }, loopBlock: {
+        print("Loop finished")
     })
   }
 }

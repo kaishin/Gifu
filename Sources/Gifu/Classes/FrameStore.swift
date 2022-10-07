@@ -7,8 +7,11 @@ class FrameStore {
 
   /// Total duration of one animation loop
   var loopDuration: TimeInterval = 0
-    
-  /// Flag indicating if number of loops has been reached
+
+  /// Flag indicating that a single loop has finished
+  var isLoopFinished: Bool = false
+
+  /// Flag indicating if number of loops has been reached (never true for infinite loop)
   var isFinished: Bool = false
     
   /// Desired number of loops, <= 0 for infinite loop
@@ -212,10 +215,16 @@ private extension FrameStore {
   /// Increments the `currentFrameIndex` property.
   func incrementCurrentFrameIndex() {
     currentFrameIndex = increment(frameIndex: currentFrameIndex)
-    if isLastLoop(loopIndex: currentLoop) && isLastFrame(frameIndex: currentFrameIndex) {
+    if isLastFrame(frameIndex: currentFrameIndex) {
+      isLoopFinished = true
+      if isLastLoop(loopIndex: currentLoop) {
         isFinished = true
-    } else if currentFrameIndex == 0 {
+      }
+    } else {
+      isLoopFinished = false
+      if currentFrameIndex == 0 {
         currentLoop = currentLoop + 1
+      }
     }
   }
 
