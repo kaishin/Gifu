@@ -164,7 +164,7 @@ private extension FrameStore {
       switch self.contentMode {
       case .scaleAspectFit: scaledImage = image.constrained(by: size)
       case .scaleAspectFill: scaledImage = image.filling(size: size)
-      default: scaledImage = image.resized(to: size)
+      default: scaledImage = size != .zero ? image.resized(to: size) : nil
       }
     } else {
       scaledImage = image
