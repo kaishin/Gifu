@@ -23,8 +23,12 @@ public class Animator {
 
   /// A delegate responsible for displaying the GIF frames.
   private weak var delegate: GIFAnimatable!
-    
+
+  /// Callback for when all the loops of the animation are done (never called for infinite loops)
   private var animationBlock: (() -> Void)? = nil
+
+  /// Callback for when a loop is done (at the end of each loop)
+  private var loopBlock: (() -> Void)? = nil
 
   /// Responsible for starting and stopping the animation.
   private lazy var displayLink: CADisplayLink = { [unowned self] in
@@ -65,7 +69,12 @@ public class Animator {
     }
     
     store.shouldChangeFrame(with: displayLink.duration) {
-      if $0 { delegate.animatorHasNewFrame() }
+      if $0 {
+          delegate.animatorHasNewFrame()
+          if store.isLoopFinished, let loopBlock = loopBlock {
+              loopBlock()
+          }
+      }
     }
   }
 
@@ -136,9 +145,12 @@ public class Animator {
   /// - parameter size: The target size of the individual frames.
   /// - parameter contentMode: The view content mode to use for the individual frames.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
-  /// - parameter completionHandler: Completion callback function
-  func animate(withGIFNamed imageName: String, size: CGSize, contentMode: UIView.ContentMode, loopCount: Int = 0, preparationBlock: (() -> Void)? = nil, animationBlock: (() -> Void)? = nil) {
+  /// - parameter preparationBlock: Callback for when preparation is done
+  /// - parameter animationBlock: Callback for when all the loops of the animation are done (never called for infinite loops)
+  /// - parameter loopBlock: Callback for when a loop is done (at the end of each loop)
+  func animate(withGIFNamed imageName: String, size: CGSize, contentMode: UIView.ContentMode, loopCount: Int = 0, preparationBlock: (() -> Void)? = nil, animationBlock: (() -> Void)? = nil, loopBlock: (() -> Void)? = nil) {
     self.animationBlock = animationBlock
+    self.loopBlock = loopBlock
     prepareForAnimation(withGIFNamed: imageName,
                         size: size,
                         contentMode: contentMode,
@@ -153,9 +165,12 @@ public class Animator {
   /// - parameter size: The target size of the individual frames.
   /// - parameter contentMode: The view content mode to use for the individual frames.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
-  /// - parameter completionHandler: Completion callback function
-  func animate(withGIFData imageData: Data, size: CGSize, contentMode: UIView.ContentMode, loopCount: Int = 0, preparationBlock: (() -> Void)? = nil, animationBlock: (() -> Void)? = nil)  {
+  /// - parameter preparationBlock: Callback for when preparation is done
+  /// - parameter animationBlock: Callback for when all the loops of the animation are done (never called for infinite loops)
+  /// - parameter loopBlock: Callback for when a loop is done (at the end of each loop)
+  func animate(withGIFData imageData: Data, size: CGSize, contentMode: UIView.ContentMode, loopCount: Int = 0, preparationBlock: (() -> Void)? = nil, animationBlock: (() -> Void)? = nil, loopBlock: (() -> Void)? = nil)  {
     self.animationBlock = animationBlock
+    self.loopBlock = loopBlock
     prepareForAnimation(withGIFData: imageData,
                         size: size,
                         contentMode: contentMode,

@@ -90,6 +90,61 @@ class GifuTests: XCTestCase {
       }
     }
   }
+
+  func testFinishedStates() {
+    animator = Animator(withDelegate: delegate)
+    animator.prepareForAnimation(withGIFData: imageData, size: staticImage.size, contentMode: .scaleToFill, loopCount: 2)
+
+    XCTAssertNotNil(animator.frameStore)
+    guard let store = animator.frameStore else { return }
+
+    let expectation = self.expectation(description: "testFinishedStatesAreSetCorrectly")
+
+    store.prepareFrames {
+      let animatedFrameCount = store.animatedFrames.count
+      XCTAssertEqual(store.currentFrameIndex, 0)
+
+      // Animate through all the frames (first loop)
+      for frame in 1..<animatedFrameCount {
+        XCTAssertFalse(store.isLoopFinished)
+        XCTAssertFalse(store.isFinished)
+        store.shouldChangeFrame(with: 1.0) { hasNewFrame in
+          XCTAssertTrue(hasNewFrame)
+          XCTAssertEqual(store.currentFrameIndex, frame)
+        }
+      }
+
+      XCTAssertTrue(store.isLoopFinished, "First loop should be finished")
+      XCTAssertFalse(store.isFinished, "Animation should not be finished yet")
+
+      store.shouldChangeFrame(with: 1.0) { hasNewFrame in
+        XCTAssertTrue(hasNewFrame)
+      }
+
+      XCTAssertEqual(store.currentFrameIndex, 0)
+
+      // Animate through all the frames (second loop)
+      for frame in 1..<animatedFrameCount {
+        XCTAssertFalse(store.isLoopFinished)
+        XCTAssertFalse(store.isFinished)
+        store.shouldChangeFrame(with: 1.0) { hasNewFrame in
+          XCTAssertTrue(hasNewFrame)
+          XCTAssertEqual(store.currentFrameIndex, frame)
+        }
+      }
+
+      XCTAssertTrue(store.isLoopFinished, "Second loop should be finished")
+      XCTAssertTrue(store.isFinished, "Animation should be finished (loopCount: 2)")
+
+      expectation.fulfill()
+    }
+
+    waitForExpectations(timeout: 1.0) { error in
+      if let error = error {
+        print("Error: \(error.localizedDescription)")
+      }
+    }
+  }
 }
 
 private func testImageDataNamed(_ name: String) -> Data {
