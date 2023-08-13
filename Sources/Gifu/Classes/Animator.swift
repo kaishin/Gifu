@@ -131,6 +131,8 @@ public class Animator {
   func startAnimating() {
     if frameStore?.isAnimatable ?? false {
       displayLink.isPaused = false
+    } else {
+      delegate.animatorHasNewFrame()
     }
   }
 
