@@ -23,6 +23,9 @@ public class Animator {
 
   /// A delegate responsible for displaying the GIF frames.
   private weak var delegate: GIFAnimatable!
+    
+  /// Callback for when preparation is done
+  private var preparationBlock: (() -> Void)? = nil
 
   /// Callback for when all the loops of the animation are done (never called for infinite loops)
   private var animationBlock: (() -> Void)? = nil
@@ -132,7 +135,22 @@ public class Animator {
     if frameStore?.isAnimatable ?? false {
       displayLink.isPaused = false
     } else {
-      delegate.animatorHasNewFrame()
+      let block = preparationBlock
+      preparationBlock = { [weak self] in
+        block?()
+          
+        self?.showSingleFrameImage()
+      }
+      
+      showSingleFrameImage()
+    }
+  }
+
+  // Use when source not animatable.
+  private func showSingleFrameImage() {
+    DispatchQueue.main.async { [self] in
+      var container = delegate as? ImageContainer
+      container?.image = frameStore?.currentFrameImage
     }
   }
 
@@ -151,13 +169,16 @@ public class Animator {
   /// - parameter animationBlock: Callback for when all the loops of the animation are done (never called for infinite loops)
   /// - parameter loopBlock: Callback for when a loop is done (at the end of each loop)
   func animate(withGIFNamed imageName: String, size: CGSize, contentMode: UIView.ContentMode, loopCount: Int = 0, preparationBlock: (() -> Void)? = nil, animationBlock: (() -> Void)? = nil, loopBlock: (() -> Void)? = nil) {
+    self.preparationBlock = preparationBlock
     self.animationBlock = animationBlock
     self.loopBlock = loopBlock
     prepareForAnimation(withGIFNamed: imageName,
                         size: size,
                         contentMode: contentMode,
                         loopCount: loopCount,
-                        completionHandler: preparationBlock)
+                        completionHandler: { [weak self] in
+                          self?.preparationBlock?()
+                        })
     startAnimating()
   }
 
@@ -171,13 +192,16 @@ public class Animator {
   /// - parameter animationBlock: Callback for when all the loops of the animation are done (never called for infinite loops)
   /// - parameter loopBlock: Callback for when a loop is done (at the end of each loop)
   func animate(withGIFData imageData: Data, size: CGSize, contentMode: UIView.ContentMode, loopCount: Int = 0, preparationBlock: (() -> Void)? = nil, animationBlock: (() -> Void)? = nil, loopBlock: (() -> Void)? = nil)  {
+    self.preparationBlock = preparationBlock
     self.animationBlock = animationBlock
     self.loopBlock = loopBlock
     prepareForAnimation(withGIFData: imageData,
                         size: size,
                         contentMode: contentMode,
                         loopCount: loopCount,
-                        completionHandler: preparationBlock)
+                        completionHandler: { [weak self] in
+                          self?.preparationBlock?()
+                        })
     startAnimating()
   }
 
