@@ -58,7 +58,7 @@ There are two options that should cover any situation:
 
 The bread and butter of Gifu. Through protocol extensions, `GIFAnimatable` exposes all the APIs of the library, and with very little boilerplate, any class can conform to it.
 
-~~~swift
+```swift
 class MyImageView: UIImageView, GIFAnimatable {
   public lazy var animator: Animator? = {
     return Animator(withDelegate: self)
@@ -68,7 +68,7 @@ class MyImageView: UIImageView, GIFAnimatable {
     updateImageIfNeeded()
   }
 }
-~~~
+```
 
 That's it. Now `MyImageView` has access to all these methods and properties:
 
@@ -81,7 +81,7 @@ That's it. Now `MyImageView` has access to all these methods and properties:
 
 Furthermore, you can make any class GIF-animatable, starting with `UIView` subclasses:
 
-~~~swift
+```swift
 class CustomAnimatedView: UIView, GIFAnimatable {
   public lazy var animator: Animator? = {
     return Animator(withDelegate: self)
@@ -91,11 +91,11 @@ class CustomAnimatedView: UIView, GIFAnimatable {
     updateImageIfNeeded()
   }
 }
-~~~
+```
 
 You can also make `UIKit` classes conform using associated objects may you wish:
 
-~~~swift
+```swift
 import UIKit
 import Gifu
 
@@ -124,22 +124,22 @@ extension UIImageView: GIFAnimatable {
     }
   }
 }
-~~~
+```
 
 ### Examples
 
 The simplest way to get started is initializing a `GIFAnimatable` class in code or in a storyboard, then calling `animate(:)` on it.
 
-~~~swift
+```swift
 let imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
 imageView.animate(withGIFNamed: "mugen") {
   print("It's animating!")
 }
-~~~
+```
 
 You can also prepare for the animation when the view loads and only start animating after a user interaction.
 
-~~~swift
+```swift
 // In your view controller..
 
 override func viewDidLoad() {
@@ -156,16 +156,16 @@ override func viewDidLoad() {
     imageView.startAnimatingGIF()
   }
 }
-~~~
+```
 
 If you are using a `GIFAnimatable` class in a table or collection view, you can call the `prepareForReuse()` method in your cell subclass:
 
-~~~swift
+```swift
 override func prepareForReuse() {
   super.prepareForReuse()
   imageView.prepareForReuse()
 }
-~~~
+```
 
 ### Demo App
 
