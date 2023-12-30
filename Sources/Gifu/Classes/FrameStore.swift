@@ -33,7 +33,7 @@ class FrameStore {
   let contentMode: UIView.ContentMode
 
   /// Maximum number of frames to load at once
-  let bufferFrameCount: Int
+  let frameBufferSize: Int
 
   /// The total number of frames in the GIF.
   var frameCount = 0
@@ -89,12 +89,12 @@ class FrameStore {
   ///
   /// - parameter data: The raw GIF image data.
   /// - parameter delegate: An `Animatable` delegate.
-  init(data: Data, size: CGSize, contentMode: UIView.ContentMode, framePreloadCount: Int, loopCount: Int) {
+  init(data: Data, size: CGSize, contentMode: UIView.ContentMode, frameBufferSize: Int, loopCount: Int) {
     let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse] as CFDictionary
     self.imageSource = CGImageSourceCreateWithData(data as CFData, options) ?? CGImageSourceCreateIncremental(options)
     self.size = size
     self.contentMode = contentMode
-    self.bufferFrameCount = framePreloadCount
+    self.frameBufferSize = frameBufferSize
     self.loopCount = loopCount
   }
 
@@ -150,8 +150,8 @@ class FrameStore {
 
 private extension FrameStore {
   /// Whether preloading is needed or not.
-  var preloadingIsNeeded: Bool {
-    return bufferFrameCount < frameCount - 1
+  var isPreloadingNeeded: Bool {
+    return frameBufferSize < frameCount - 1
   }
 
   /// Optionally loads a single frame from an image source, resizes it if required, then returns an `UIImage`.
@@ -178,7 +178,9 @@ private extension FrameStore {
 
   /// Updates the frames by preloading new ones and replacing the previous frame with a placeholder.
   func updatePreloadedFrames() {
-    if !preloadingIsNeeded { return }
+    guard isPreloadingNeeded
+    else { return }
+
     lock.lock()
     animatedFrames[previousFrameIndex] = animatedFrames[previousFrameIndex].placeholderFrame
     lock.unlock()
@@ -257,7 +259,7 @@ private extension FrameStore {
   /// - returns: An array of indexes to preload.
   func preloadIndexes(withStartingIndex index: Int) -> [Int] {
     let nextIndex = increment(frameIndex: index)
-    let lastIndex = increment(frameIndex: index, by: bufferFrameCount)
+    let lastIndex = increment(frameIndex: index, by: frameBufferSize)
 
     if lastIndex >= nextIndex {
       return [Int](nextIndex...lastIndex)
@@ -278,7 +280,7 @@ private extension FrameStore {
           animatedFrames += [AnimatedFrame(image: nil, duration: frameDuration)]
           lock.unlock()
 
-          if index > bufferFrameCount { return }
+          if index > frameBufferSize { return }
           loadFrameAtIndexIfNeeded(index)
       }
         
