@@ -10,7 +10,7 @@ public class Animator {
   }
     
   /// Number of frame to buffer.
-  var frameBufferCount = 50
+  var frameBufferSize = 50
 
   /// Specifies whether GIF frames should be resized.
   var shouldResizeFrames = false
@@ -109,7 +109,7 @@ public class Animator {
     frameStore = FrameStore(data: imageData,
                             size: size,
                             contentMode: contentMode,
-                            framePreloadCount: frameBufferCount,
+                            framePreloadCount: frameBufferSize,
                             loopCount: loopCount)
     frameStore!.shouldResizeFrames = shouldResizeFrames
     frameStore!.prepareFrames(completionHandler)
