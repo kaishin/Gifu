@@ -41,6 +41,7 @@ class ViewController: UIViewController {
   }
 
   func animate() {
+    imageView.setFrameBufferSize(1)
     imageView.animate(withGIFNamed: currentGIFName, preparationBlock:  {
       DispatchQueue.main.async {
         self.imageDataLabel.text = self.currentGIFName.capitalized + " (\(self.imageView.frameCount) frames / \(String(format: "%.2f", self.imageView.gifLoopDuration))s)"

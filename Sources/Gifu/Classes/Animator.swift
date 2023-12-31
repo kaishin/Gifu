@@ -60,6 +60,7 @@ public class Animator {
   /// Checks if there is a new frame to display.
   fileprivate func updateFrameIfNeeded() {
     guard let store = frameStore else { return }
+    
     if store.isFinished {
         stopAnimating()
         if let animationBlock = animationBlock {
@@ -109,7 +110,7 @@ public class Animator {
     frameStore = FrameStore(data: imageData,
                             size: size,
                             contentMode: contentMode,
-                            framePreloadCount: frameBufferSize,
+                            frameBufferSize: frameBufferSize,
                             loopCount: loopCount)
     frameStore!.shouldResizeFrames = shouldResizeFrames
     frameStore!.prepareFrames(completionHandler)
