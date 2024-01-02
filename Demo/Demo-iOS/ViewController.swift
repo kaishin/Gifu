@@ -61,12 +61,8 @@ class ViewController: UIViewController {
 }
 
 class Memory: NSObject {
-  // From Quinn the Eskimo at Apple.
   // https://forums.developer.apple.com/thread/105088#357415
-
   class func memoryFootprint() -> Int? {
-    // The `TASK_VM_INFO_COUNT` and `TASK_VM_INFO_REV1_COUNT` macros are too
-    // complex for the Swift C importer, so we have to define them ourselves.
     let TASK_VM_INFO_COUNT = mach_msg_type_number_t(MemoryLayout<task_vm_info_data_t>.size / MemoryLayout<integer_t>.size)
     let TASK_VM_INFO_REV1_COUNT = mach_msg_type_number_t(MemoryLayout.offset(of: \task_vm_info_data_t.min_address)! / MemoryLayout<integer_t>.size)
 
