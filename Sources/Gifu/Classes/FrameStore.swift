@@ -166,17 +166,6 @@ class FrameStore {
   }
 }
 
-extension UIImage {
-  var memorySize: Int {
-    guard let cgImage = self.cgImage else { return 0 }
-    let instanceSize = MemoryLayout<UIImage>.size(ofValue: self)
-    let pixmapSize = cgImage.height * cgImage.bytesPerRow
-    let totalSize = instanceSize + pixmapSize
-    return totalSize
-  }
-}
-
-
 private extension FrameStore {
   /// Optionally loads a single frame from an image source, resizes it if required, then returns an `UIImage`.
   ///
@@ -322,12 +311,25 @@ private extension FrameStore {
       loadFrameAtIndexIfNeeded(index)
     }
 
+    if #available(iOSApplicationExtension 15.0, *) {
+      print(#function, "Cache:", totalFrameCacheSize.formatted(.byteCount(style: .memory)))
+    }
+
     self.loopDuration = duration
   }
 
   /// Reset animated frames.
   func resetAnimatedFrames() {
     animatedFrames = []
+  }
+
+  private var totalFrameCacheSize: Int {
+    animatedFrames
+      .filter({ !$0.isPlaceholder })
+      .compactMap(\.image)
+      .reduce(0) { size, image in
+        size + image.memorySize
+      }
   }
 }
 #endif
