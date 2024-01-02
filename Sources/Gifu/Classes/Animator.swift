@@ -8,7 +8,7 @@ public class Animator {
   var loopDuration: TimeInterval {
     return frameStore?.loopDuration ?? 0
   }
-    
+
   /// Number of frame to buffer.
   var frameBufferSize = 50
 
@@ -60,21 +60,21 @@ public class Animator {
   /// Checks if there is a new frame to display.
   fileprivate func updateFrameIfNeeded() {
     guard let store = frameStore else { return }
-    
+
     if store.isFinished {
-        stopAnimating()
-        if let animationBlock = animationBlock {
-            animationBlock()
-        }
-        return
+      stopAnimating()
+      if let animationBlock = animationBlock {
+        animationBlock()
+      }
+      return
     }
-    
+
     store.shouldChangeFrame(with: displayLink.duration) {
       if $0 {
-          delegate.animatorHasNewFrame()
-          if store.isLoopFinished, let loopBlock = loopBlock {
-              loopBlock()
-          }
+        delegate.animatorHasNewFrame()
+        if store.isLoopFinished, let loopBlock = loopBlock {
+          loopBlock()
+        }
       }
     }
   }
@@ -89,8 +89,8 @@ public class Animator {
   /// - parameter completionHandler: Completion callback function
   func prepareForAnimation(withGIFNamed imageName: String, inBundle bundle: Bundle = .main, size: CGSize, contentMode: UIView.ContentMode, loopCount: Int = 0, completionHandler: (() -> Void)? = nil) {
     guard let extensionRemoved = imageName.components(separatedBy: ".")[safe: 0],
-      let imagePath = bundle.url(forResource: extensionRemoved, withExtension: "gif"),
-      let data = try? Data(contentsOf: imagePath) else { return }
+          let imagePath = bundle.url(forResource: extensionRemoved, withExtension: "gif"),
+          let data = try? Data(contentsOf: imagePath) else { return }
 
     prepareForAnimation(withGIFData: data,
                         size: size,
