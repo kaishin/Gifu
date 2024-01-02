@@ -12,12 +12,13 @@
 		0007E16E23809E9C000FED9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0007E16C23809E9C000FED9F /* Main.storyboard */; };
 		0007E17023809E9D000FED9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0007E16F23809E9D000FED9F /* Assets.xcassets */; };
 		0007E17323809E9D000FED9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0007E17123809E9D000FED9F /* LaunchScreen.storyboard */; };
-		0007E18F2380A6DE000FED9F /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E18E2380A6DE000FED9F /* Gifu.framework */; };
 		0007E193238193E1000FED9F /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E192238193E1000FED9F /* Gifu.framework */; };
 		0007E194238193E1000FED9F /* Gifu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E192238193E1000FED9F /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0007E1962381978A000FED9F /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0007E1952381978A000FED9F /* mugen.gif */; };
 		002A1BFC1D1624D0005ABBD0 /* mugen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 002A1BFB1D1624D0005ABBD0 /* mugen.gif */; };
 		0032FE841FFA693500444203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0032FE831FFA693500444203 /* LaunchScreen.storyboard */; };
+		006795B42B43B49400D8C798 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E18E2380A6DE000FED9F /* Gifu.framework */; };
+		006795B52B43B49400D8C798 /* Gifu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0007E18E2380A6DE000FED9F /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		00DD26EB1DA5968500A0F683 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD26EA1DA5968500A0F683 /* EmptyViewController.swift */; };
 		9D98823D19BC69CA00B790C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823C19BC69CA00B790C6 /* AppDelegate.swift */; };
 		9D98823F19BC69CA00B790C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823E19BC69CA00B790C6 /* ViewController.swift */; };
@@ -35,6 +36,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				0007E194238193E1000FED9F /* Gifu.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		006795B62B43B49400D8C798 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				006795B52B43B49400D8C798 /* Gifu.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0007E18F2380A6DE000FED9F /* Gifu.framework in Frameworks */,
+				006795B42B43B49400D8C798 /* Gifu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +200,7 @@
 				9D98823319BC69CA00B790C6 /* Sources */,
 				9D98823419BC69CA00B790C6 /* Frameworks */,
 				9D98823519BC69CA00B790C6 /* Resources */,
+				006795B62B43B49400D8C798 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,7 +228,7 @@
 					};
 					9D98823619BC69CA00B790C6 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 5G38N4D8G2;
+						DevelopmentTeam = HCTW65QDC4;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
@@ -474,12 +487,13 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5G38N4D8G2;
+				DEVELOPMENT_TEAM = HCTW65QDC4;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.redalemeden.Gifu-iOSDemo";
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = net.4rays.Gifu.Demo;
 				PRODUCT_NAME = "Gifu-iOSDemo";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -492,12 +506,13 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5G38N4D8G2;
+				DEVELOPMENT_TEAM = HCTW65QDC4;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.redalemeden.Gifu-iOSDemo";
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = net.4rays.Gifu.Demo;
 				PRODUCT_NAME = "Gifu-iOSDemo";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
