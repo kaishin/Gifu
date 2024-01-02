@@ -43,7 +43,7 @@ class FrameStore {
   var frameBufferSize: Int {
     switch cachingStrategy {
     case .cacheNext(let size): size
-    case .cacheAll: 10
+    case .cacheAll: 10 // Default to 10 when purging frames is disabled
     }
   }
 
@@ -309,10 +309,6 @@ private extension FrameStore {
 
       if index > frameBufferSize { return }
       loadFrameAtIndexIfNeeded(index)
-    }
-
-    if #available(iOSApplicationExtension 15.0, *) {
-      print(#function, "Cache:", totalFrameCacheSize.formatted(.byteCount(style: .memory)))
     }
 
     self.loopDuration = duration
