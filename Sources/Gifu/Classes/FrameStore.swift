@@ -4,6 +4,13 @@ import UIKit
 
 /// Responsible for storing and updating the frames of a single GIF.
 class FrameStore {
+  enum FrameCachingStrategy: Equatable {
+    case keepUpcoming(Int)
+    case keepAll
+  }
+
+  /// The caching strategy to use for frames
+  var cachingStrategy: FrameCachingStrategy
 
   /// Total duration of one animation loop
   var loopDuration: TimeInterval = 0
@@ -13,13 +20,13 @@ class FrameStore {
 
   /// Flag indicating if number of loops has been reached (never true for infinite loop)
   var isFinished: Bool = false
-    
+
   /// Desired number of loops, <= 0 for infinite loop
   let loopCount: Int
-    
+
   /// Index of current loop
   var currentLoop = 0
-    
+
   /// Maximum duration to increment the frame timer with.
   let maxTimeStep = 1.0
 
@@ -32,8 +39,14 @@ class FrameStore {
   /// The content mode to use when resizing.
   let contentMode: UIView.ContentMode
 
-  /// Maximum number of frames to load at once
-  let bufferFrameCount: Int
+  /// Maximum number of upcoming frames to pre-load.
+  /// Defaults to 10 when all frames are cached indefinitely.
+  var frameBufferSize: Int {
+    switch cachingStrategy {
+    case .keepUpcoming(let size): size
+    case .keepAll: 10
+    }
+  }
 
   /// The total number of frames in the GIF.
   var frameCount = 0
@@ -52,7 +65,7 @@ class FrameStore {
   var previousFrameIndex = 0 {
     didSet {
       preloadFrameQueue.async {
-        self.updatePreloadedFrames()
+        self.updateFrameCache()
       }
     }
   }
@@ -62,7 +75,7 @@ class FrameStore {
 
   /// Specifies whether GIF frames should be resized.
   var shouldResizeFrames = true
-  
+
   /// Dispatch queue used for preloading images.
   private lazy var preloadFrameQueue: DispatchQueue = {
     return DispatchQueue(label: "co.kaishin.Gifu.preloadQueue")
@@ -89,12 +102,18 @@ class FrameStore {
   ///
   /// - parameter data: The raw GIF image data.
   /// - parameter delegate: An `Animatable` delegate.
-  init(data: Data, size: CGSize, contentMode: UIView.ContentMode, framePreloadCount: Int, loopCount: Int) {
+  init(
+    data: Data,
+    size: CGSize,
+    contentMode: UIView.ContentMode,
+    frameBufferSize: Int,
+    loopCount: Int
+  ) {
     let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse] as CFDictionary
     self.imageSource = CGImageSourceCreateWithData(data as CFData, options) ?? CGImageSourceCreateIncremental(options)
     self.size = size
     self.contentMode = contentMode
-    self.bufferFrameCount = framePreloadCount
+    self.cachingStrategy = frameBufferSize > 0 ? .keepUpcoming(frameBufferSize) : .keepAll
     self.loopCount = loopCount
   }
 
@@ -149,17 +168,14 @@ class FrameStore {
 }
 
 private extension FrameStore {
-  /// Whether preloading is needed or not.
-  var preloadingIsNeeded: Bool {
-    return bufferFrameCount < frameCount - 1
-  }
-
   /// Optionally loads a single frame from an image source, resizes it if required, then returns an `UIImage`.
   ///
   /// - parameter index: The index of the frame to load.
   /// - returns: An optional `UIImage` instance.
   func loadFrame(at index: Int) -> UIImage? {
-    guard let imageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil) else { return nil }
+    guard let imageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil)
+    else { return nil }
+
     let image = UIImage(cgImage: imageRef)
     let scaledImage: UIImage?
 
@@ -177,24 +193,53 @@ private extension FrameStore {
   }
 
   /// Updates the frames by preloading new ones and replacing the previous frame with a placeholder.
-  func updatePreloadedFrames() {
-    if !preloadingIsNeeded { return }
-    lock.lock()
-    animatedFrames[previousFrameIndex] = animatedFrames[previousFrameIndex].placeholderFrame
-    lock.unlock()
+  func updateFrameCache() {
+    if case let .keepUpcoming(size) = cachingStrategy,
+       size < frameCount - 1 {
+      deleteCachedFrame(at: previousFrameIndex)
+    }
 
-    for index in preloadIndexes(withStartingIndex: currentFrameIndex) {
+    cacheUpcomingFramesIfNeeded()
+  }
+
+  func deleteCachedFrame(at index: Int) {
+    lock.lock()
+    animatedFrames[index] = animatedFrames[index].placeholderFrame
+    lock.unlock()
+  }
+
+  func cacheUpcomingFramesIfNeeded() {
+    guard animatedFrames.filter(\.isPlaceholder).count > 0
+    else { return }
+
+    func indexesToCache(startingAt index: Int) -> [Int] {
+      let nextIndex = increment(frameIndex: index)
+      let lastIndex = increment(frameIndex: index, by: frameBufferSize)
+
+      if lastIndex >= nextIndex {
+        return [Int](nextIndex...lastIndex)
+      } else {
+        return [Int](nextIndex..<frameCount) + [Int](0...lastIndex)
+      }
+    }
+
+    for index in indexesToCache(startingAt: currentFrameIndex) {
       loadFrameAtIndexIfNeeded(index)
     }
   }
 
   func loadFrameAtIndexIfNeeded(_ index: Int) {
     let frame: AnimatedFrame
+
     lock.lock()
     frame = animatedFrames[index]
     lock.unlock()
-    if !frame.isPlaceholder { return }
+
+    guard frame.isPlaceholder
+    else { return }
+
     let loadedFrame = frame.makeAnimatedFrame(with: loadFrame(at: index))
+
     lock.lock()
     animatedFrames[index] = loadedFrame
     lock.unlock()
@@ -207,7 +252,7 @@ private extension FrameStore {
     timeSinceLastFrameChange += min(maxTimeStep, duration)
   }
 
-  /// Ensures that `timeSinceLastFrameChange` remains accurate after each frame change by substracting the `currentFrameDuration`.
+  /// Ensures that `timeSinceLastFrameChange` remains accurate after each frame change by subtracting the `currentFrameDuration`.
   func resetTimeSinceLastFrameChange() {
     timeSinceLastFrameChange -= currentFrameDuration
   }
@@ -250,44 +295,38 @@ private extension FrameStore {
   func isLastLoop(loopIndex: Int) -> Bool {
     return loopIndex == loopCount - 1
   }
-    
-  /// Returns the indexes of the frames to preload based on a starting frame index.
-  ///
-  /// - parameter index: Starting index.
-  /// - returns: An array of indexes to preload.
-  func preloadIndexes(withStartingIndex index: Int) -> [Int] {
-    let nextIndex = increment(frameIndex: index)
-    let lastIndex = increment(frameIndex: index, by: bufferFrameCount)
 
-    if lastIndex >= nextIndex {
-      return [Int](nextIndex...lastIndex)
-    } else {
-      return [Int](nextIndex..<frameCount) + [Int](0...lastIndex)
-    }
-  }
-    
   func setupAnimatedFrames() {
-      resetAnimatedFrames()
-        
-      var duration: TimeInterval = 0
-        
-      (0..<frameCount).forEach { index in
-          lock.lock()
-          let frameDuration = CGImageFrameDuration(with: imageSource, atIndex: index)
-          duration += min(frameDuration, maxTimeStep)
-          animatedFrames += [AnimatedFrame(image: nil, duration: frameDuration)]
-          lock.unlock()
+    resetAnimatedFrames()
 
-          if index > bufferFrameCount { return }
-          loadFrameAtIndexIfNeeded(index)
-      }
-        
-      self.loopDuration = duration
+    var duration: TimeInterval = 0
+
+    (0..<frameCount).forEach { index in
+      lock.lock()
+      let frameDuration = CGImageFrameDuration(with: imageSource, atIndex: index)
+      duration += min(frameDuration, maxTimeStep)
+      animatedFrames += [AnimatedFrame(image: nil, duration: frameDuration)]
+      lock.unlock()
+
+      if index > frameBufferSize { return }
+      loadFrameAtIndexIfNeeded(index)
+    }
+
+    self.loopDuration = duration
   }
 
   /// Reset animated frames.
   func resetAnimatedFrames() {
     animatedFrames = []
+  }
+
+  private var totalFrameCacheSize: Int {
+    animatedFrames
+      .filter({ !$0.isPlaceholder })
+      .compactMap(\.image)
+      .reduce(0) { size, image in
+        size + image.memorySize
+      }
   }
 }
 #endif
