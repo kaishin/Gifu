@@ -1,4 +1,4 @@
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 /// A `UIImage` extension that makes it easier to resize the image and inspect its size.
 extension UIImage {
