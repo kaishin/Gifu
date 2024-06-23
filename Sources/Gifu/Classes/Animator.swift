@@ -63,16 +63,14 @@ public class Animator {
 
     if store.isFinished {
       stopAnimating()
-      if let animationBlock = animationBlock {
-        animationBlock()
-      }
+      animationBlock?()
       return
     }
 
     store.shouldChangeFrame(with: displayLink.duration) {
       if $0 {
         delegate.animatorHasNewFrame()
-        if store.isLoopFinished, let loopBlock = loopBlock {
+        if store.isLoopFinished, let loopBlock {
           loopBlock()
         }
       }

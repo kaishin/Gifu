@@ -4,9 +4,13 @@ import UIKit
 
 /// Responsible for storing and updating the frames of a single GIF.
 class FrameStore {
+  /// The strategy to use for frame cache.
   enum FrameCachingStrategy: Equatable {
-    case keepUpcoming(Int)
-    case keepAll
+    // Cache only a given number of upcoming frames.
+    case cacheUpcoming(Int)
+
+    // Cache all frames.
+    case cacheAll
   }
 
   /// The caching strategy to use for frames
@@ -39,12 +43,12 @@ class FrameStore {
   /// The content mode to use when resizing.
   let contentMode: UIView.ContentMode
 
-  /// Maximum number of upcoming frames to pre-load.
+  /// Maximum number of upcoming frames to keep in the cache.
   /// Defaults to 10 when all frames are cached indefinitely.
   var frameBufferSize: Int {
     switch cachingStrategy {
-    case .keepUpcoming(let size): size
-    case .keepAll: 10
+    case .cacheUpcoming(let size): size
+    case .cacheAll: 10
     }
   }
 
@@ -113,7 +117,7 @@ class FrameStore {
     self.imageSource = CGImageSourceCreateWithData(data as CFData, options) ?? CGImageSourceCreateIncremental(options)
     self.size = size
     self.contentMode = contentMode
-    self.cachingStrategy = frameBufferSize > 0 ? .keepUpcoming(frameBufferSize) : .keepAll
+    self.cachingStrategy = frameBufferSize > 0 ? .cacheUpcoming(frameBufferSize) : .cacheAll
     self.loopCount = loopCount
   }
 
@@ -194,7 +198,7 @@ private extension FrameStore {
 
   /// Updates the frames by preloading new ones and replacing the previous frame with a placeholder.
   func updateFrameCache() {
-    if case let .keepUpcoming(size) = cachingStrategy,
+    if case let .cacheUpcoming(size) = cachingStrategy,
        size < frameCount - 1 {
       deleteCachedFrame(at: previousFrameIndex)
     }
