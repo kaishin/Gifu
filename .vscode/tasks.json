@@ -1,0 +1,22 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Refresh Build Server",
+      "detail": "Refresh the Xcode Build Server configuration",
+      "type": "shell",
+      "command": "xcode-build-server config -scheme Gifu -project Gifu.xcodeproj",
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "revealProblems": "onProblem",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+  ]
+}

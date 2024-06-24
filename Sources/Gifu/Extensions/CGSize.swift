@@ -1,6 +1,6 @@
-#if os(iOS) || os(tvOS) || os(visionOS)
 import Foundation
 import UIKit
+
 extension CGSize {
   /// Calculates the aspect ratio of the size.
   ///
@@ -40,4 +40,3 @@ extension CGSize {
     }
   }
 }
-#endif

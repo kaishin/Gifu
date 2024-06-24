@@ -1,4 +1,3 @@
-#if os(iOS) || os(tvOS) || os(visionOS)
 import ImageIO
 import MobileCoreServices
 import UIKit
@@ -25,12 +24,13 @@ private let minFrameDuration: Double = 0.1
 /// - returns: A frame duration.
 func CGImageFrameDuration(with imageSource: CGImageSource, atIndex index: Int) -> TimeInterval {
   guard imageSource.isAnimatedGIF else { return 0.0 }
-  
+
   // Return nil, if the properties do not store a FrameDuration or FrameDuration <= 0
   guard let GIFProperties = imageSource.properties(at: index),
-        let duration = frameDuration(with: GIFProperties),
-        duration > 0 else { return defaultFrameDuration }
-  
+    let duration = frameDuration(with: GIFProperties),
+    duration > 0
+  else { return defaultFrameDuration }
+
   return capDuration(with: duration)
 }
 
@@ -47,16 +47,18 @@ func capDuration(with duration: Double) -> Double {
 /// - returns: A frame duration.
 func frameDuration(with properties: GIFProperties) -> Double? {
   guard let unclampedDelayTime = properties[String(kCGImagePropertyGIFUnclampedDelayTime)],
-        let delayTime = properties[String(kCGImagePropertyGIFDelayTime)]
+    let delayTime = properties[String(kCGImagePropertyGIFDelayTime)]
   else { return nil }
-  
+
   return duration(withUnclampedTime: unclampedDelayTime, andClampedTime: delayTime)
 }
 
 /// Calculates frame duration based on both clamped and unclamped times.
 ///
 /// - returns: A frame duration.
-func duration(withUnclampedTime unclampedDelayTime: Double, andClampedTime delayTime: Double) -> Double? {
+func duration(withUnclampedTime unclampedDelayTime: Double, andClampedTime delayTime: Double)
+  -> Double?
+{
   let delayArray = [unclampedDelayTime, delayTime]
   return delayArray.filter({ $0 >= 0 }).first
 }
@@ -71,15 +73,20 @@ extension CGImageSource {
     let imageCount = CGImageSourceGetCount(self)
     return isTypeGIF != false && imageCount > 1
   }
-  
+
   /// Returns the GIF properties at a specific index.
   ///
   /// - parameter index: The index of the GIF properties to retrieve.
   /// - returns: A dictionary containing the GIF properties at the passed in index.
   func properties(at index: Int) -> GIFProperties? {
-    guard let imageProperties = CGImageSourceCopyPropertiesAtIndex(self, index, nil) as? [String: AnyObject] else { return nil }
+    guard
+      let imageProperties = CGImageSourceCopyPropertiesAtIndex(
+        self,
+        index,
+        nil
+      ) as? [String: AnyObject]
+    else { return nil }
+
     return imageProperties[String(kCGImagePropertyGIFDictionary)] as? GIFProperties
   }
 }
-
-#endif
