@@ -1,4 +1,3 @@
-#if os(iOS) || os(tvOS) || os(visionOS)
 import ImageIO
 import UIKit
 
@@ -114,7 +113,9 @@ class FrameStore {
     loopCount: Int
   ) {
     let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse] as CFDictionary
-    self.imageSource = CGImageSourceCreateWithData(data as CFData, options) ?? CGImageSourceCreateIncremental(options)
+    self.imageSource =
+      CGImageSourceCreateWithData(data as CFData, options)
+      ?? CGImageSourceCreateIncremental(options)
     self.size = size
     self.contentMode = contentMode
     self.cachingStrategy = frameBufferSize > 0 ? .cacheUpcoming(frameBufferSize) : .cacheAll
@@ -171,12 +172,12 @@ class FrameStore {
   }
 }
 
-private extension FrameStore {
+extension FrameStore {
   /// Optionally loads a single frame from an image source, resizes it if required, then returns an `UIImage`.
   ///
   /// - parameter index: The index of the frame to load.
   /// - returns: An optional `UIImage` instance.
-  func loadFrame(at index: Int) -> UIImage? {
+  fileprivate func loadFrame(at index: Int) -> UIImage? {
     guard let imageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil)
     else { return nil }
 
@@ -197,22 +198,23 @@ private extension FrameStore {
   }
 
   /// Updates the frames by preloading new ones and replacing the previous frame with a placeholder.
-  func updateFrameCache() {
+  fileprivate func updateFrameCache() {
     if case let .cacheUpcoming(size) = cachingStrategy,
-       size < frameCount - 1 {
+      size < frameCount - 1
+    {
       deleteCachedFrame(at: previousFrameIndex)
     }
 
     cacheUpcomingFramesIfNeeded()
   }
 
-  func deleteCachedFrame(at index: Int) {
+  fileprivate func deleteCachedFrame(at index: Int) {
     lock.lock()
     animatedFrames[index] = animatedFrames[index].placeholderFrame
     lock.unlock()
   }
 
-  func cacheUpcomingFramesIfNeeded() {
+  fileprivate func cacheUpcomingFramesIfNeeded() {
     guard animatedFrames.filter(\.isPlaceholder).count > 0
     else { return }
 
@@ -232,7 +234,7 @@ private extension FrameStore {
     }
   }
 
-  func loadFrameAtIndexIfNeeded(_ index: Int) {
+  fileprivate func loadFrameAtIndexIfNeeded(_ index: Int) {
     let frame: AnimatedFrame
 
     lock.lock()
@@ -252,17 +254,17 @@ private extension FrameStore {
   /// Increments the `timeSinceLastFrameChange` property with a given duration.
   ///
   /// - parameter duration: An `NSTimeInterval` value to increment the `timeSinceLastFrameChange` property with.
-  func incrementTimeSinceLastFrameChange(with duration: TimeInterval) {
+  fileprivate func incrementTimeSinceLastFrameChange(with duration: TimeInterval) {
     timeSinceLastFrameChange += min(maxTimeStep, duration)
   }
 
   /// Ensures that `timeSinceLastFrameChange` remains accurate after each frame change by subtracting the `currentFrameDuration`.
-  func resetTimeSinceLastFrameChange() {
+  fileprivate func resetTimeSinceLastFrameChange() {
     timeSinceLastFrameChange -= currentFrameDuration
   }
 
   /// Increments the `currentFrameIndex` property.
-  func incrementCurrentFrameIndex() {
+  fileprivate func incrementCurrentFrameIndex() {
     currentFrameIndex = increment(frameIndex: currentFrameIndex)
     if isLastFrame(frameIndex: currentFrameIndex) {
       isLoopFinished = true
@@ -282,25 +284,25 @@ private extension FrameStore {
   /// - parameter index: The `Int` value to increment.
   /// - parameter byValue: The `Int` value to increment with.
   /// - returns: A new `Int` value.
-  func increment(frameIndex: Int, by value: Int = 1) -> Int {
+  fileprivate func increment(frameIndex: Int, by value: Int = 1) -> Int {
     return (frameIndex + value) % frameCount
   }
 
   /// Indicates if current frame is the last one.
   /// - parameter frameIndex: Index of current frame.
   /// - returns: True if current frame is the last one.
-  func isLastFrame(frameIndex: Int) -> Bool {
+  fileprivate func isLastFrame(frameIndex: Int) -> Bool {
     return frameIndex == frameCount - 1
   }
 
   /// Indicates if current loop is the last one. Always false for infinite loops.
   /// - parameter loopIndex: Index of current loop.
   /// - returns: True if current loop is the last one.
-  func isLastLoop(loopIndex: Int) -> Bool {
+  fileprivate func isLastLoop(loopIndex: Int) -> Bool {
     return loopIndex == loopCount - 1
   }
 
-  func setupAnimatedFrames() {
+  fileprivate func setupAnimatedFrames() {
     resetAnimatedFrames()
 
     var duration: TimeInterval = 0
@@ -320,7 +322,7 @@ private extension FrameStore {
   }
 
   /// Reset animated frames.
-  func resetAnimatedFrames() {
+  fileprivate func resetAnimatedFrames() {
     animatedFrames = []
   }
 
@@ -333,4 +335,3 @@ private extension FrameStore {
       }
   }
 }
-#endif
