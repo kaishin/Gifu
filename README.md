@@ -1,9 +1,8 @@
 # ![Logo](https://github.com/kaishin/Gifu/raw/master/header.gif)
 
 ![Test](https://github.com/kaishin/Gifu/workflows/Test/badge.svg)
-[![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg)](https://github.com/kaishin/Gifu/releases/latest)  [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg)](https://github.com/kaishin/Gifu/releases/latest) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20tvOS-lightgrey.svg)
-
 
 Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It's also a [prefecture in Japan](https://goo.gl/maps/CCeAc)).
 
@@ -26,7 +25,7 @@ let package = Package(
 - Add the following to your Cartfile: `github "kaishin/Gifu"`
 - Then run `carthage update`
 - Follow the current instructions in [Carthage's README][carthage-installation]
-for up to date installation instructions.
+  for up to date installation instructions.
 
 [carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 

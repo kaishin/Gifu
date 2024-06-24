@@ -104,7 +104,35 @@ class FrameStore {
   /// Creates an animator instance from raw GIF image data and an `Animatable` delegate.
   ///
   /// - parameter data: The raw GIF image data.
-  /// - parameter delegate: An `Animatable` delegate.
+  /// - parameter size: The target size for the frames.
+  /// - parameter contentMode: The content mode to use when resizing.
+  /// - parameter cachingStrategy: The caching strategy to use for frames.
+  /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
+  init(
+    data: Data,
+    size: CGSize,
+    contentMode: UIView.ContentMode,
+    cachingStrategy: FrameCachingStrategy,
+    loopCount: Int
+  ) {
+    let options = [String(kCGImageSourceShouldCache): kCFBooleanFalse] as CFDictionary
+    self.imageSource =
+      CGImageSourceCreateWithData(data as CFData, options)
+      ?? CGImageSourceCreateIncremental(options)
+    self.size = size
+    self.contentMode = contentMode
+    self.cachingStrategy = cachingStrategy
+    self.loopCount = loopCount
+  }
+
+  /// Creates an animator instance from raw GIF image data and an `Animatable` delegate.
+  ///
+  /// - parameter data: The raw GIF image data.
+  /// - parameter size: The target size for the frames.
+  /// - parameter contentMode: The content mode to use when resizing.
+  /// - parameter frameBufferSize: The number of frames to cache.
+  /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
+  @available(*, deprecated, message: "Use the initializer with `FrameCachingStrategy` instead.")
   init(
     data: Data,
     size: CGSize,
@@ -177,7 +205,7 @@ extension FrameStore {
   ///
   /// - parameter index: The index of the frame to load.
   /// - returns: An optional `UIImage` instance.
-  fileprivate func loadFrame(at index: Int) -> UIImage? {
+  private func loadFrame(at index: Int) -> UIImage? {
     guard let imageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil)
     else { return nil }
 
@@ -198,7 +226,7 @@ extension FrameStore {
   }
 
   /// Updates the frames by preloading new ones and replacing the previous frame with a placeholder.
-  fileprivate func updateFrameCache() {
+  private func updateFrameCache() {
     if case let .cacheUpcoming(size) = cachingStrategy,
       size < frameCount - 1
     {
@@ -208,13 +236,13 @@ extension FrameStore {
     cacheUpcomingFramesIfNeeded()
   }
 
-  fileprivate func deleteCachedFrame(at index: Int) {
+  private func deleteCachedFrame(at index: Int) {
     lock.lock()
     animatedFrames[index] = animatedFrames[index].placeholderFrame
     lock.unlock()
   }
 
-  fileprivate func cacheUpcomingFramesIfNeeded() {
+  private func cacheUpcomingFramesIfNeeded() {
     guard animatedFrames.filter(\.isPlaceholder).count > 0
     else { return }
 
@@ -234,7 +262,7 @@ extension FrameStore {
     }
   }
 
-  fileprivate func loadFrameAtIndexIfNeeded(_ index: Int) {
+  private func loadFrameAtIndexIfNeeded(_ index: Int) {
     let frame: AnimatedFrame
 
     lock.lock()
@@ -254,17 +282,17 @@ extension FrameStore {
   /// Increments the `timeSinceLastFrameChange` property with a given duration.
   ///
   /// - parameter duration: An `NSTimeInterval` value to increment the `timeSinceLastFrameChange` property with.
-  fileprivate func incrementTimeSinceLastFrameChange(with duration: TimeInterval) {
+  private func incrementTimeSinceLastFrameChange(with duration: TimeInterval) {
     timeSinceLastFrameChange += min(maxTimeStep, duration)
   }
 
   /// Ensures that `timeSinceLastFrameChange` remains accurate after each frame change by subtracting the `currentFrameDuration`.
-  fileprivate func resetTimeSinceLastFrameChange() {
+  private func resetTimeSinceLastFrameChange() {
     timeSinceLastFrameChange -= currentFrameDuration
   }
 
   /// Increments the `currentFrameIndex` property.
-  fileprivate func incrementCurrentFrameIndex() {
+  private func incrementCurrentFrameIndex() {
     currentFrameIndex = increment(frameIndex: currentFrameIndex)
     if isLastFrame(frameIndex: currentFrameIndex) {
       isLoopFinished = true
@@ -284,25 +312,25 @@ extension FrameStore {
   /// - parameter index: The `Int` value to increment.
   /// - parameter byValue: The `Int` value to increment with.
   /// - returns: A new `Int` value.
-  fileprivate func increment(frameIndex: Int, by value: Int = 1) -> Int {
+  private func increment(frameIndex: Int, by value: Int = 1) -> Int {
     return (frameIndex + value) % frameCount
   }
 
   /// Indicates if current frame is the last one.
   /// - parameter frameIndex: Index of current frame.
   /// - returns: True if current frame is the last one.
-  fileprivate func isLastFrame(frameIndex: Int) -> Bool {
+  private func isLastFrame(frameIndex: Int) -> Bool {
     return frameIndex == frameCount - 1
   }
 
   /// Indicates if current loop is the last one. Always false for infinite loops.
   /// - parameter loopIndex: Index of current loop.
   /// - returns: True if current loop is the last one.
-  fileprivate func isLastLoop(loopIndex: Int) -> Bool {
+  private func isLastLoop(loopIndex: Int) -> Bool {
     return loopIndex == loopCount - 1
   }
 
-  fileprivate func setupAnimatedFrames() {
+  private func setupAnimatedFrames() {
     resetAnimatedFrames()
 
     var duration: TimeInterval = 0
@@ -322,7 +350,7 @@ extension FrameStore {
   }
 
   /// Reset animated frames.
-  fileprivate func resetAnimatedFrames() {
+  private func resetAnimatedFrames() {
     animatedFrames = []
   }
 
