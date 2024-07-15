@@ -134,7 +134,7 @@ extension GIFAnimatable {
   public func prepareForAnimation(withGIFData imageData: Data,
                                   loopCount: Int = 0,
                                   completionHandler: (() -> Void)? = nil) {
-    if var imageContainer = self as? ImageContainer {
+    if var imageContainer = self as? any ImageContainer {
       imageContainer.image = UIImage(data: imageData)
     }
 
@@ -202,7 +202,7 @@ extension GIFAnimatable {
 
   /// Updates the image with a new frame if necessary.
   public func updateImageIfNeeded() {
-    if var imageContainer = self as? ImageContainer {
+    if var imageContainer = self as? any ImageContainer {
       let container = imageContainer
       imageContainer.image = activeFrame ?? container.image
     } else {
