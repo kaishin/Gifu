@@ -20,7 +20,7 @@ let package = Package(
 )
 ```
 
-### [Carthage](https://github.com/Carthage/Carthage)
+#### [Carthage](https://github.com/Carthage/Carthage) (Deprecated)
 
 - Add the following to your Cartfile: `github "kaishin/Gifu"`
 - Then run `carthage update`
@@ -29,11 +29,13 @@ let package = Package(
 
 [carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 
-### [CocoaPods](http://cocoapods.org)
+#### [CocoaPods](http://cocoapods.org) (Deprecated)
 
 - Add the following to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html): `pod 'Gifu'`
 - You will also need to make sure you're opting into using frameworks: `use_frameworks!`
 - Then run `pod install` with CocoaPods 0.36 or newer.
+
+> **Deprecated Methods Notice**: The installation methods using Carthage and CocoaPods are now deprecated and will not be supported in future releases. It is recommended to use Swift Package Manager for integrating Gifu into your projects.
 
 ## How It Works
 
