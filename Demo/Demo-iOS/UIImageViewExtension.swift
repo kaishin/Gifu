@@ -1,5 +1,5 @@
-import UIKit
 import Gifu
+import UIKit
 
 extension UIImageView: GIFAnimatable {
   private struct AssociatedKeys {
@@ -12,7 +12,8 @@ extension UIImageView: GIFAnimatable {
 
   public var animator: Animator? {
     get {
-      guard let animator = objc_getAssociatedObject(self, &AssociatedKeys.AnimatorKey) as? Animator else {
+      guard let animator = objc_getAssociatedObject(self, &AssociatedKeys.AnimatorKey) as? Animator
+      else {
         let animator = Animator(withDelegate: self)
         self.animator = animator
         return animator
@@ -22,7 +23,9 @@ extension UIImageView: GIFAnimatable {
     }
 
     set {
-      objc_setAssociatedObject(self, &AssociatedKeys.AnimatorKey, newValue as Animator?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+      objc_setAssociatedObject(
+        self, &AssociatedKeys.AnimatorKey, newValue as Animator?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+      )
     }
   }
 }

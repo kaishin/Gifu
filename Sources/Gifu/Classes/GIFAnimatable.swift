@@ -1,4 +1,3 @@
-#if os(iOS) || os(tvOS) || os(visionOS)
 import Foundation
 import UIKit
 
@@ -196,8 +195,16 @@ extension GIFAnimatable {
   /// Sets the number of frames that should be buffered. Default is 50. A high number will result in more memory usage and less CPU load, and vice versa.
   ///
   /// - parameter frames: The number of frames to buffer.
+  @available(*, deprecated, message: "Use setFrameBufferSize instead.")
   public func setFrameBufferCount(_ frames: Int) {
-    animator?.frameBufferCount = frames
+    setFrameBufferSize(frames)
+  }
+
+  /// Sets the number of frames that should be buffered. Default is 50. A high number will result in more memory usage and less CPU load, and vice versa.
+  ///
+  /// - parameter frames: The number of frames to buffer.
+  public func setFrameBufferSize(_ frames: Int) {
+    animator?.frameBufferSize = frames
   }
 
   /// Updates the image with a new frame if necessary.
@@ -217,4 +224,3 @@ extension GIFAnimatable {
     layer.setNeedsDisplay()
   }
 }
-#endif

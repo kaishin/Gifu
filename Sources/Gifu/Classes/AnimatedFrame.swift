@@ -1,11 +1,10 @@
-#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
+
 /// Represents a single frame in a GIF.
 struct AnimatedFrame {
-
   /// The image to display for this frame. Its value is nil when the frame is removed from the buffer.
   let image: UIImage?
-  
+
   /// The duration that this frame should remain active.
   let duration: TimeInterval
 
@@ -28,4 +27,3 @@ struct AnimatedFrame {
     return AnimatedFrame(image: newImage, duration: duration)
   }
 }
-#endif

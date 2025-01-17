@@ -1,11 +1,12 @@
-import UIKit
 import Gifu
+import UIKit
 
 class EmptyViewController: UIViewController {
   let imageView = GIFImageView(image: #imageLiteral(resourceName: "mugen.gif"))
 
   lazy var customImageView: CustomAnimatedView = {
-    return CustomAnimatedView(frame: CGRect(x: 0, y: self.view.frame.height - 200, width: 360, height: 200))
+    return CustomAnimatedView(
+      frame: CGRect(x: 0, y: self.view.frame.height - 200, width: 360, height: 200))
   }()
 
   override func viewDidLoad() {

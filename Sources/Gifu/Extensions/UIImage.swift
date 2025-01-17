@@ -1,5 +1,5 @@
-#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
+
 /// A `UIImage` extension that makes it easier to resize the image and inspect its size.
 extension UIImage {
   /// Resizes an image instance.
@@ -48,5 +48,12 @@ extension UIImage {
   class func size(withImageData data: Data) -> CGSize? {
     return UIImage(data: data)?.size
   }
+
+  var memorySize: Int {
+    guard let cgImage = self.cgImage else { return 0 }
+    let instanceSize = MemoryLayout<UIImage>.size(ofValue: self)
+    let pixmapSize = cgImage.height * cgImage.bytesPerRow
+    let totalSize = instanceSize + pixmapSize
+    return totalSize
+  }
 }
-#endif

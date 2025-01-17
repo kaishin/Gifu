@@ -39,3 +39,4 @@ Gifu.framework.zip
 *.xcscmblueprint
 
 .swiftpm/
+buildServer.json

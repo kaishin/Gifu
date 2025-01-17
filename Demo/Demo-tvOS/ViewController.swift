@@ -1,11 +1,9 @@
-import UIKit
 import Gifu
-
+import UIKit
 
 class ViewController: UIViewController {
 
   @IBOutlet weak var imageView: GIFImageView!
-
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,4 +18,3 @@ class ViewController: UIViewController {
     imageView.animate(withGIFNamed: "mugen")
   }
 }
-

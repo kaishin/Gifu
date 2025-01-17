@@ -1,20 +1,22 @@
 name: Test
 
-on: 
+on:
   push:
     branches:
-    - master
+      - master
   pull_request:
     branches:
-    - master
+      - master
 
 jobs:
   build:
-    runs-on: macOS-latest
+    runs-on: macOS-13
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_15.0.1.app/Contents/Developer
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Run iOS tests
-      run: make test-ios
-    - name: Run tvOS tests
-      run: make test-tvos
+      - uses: actions/checkout@v1
+      - name: Run iOS tests
+        run: make test-ios
+      - name: Run tvOS tests
+        run: make test-tvos
