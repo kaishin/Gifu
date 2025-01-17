@@ -188,7 +188,7 @@ class FrameStore {
   /// - parameter duration: A `CFTimeInterval` value that will be used to determine whether frame should be changed.
   /// - parameter handler: A function that takes a `Bool` and returns nothing. It will be called with the frame change result.
   func shouldChangeFrame(with duration: CFTimeInterval, handler: (Bool) -> Void) {
-    incrementTimeSinceLastFrameChange(with: duration)
+    timeSinceLastFrameChange += min(maxTimeStep, duration)
 
     if currentFrameDuration > timeSinceLastFrameChange {
       handler(false)
@@ -233,16 +233,6 @@ extension FrameStore {
       deleteCachedFrame(at: previousFrameIndex)
     }
 
-    cacheUpcomingFramesIfNeeded()
-  }
-
-  private func deleteCachedFrame(at index: Int) {
-    lock.lock()
-    animatedFrames[index] = animatedFrames[index].placeholderFrame
-    lock.unlock()
-  }
-
-  private func cacheUpcomingFramesIfNeeded() {
     guard animatedFrames.filter(\.isPlaceholder).count > 0
     else { return }
 
@@ -262,7 +252,13 @@ extension FrameStore {
     }
   }
 
-  private func loadFrameAtIndexIfNeeded(_ index: Int) {
+  func deleteCachedFrame(at index: Int) {
+    lock.lock()
+    animatedFrames[index] = animatedFrames[index].placeholderFrame
+    lock.unlock()
+  }
+
+  func loadFrameAtIndexIfNeeded(_ index: Int) {
     let frame: AnimatedFrame
 
     lock.lock()
@@ -279,13 +275,6 @@ extension FrameStore {
     lock.unlock()
   }
 
-  /// Increments the `timeSinceLastFrameChange` property with a given duration.
-  ///
-  /// - parameter duration: An `NSTimeInterval` value to increment the `timeSinceLastFrameChange` property with.
-  private func incrementTimeSinceLastFrameChange(with duration: TimeInterval) {
-    timeSinceLastFrameChange += min(maxTimeStep, duration)
-  }
-
   /// Ensures that `timeSinceLastFrameChange` remains accurate after each frame change by subtracting the `currentFrameDuration`.
   private func resetTimeSinceLastFrameChange() {
     timeSinceLastFrameChange -= currentFrameDuration
@@ -294,6 +283,7 @@ extension FrameStore {
   /// Increments the `currentFrameIndex` property.
   private func incrementCurrentFrameIndex() {
     currentFrameIndex = increment(frameIndex: currentFrameIndex)
+
     if isLastFrame(frameIndex: currentFrameIndex) {
       isLoopFinished = true
       if isLastLoop(loopIndex: currentLoop) {
