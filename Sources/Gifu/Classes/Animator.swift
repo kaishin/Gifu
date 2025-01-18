@@ -20,7 +20,7 @@ public class Animator {
   private var displayLinkInitialized: Bool = false
 
   /// A delegate responsible for displaying the GIF frames.
-  private weak var delegate: GIFAnimatable!
+  private weak var delegate: (any GIFAnimatable)!
 
   /// Callback for when all the loops of the animation are done (never called for infinite loops)
   private var animationBlock: (() -> Void)? = nil
@@ -55,7 +55,7 @@ public class Animator {
   /// - parameter view: A view object that implements the `GIFAnimatable` protocol.
   ///
   /// - returns: A new animator instance.
-  public init(withDelegate delegate: GIFAnimatable) {
+  public init(withDelegate delegate: any GIFAnimatable) {
     self.delegate = delegate
   }
 
