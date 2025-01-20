@@ -6,7 +6,7 @@ on:
       - "*"
 
 jobs:
-  build:
+  push:
     runs-on: macOS-latest
 
     steps:
