@@ -20,6 +20,13 @@ let package = Package(
     .target(
       name: "Gifu",
       dependencies: []
+    ),
+    .testTarget(
+      name: "GifuTests",
+      dependencies: ["Gifu"],
+      resources: [
+        .copy("Images")
+      ]
     )
   ],
   swiftLanguageModes: [.v6]

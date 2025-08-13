@@ -1,5 +1,6 @@
 import ImageIO
-import XCTest
+import Testing
+import UIKit
 
 @testable import Gifu
 
@@ -18,140 +19,126 @@ class DummyAnimatable: GIFAnimatable {
 }
 
 @MainActor
-class GifuTests: XCTestCase {
-  var animator: Animator!
-  var originalFrameCount: Int!
+@Suite("Gifu Tests")
+struct GifuTests {
   let delegate = DummyAnimatable()
+  let originalFrameCount = 44
 
-  override func setUp() {
-    super.setUp()
-    animator = Animator(withDelegate: delegate)
+  func createAnimator() -> Animator {
+    let animator = Animator(withDelegate: delegate)
     animator.prepareForAnimation(
       withGIFData: imageData, size: staticImage.size, contentMode: .scaleToFill)
-    originalFrameCount = 44
+    return animator
   }
 
-  func testIsAnimatable() {
-    XCTAssertNotNil(animator.frameStore)
+  @Test func isAnimatable() {
+    let animator = createAnimator()
+    #expect(animator.frameStore != nil)
     guard let store = animator.frameStore else { return }
-    XCTAssertTrue(store.isAnimatable)
+    #expect(store.isAnimatable)
   }
 
-  func testCurrentFrame() {
-    XCTAssertNotNil(animator.frameStore)
+  @Test func currentFrame() {
+    let animator = createAnimator()
+    #expect(animator.frameStore != nil)
     guard let store = animator.frameStore else { return }
-    XCTAssertEqual(store.currentFrameIndex, 0)
+    #expect(store.currentFrameIndex == 0)
   }
 
-  func testFramePreload() {
-    XCTAssertNotNil(animator.frameStore)
+  @Test func framePreload() async {
+    let animator = createAnimator()
+    #expect(animator.frameStore != nil)
     guard let store = animator.frameStore else { return }
 
-    let expectation = self.expectation(description: "frameDuration")
+    await withCheckedContinuation { continuation in
+      store.prepareFrames { [originalFrameCount] in
+        let animatedFrameCount = store.animatedFrames.count
+        #expect(animatedFrameCount == originalFrameCount)
+        #expect(store.frame(at: preloadFrameCount - 1) != nil)
+        #expect(store.frame(at: preloadFrameCount + 1)?.images == nil)
+        #expect(store.currentFrameIndex == 0)
 
-    store.prepareFrames { [originalFrameCount] in
-      let animatedFrameCount = store.animatedFrames.count
-      XCTAssertEqual(animatedFrameCount, originalFrameCount)
-      XCTAssertNotNil(store.frame(at: preloadFrameCount - 1))
-      XCTAssertNil(store.frame(at: preloadFrameCount + 1)?.images)
-      XCTAssertEqual(store.currentFrameIndex, 0)
-
-      store.shouldChangeFrame(with: 1.0) { hasNewFrame in
-        XCTAssertTrue(hasNewFrame)
-        XCTAssertEqual(store.currentFrameIndex, 1)
-        expectation.fulfill()
-      }
-    }
-
-    waitForExpectations(timeout: 1.0) { error in
-      if let error = error {
-        print("Error: \(error.localizedDescription)")
+        store.shouldChangeFrame(with: 1.0) { hasNewFrame in
+          #expect(hasNewFrame)
+          #expect(store.currentFrameIndex == 1)
+          continuation.resume()
+        }
       }
     }
   }
 
-  func testFrameInfo() {
-    XCTAssertNotNil(animator.frameStore)
+  @Test func frameInfo() async {
+    let animator = createAnimator()
+    #expect(animator.frameStore != nil)
     guard let store = animator.frameStore else { return }
 
-    let expectation = self.expectation(description: "testFrameInfoIsAccurate")
-
-    store.prepareFrames {
-      let frameDuration = store.frame(at: 5)?.duration ?? 0
-      XCTAssertTrue((frameDuration - 0.05) < 0.00001)
-
-      let imageSize = store.frame(at: 5)?.size ?? CGSize.zero
-      XCTAssertEqual(imageSize, staticImage.size)
-
-      expectation.fulfill()
-    }
-
-    waitForExpectations(timeout: 1.0) { error in
-      if let error = error {
-        print("Error: \(error.localizedDescription)")
+    await withCheckedContinuation { continuation in
+      store.prepareFrames {
+        continuation.resume()
       }
     }
+    
+    let frameDuration = store.frame(at: 5)?.duration ?? 0
+    #expect(abs(frameDuration - 0.05) < 0.00001)
+    #expect(frameDuration == 2)
+
+    let imageSize = store.frame(at: 5)?.size ?? CGSize.zero
+    #expect(imageSize == staticImage.size)
   }
 
-  func testFinishedStates() {
-    animator = Animator(withDelegate: delegate)
+  @Test func finishedStates() async {
+    let animator = Animator(withDelegate: delegate)
     animator.prepareForAnimation(
       withGIFData: imageData, size: staticImage.size, contentMode: .scaleToFill, loopCount: 2)
 
-    XCTAssertNotNil(animator.frameStore)
+    #expect(animator.frameStore != nil)
     guard let store = animator.frameStore else { return }
 
-    let expectation = self.expectation(description: "testFinishedStatesAreSetCorrectly")
+    await withCheckedContinuation { continuation in
+      store.prepareFrames {
+        let animatedFrameCount = store.animatedFrames.count
+        #expect(store.currentFrameIndex == 0)
 
-    store.prepareFrames {
-      let animatedFrameCount = store.animatedFrames.count
-      XCTAssertEqual(store.currentFrameIndex, 0)
-
-      // Animate through all the frames (first loop)
-      for frame in 1..<animatedFrameCount {
-        XCTAssertFalse(store.isLoopFinished)
-        XCTAssertFalse(store.isFinished)
-        store.shouldChangeFrame(with: 1.0) { hasNewFrame in
-          XCTAssertTrue(hasNewFrame)
-          XCTAssertEqual(store.currentFrameIndex, frame)
+        // Animate through all the frames (first loop)
+        for frame in 1..<animatedFrameCount {
+          #expect(!store.isLoopFinished)
+          #expect(!store.isFinished)
+          store.shouldChangeFrame(with: 1.0) { hasNewFrame in
+            #expect(hasNewFrame)
+            #expect(store.currentFrameIndex == frame)
+          }
         }
-      }
 
-      XCTAssertTrue(store.isLoopFinished, "First loop should be finished")
-      XCTAssertFalse(store.isFinished, "Animation should not be finished yet")
+        #expect(store.isLoopFinished, "First loop should be finished")
+        #expect(!store.isFinished, "Animation should not be finished yet")
 
-      store.shouldChangeFrame(with: 1.0) { hasNewFrame in
-        XCTAssertTrue(hasNewFrame)
-      }
-
-      XCTAssertEqual(store.currentFrameIndex, 0)
-
-      // Animate through all the frames (second loop)
-      for frame in 1..<animatedFrameCount {
-        XCTAssertFalse(store.isLoopFinished)
-        XCTAssertFalse(store.isFinished)
         store.shouldChangeFrame(with: 1.0) { hasNewFrame in
-          XCTAssertTrue(hasNewFrame)
-          XCTAssertEqual(store.currentFrameIndex, frame)
+          #expect(hasNewFrame)
         }
-      }
 
-      XCTAssertTrue(store.isLoopFinished, "Second loop should be finished")
-      XCTAssertTrue(store.isFinished, "Animation should be finished (loopCount: 2)")
+        #expect(store.currentFrameIndex == 0)
 
-      expectation.fulfill()
-    }
+        // Animate through all the frames (second loop)
+        for frame in 1..<animatedFrameCount {
+          #expect(!store.isLoopFinished)
+          #expect(!store.isFinished)
+          store.shouldChangeFrame(with: 1.0) { hasNewFrame in
+            #expect(hasNewFrame)
+            #expect(store.currentFrameIndex == frame)
+          }
+        }
 
-    waitForExpectations(timeout: 1.0) { error in
-      if let error = error {
-        print("Error: \(error.localizedDescription)")
+        #expect(store.isLoopFinished, "Second loop should be finished")
+        #expect(store.isFinished, "Animation should be finished (loopCount: 2)")
+
+        continuation.resume()
       }
     }
   }
 }
 
 private func testImageDataNamed(_ name: String) -> Data {
-  let testBundle = Bundle(for: GifuTests.self)
-  let imagePath = testBundle.bundleURL.appendingPathComponent(name)
+  let testBundle = Bundle.module
+  let imagePath = testBundle.bundleURL.appendingPathComponent("Images").appendingPathComponent(name)
   return (try! Data(contentsOf: imagePath))
 }
