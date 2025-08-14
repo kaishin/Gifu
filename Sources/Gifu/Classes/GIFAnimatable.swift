@@ -115,15 +115,10 @@ extension GIFAnimatable {
     animationBlock: (@Sendable () -> Void)? = nil,
     loopBlock: (@Sendable () -> Void)? = nil
   ) {
-    let session = URLSession.shared
-
-    let task = session.dataTask(with: imageURL) { (data, response, error) in
-      switch (data, response, error) {
-      case (.none, _, let error?):
-        print(
-          "Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
-      case (let data?, _, _):
-        DispatchQueue.main.async {
+    Task {
+      do {
+        let (data, _) = try await URLSession.shared.data(from: imageURL)
+        await MainActor.run {
           self.animate(
             withGIFData: data,
             loopCount: loopCount,
@@ -132,11 +127,10 @@ extension GIFAnimatable {
             loopBlock: loopBlock
           )
         }
-      default: ()
+      } catch {
+        print("Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
       }
     }
-
-    task.resume()
   }
 
   /// Prepares the animator instance for animation.
@@ -169,7 +163,8 @@ extension GIFAnimatable {
     completionHandler: (@Sendable () -> Void)? = nil
   ) {
     if var imageContainer = self as? (any ImageContainer) {
-      imageContainer.image = UIImage(data: imageData)
+      let initialImage = UIImage(data: imageData)
+      imageContainer.image = initialImage
     }
 
     animator?.prepareForAnimation(
@@ -191,25 +186,20 @@ extension GIFAnimatable {
     loopCount: Int = 0,
     completionHandler: (@Sendable () -> Void)? = nil
   ) {
-    let session = URLSession.shared
-    let task = session.dataTask(with: imageURL) { (data, response, error) in
-      switch (data, response, error) {
-      case (.none, _, let error?):
-        print(
-          "Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
-      case (let data?, _, _):
-        DispatchQueue.main.async {
+    Task {
+      do {
+        let (data, _) = try await URLSession.shared.data(from: imageURL)
+        await MainActor.run {
           self.prepareForAnimation(
             withGIFData: data,
             loopCount: loopCount,
             completionHandler: completionHandler
           )
         }
-      default: ()
+      } catch {
+        print("Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
       }
     }
-
-    task.resume()
   }
 
   /// Stop animating and free up GIF data from memory.
@@ -252,8 +242,9 @@ extension GIFAnimatable {
   /// Updates the image with a new frame if necessary.
   public func updateImageIfNeeded() {
     if var imageContainer = self as? (any ImageContainer) {
-      let container = imageContainer
-      imageContainer.image = activeFrame ?? container.image
+      let currentImage = imageContainer.image
+      let newImage = activeFrame ?? currentImage
+      imageContainer.image = newImage
     } else {
       layer.contents = activeFrame?.cgImage
     }

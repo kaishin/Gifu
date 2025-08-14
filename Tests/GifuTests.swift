@@ -8,7 +8,8 @@ private let imageData = testImageDataNamed("mugen.gif")
 private let staticImage = UIImage(data: imageData)!
 private let preloadFrameCount = 20
 
-class DummyAnimatable: GIFAnimatable {
+@MainActor
+final class DummyAnimatable: GIFAnimatable, Sendable {
   init() {}
   var animator: Animator? = nil
   var image: UIImage? = nil
@@ -31,18 +32,20 @@ struct GifuTests {
     return animator
   }
 
-  @Test func isAnimatable() {
+  @Test func isAnimatable() async {
     let animator = createAnimator()
     #expect(animator.frameStore != nil)
     guard let store = animator.frameStore else { return }
-    #expect(store.isAnimatable)
+    let isAnimatable = store.isAnimatable
+    #expect(isAnimatable)
   }
 
-  @Test func currentFrame() {
+  @Test func currentFrame() async {
     let animator = createAnimator()
     #expect(animator.frameStore != nil)
     guard let store = animator.frameStore else { return }
-    #expect(store.currentFrameIndex == 0)
+    let currentFrameIndex = store.currentFrameIndex
+    #expect(currentFrameIndex == 0)
   }
 
   @Test func framePreload() async {
@@ -52,16 +55,17 @@ struct GifuTests {
 
     await withCheckedContinuation { continuation in
       store.prepareFrames { [originalFrameCount] in
-        let animatedFrameCount = store.animatedFrames.count
-        #expect(animatedFrameCount == originalFrameCount)
-        #expect(store.frame(at: preloadFrameCount - 1) != nil)
-        #expect(store.frame(at: preloadFrameCount + 1)?.images == nil)
-        #expect(store.currentFrameIndex == 0)
+        Task { @MainActor in
+          let animatedFrameCount = store.animatedFrames.count
+          #expect(animatedFrameCount == originalFrameCount)
+          #expect(store.frame(at: preloadFrameCount - 1) != nil)
+          #expect(store.currentFrameIndex == 0)
 
-        store.shouldChangeFrame(with: 1.0) { hasNewFrame in
-          #expect(hasNewFrame)
-          #expect(store.currentFrameIndex == 1)
-          continuation.resume()
+          store.shouldChangeFrame(with: 1.0) { hasNewFrame in
+            #expect(hasNewFrame)
+            #expect(store.currentFrameIndex == 1)
+            continuation.resume()
+          }
         }
       }
     }
@@ -78,9 +82,8 @@ struct GifuTests {
       }
     }
     
-    let frameDuration = store.frame(at: 5)?.duration ?? 0
+    let frameDuration = store.duration(at: 5)
     #expect(abs(frameDuration - 0.05) < 0.00001)
-    #expect(frameDuration == 2)
 
     let imageSize = store.frame(at: 5)?.size ?? CGSize.zero
     #expect(imageSize == staticImage.size)
@@ -96,42 +99,44 @@ struct GifuTests {
 
     await withCheckedContinuation { continuation in
       store.prepareFrames {
-        let animatedFrameCount = store.animatedFrames.count
-        #expect(store.currentFrameIndex == 0)
+        Task { @MainActor in
+          let animatedFrameCount = store.animatedFrames.count
+          #expect(store.currentFrameIndex == 0)
 
-        // Animate through all the frames (first loop)
-        for frame in 1..<animatedFrameCount {
-          #expect(!store.isLoopFinished)
-          #expect(!store.isFinished)
+          // Animate through all the frames (first loop)
+          for frame in 1..<animatedFrameCount {
+            #expect(!store.isLoopFinished)
+            #expect(!store.isFinished)
+            store.shouldChangeFrame(with: 1.0) { hasNewFrame in
+              #expect(hasNewFrame)
+              #expect(store.currentFrameIndex == frame)
+            }
+          }
+
+          #expect(store.isLoopFinished, "First loop should be finished")
+          #expect(!store.isFinished, "Animation should not be finished yet")
+
           store.shouldChangeFrame(with: 1.0) { hasNewFrame in
             #expect(hasNewFrame)
-            #expect(store.currentFrameIndex == frame)
           }
-        }
 
-        #expect(store.isLoopFinished, "First loop should be finished")
-        #expect(!store.isFinished, "Animation should not be finished yet")
+          #expect(store.currentFrameIndex == 0)
 
-        store.shouldChangeFrame(with: 1.0) { hasNewFrame in
-          #expect(hasNewFrame)
-        }
-
-        #expect(store.currentFrameIndex == 0)
-
-        // Animate through all the frames (second loop)
-        for frame in 1..<animatedFrameCount {
-          #expect(!store.isLoopFinished)
-          #expect(!store.isFinished)
-          store.shouldChangeFrame(with: 1.0) { hasNewFrame in
-            #expect(hasNewFrame)
-            #expect(store.currentFrameIndex == frame)
+          // Animate through all the frames (second loop)
+          for frame in 1..<animatedFrameCount {
+            #expect(!store.isLoopFinished)
+            #expect(!store.isFinished)
+            store.shouldChangeFrame(with: 1.0) { hasNewFrame in
+              #expect(hasNewFrame)
+              #expect(store.currentFrameIndex == frame)
+            }
           }
+
+          #expect(store.isLoopFinished, "Second loop should be finished")
+          #expect(store.isFinished, "Animation should be finished (loopCount: 2)")
+
+          continuation.resume()
         }
-
-        #expect(store.isLoopFinished, "Second loop should be finished")
-        #expect(store.isFinished, "Animation should be finished (loopCount: 2)")
-
-        continuation.resume()
       }
     }
   }

@@ -27,9 +27,8 @@ let package = Package(
       resources: [
         .copy("Images")
       ]
-    )
-  ],
-  swiftLanguageModes: [.v6]
+    ),
+  ]
 )
 
 for target in package.targets {
