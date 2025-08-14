@@ -2,7 +2,7 @@
 
 ![Test](https://github.com/kaishin/Gifu/workflows/Test/badge.svg)
 [![GitHub release](https://img.shields.io/github/release/kaishin/Gifu.svg)](https://github.com/kaishin/Gifu/releases/latest) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20tvOS-lightgrey.svg)
+![Swift 5.9+](https://img.shields.io/badge/Swift-5.9+-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20tvOS%20%7C%20visionOS-lightgrey.svg)
 
 Gifu adds protocol-based, performance-aware animated GIF support to UIKit. (It's also a [prefecture in Japan](https://goo.gl/maps/CCeAc)).
 
@@ -178,9 +178,11 @@ See the [full API documentation](http://kaishin.github.io/Gifu/).
 
 ## Compatibility
 
-- iOS 9.0+
-- Swift 4.0
-- Xcode 9.0
+- iOS 14.0+
+- tvOS 14.0+
+- visionOS 1.0+
+- Swift 5.9+
+- Xcode 14.0+
 
 ## License
 
