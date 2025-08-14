@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make test-spm:*)",
+      "Bash(make test-ios:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -3,7 +3,7 @@ test-ios:
 	xcodebuild test \
 		-project Gifu.xcodeproj \
 		-scheme Gifu \
-		-destination "platform=iOS Simulator,name=iPhone 16,OS=18.2" \
+		-destination "platform=iOS Simulator,name=iPhone 16" \
 		| xcbeautify
 
 test-tvos:

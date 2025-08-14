@@ -144,6 +144,11 @@ struct GifuTests {
 
 private func testImageDataNamed(_ name: String) -> Data {
   let testBundle = Bundle(for: DummyAnimatable.self)
-  let imagePath = testBundle.bundleURL.appendingPathComponent("Images").appendingPathComponent(name)
-  return (try! Data(contentsOf: imagePath))
+  let resourceName = name.replacingOccurrences(of: ".gif", with: "")
+  
+  guard let imageURL = testBundle.url(forResource: resourceName, withExtension: "gif") else {
+    fatalError("Could not find test image: \(name)")
+  }
+  
+  return try! Data(contentsOf: imageURL)
 }
