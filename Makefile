@@ -1,7 +1,7 @@
 test-ios-18:
 	set -o pipefail && \
 	swift test \
-		--destination "platform=iOS Simulator,name=iPhone 16,OS=18.1"
+		--destination "platform=iOS Simulator,name=iPhone 16,OS=18.5"
 
 test-ios-17:
 	set -o pipefail && \
@@ -19,7 +19,7 @@ test-ios-18-xcode:
 	xcodebuild test \
 		-project Gifu.xcodeproj \
 		-scheme Gifu \
-		-destination "platform=iOS Simulator,name=iPhone 16,OS=18.1" \
+		-destination "platform=iOS Simulator,name=iPhone 16,OS=18.5" \
 		| xcbeautify
 
 test-ios-17-xcode:
