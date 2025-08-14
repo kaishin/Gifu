@@ -1,19 +1,9 @@
-test-ios-18:
+test-ios:
 	set -o pipefail && \
 	xcodebuild test \
 		-project Gifu.xcodeproj \
 		-scheme Gifu \
 		-destination "platform=iOS Simulator,name=iPhone 16,OS=18.2" \
-		SWIFT_VERSION=6.0 \
-		| xcbeautify
-
-test-ios-17:
-	set -o pipefail && \
-	xcodebuild test \
-		-project Gifu.xcodeproj \
-		-scheme Gifu \
-		-destination "platform=iOS Simulator,name=iPhone 15,OS=17.5" \
-		SWIFT_VERSION=5.0 \
 		| xcbeautify
 
 test-tvos:
@@ -22,5 +12,4 @@ test-tvos:
 		-project Gifu.xcodeproj \
 		-scheme Gifu \
 		-destination "platform=tvOS Simulator,name=Apple TV" \
-		SWIFT_VERSION=5.0 \
 		| xcbeautify
