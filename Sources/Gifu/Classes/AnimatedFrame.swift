@@ -1,7 +1,7 @@
 import UIKit
 
 /// Represents a single frame in a GIF.
-struct AnimatedFrame {
+struct AnimatedFrame: Sendable {
   /// The image to display for this frame. Its value is nil when the frame is removed from the buffer.
   let image: UIImage?
 

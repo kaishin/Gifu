@@ -2,7 +2,8 @@ import Foundation
 import UIKit
 
 /// The protocol that view classes need to conform to to enable animated GIF support.
-public protocol GIFAnimatable: AnyObject {
+@MainActor
+public protocol GIFAnimatable: AnyObject, Sendable {
   /// Responsible for managing the animation frames.
   var animator: Animator? { get set }
 
@@ -16,11 +17,10 @@ public protocol GIFAnimatable: AnyObject {
   var contentMode: UIView.ContentMode { get set }
 }
 
-
 /// A single-property protocol that animatable classes can optionally conform to.
-public protocol ImageContainer {
+public protocol ImageContainer: AnyObject {
   /// Used for displaying the animation frames.
-  var image: UIImage? { get set }
+  @MainActor var image: UIImage? { get set }
 }
 
 extension GIFAnimatable where Self: ImageContainer {
@@ -58,14 +58,22 @@ extension GIFAnimatable {
   /// - parameter preparationBlock: Callback for when preparation is done
   /// - parameter animationBlock: Callback for when all the loops of the animation are done (never called for infinite loops)
   /// - parameter loopBlock: Callback for when a loop is done (at the end of each loop)
-  public func animate(withGIFNamed imageName: String, loopCount: Int = 0, preparationBlock: (() -> Void)? = nil, animationBlock: (() -> Void)? = nil, loopBlock: (() -> Void)? = nil) {
-    animator?.animate(withGIFNamed: imageName,
-                      size: frame.size,
-                      contentMode: contentMode,
-                      loopCount: loopCount,
-                      preparationBlock: preparationBlock,
-                      animationBlock: animationBlock,
-                      loopBlock: loopBlock)
+  public func animate(
+    withGIFNamed imageName: String,
+    loopCount: Int = 0,
+    preparationBlock: (@Sendable () -> Void)? = nil,
+    animationBlock: (@Sendable () -> Void)? = nil,
+    loopBlock: (@Sendable () -> Void)? = nil
+  ) {
+    animator?.animate(
+      withGIFNamed: imageName,
+      size: frame.size,
+      contentMode: contentMode,
+      loopCount: loopCount,
+      preparationBlock: preparationBlock,
+      animationBlock: animationBlock,
+      loopBlock: loopBlock
+    )
   }
 
   /// Prepare for animation and start animating immediately.
@@ -75,14 +83,22 @@ extension GIFAnimatable {
   /// - parameter preparationBlock: Callback for when preparation is done
   /// - parameter animationBlock: Callback for when all the loops of the animation are done (never called for infinite loops)
   /// - parameter loopBlock: Callback for when a loop is done (at the end of each loop)
-  public func animate(withGIFData imageData: Data, loopCount: Int = 0, preparationBlock: (() -> Void)? = nil, animationBlock: (() -> Void)? = nil, loopBlock: (() -> Void)? = nil) {
-    animator?.animate(withGIFData: imageData,
-                      size: frame.size,
-                      contentMode: contentMode,
-                      loopCount: loopCount,
-                      preparationBlock: preparationBlock,
-                      animationBlock: animationBlock,
-                      loopBlock: loopBlock)
+  public func animate(
+    withGIFData imageData: Data,
+    loopCount: Int = 0,
+    preparationBlock: (@Sendable () -> Void)? = nil,
+    animationBlock: (@Sendable () -> Void)? = nil,
+    loopBlock: (@Sendable () -> Void)? = nil
+  ) {
+    animator?.animate(
+      withGIFData: imageData,
+      size: frame.size,
+      contentMode: contentMode,
+      loopCount: loopCount,
+      preparationBlock: preparationBlock,
+      animationBlock: animationBlock,
+      loopBlock: loopBlock
+    )
   }
 
   /// Prepare for animation and start animating immediately.
@@ -92,22 +108,29 @@ extension GIFAnimatable {
   /// - parameter preparationBlock: Callback for when preparation is done
   /// - parameter animationBlock: Callback for when all the loops of the animation are done (never called for infinite loops)
   /// - parameter loopBlock: Callback for when a loop is done (at the end of each loop)
-  public func animate(withGIFURL imageURL: URL, loopCount: Int = 0, preparationBlock: (() -> Void)? = nil, animationBlock: (() -> Void)? = nil, loopBlock: (() -> Void)? = nil) {
-    let session = URLSession.shared
-
-    let task = session.dataTask(with: imageURL) { (data, response, error) in
-      switch (data, response, error) {
-      case (.none, _, let error?):
-        print("Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
-      case (let data?, _, _):
-        DispatchQueue.main.async {
-          self.animate(withGIFData: data, loopCount: loopCount, preparationBlock: preparationBlock, animationBlock: animationBlock, loopBlock: loopBlock)
+  public func animate(
+    withGIFURL imageURL: URL,
+    loopCount: Int = 0,
+    preparationBlock: (@Sendable () -> Void)? = nil,
+    animationBlock: (@Sendable () -> Void)? = nil,
+    loopBlock: (@Sendable () -> Void)? = nil
+  ) {
+    Task {
+      do {
+        let (data, _) = try await URLSession.shared.data(from: imageURL)
+        await MainActor.run {
+          self.animate(
+            withGIFData: data,
+            loopCount: loopCount,
+            preparationBlock: preparationBlock,
+            animationBlock: animationBlock,
+            loopBlock: loopBlock
+          )
         }
-      default: ()
+      } catch {
+        print("Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
       }
     }
-
-    task.resume()
   }
 
   /// Prepares the animator instance for animation.
@@ -115,14 +138,18 @@ extension GIFAnimatable {
   /// - parameter imageName: The file name of the GIF in the main bundle.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
   /// - parameter completionHandler: Callback for when preparation is done
-  public func prepareForAnimation(withGIFNamed imageName: String,
-                                  loopCount: Int = 0,
-                                  completionHandler: (() -> Void)? = nil) {
-    animator?.prepareForAnimation(withGIFNamed: imageName,
-                                  size: frame.size,
-                                  contentMode: contentMode,
-                                  loopCount: loopCount,
-                                  completionHandler: completionHandler)
+  public func prepareForAnimation(
+    withGIFNamed imageName: String,
+    loopCount: Int = 0,
+    completionHandler: (@Sendable () -> Void)? = nil
+  ) {
+    animator?.prepareForAnimation(
+      withGIFNamed: imageName,
+      size: frame.size,
+      contentMode: contentMode,
+      loopCount: loopCount,
+      completionHandler: completionHandler
+    )
   }
 
   /// Prepares the animator instance for animation.
@@ -130,18 +157,22 @@ extension GIFAnimatable {
   /// - parameter imageData: GIF image data.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
   /// - parameter completionHandler: Callback for when preparation is done
-  public func prepareForAnimation(withGIFData imageData: Data,
-                                  loopCount: Int = 0,
-                                  completionHandler: (() -> Void)? = nil) {
-    if var imageContainer = self as? any ImageContainer {
+  public func prepareForAnimation(
+    withGIFData imageData: Data,
+    loopCount: Int = 0,
+    completionHandler: (@Sendable () -> Void)? = nil
+  ) {
+    if let imageContainer = self as? (any ImageContainer) {
       imageContainer.image = UIImage(data: imageData)
     }
 
-    animator?.prepareForAnimation(withGIFData: imageData,
-                                  size: frame.size,
-                                  contentMode: contentMode,
-                                  loopCount: loopCount,
-                                  completionHandler: completionHandler)
+    animator?.prepareForAnimation(
+      withGIFData: imageData,
+      size: frame.size,
+      contentMode: contentMode,
+      loopCount: loopCount,
+      completionHandler: completionHandler
+    )
   }
 
   /// Prepares the animator instance for animation.
@@ -149,25 +180,25 @@ extension GIFAnimatable {
   /// - parameter imageURL: GIF image url.
   /// - parameter loopCount: Desired number of loops, <= 0 for infinite loop.
   /// - parameter completionHandler: Callback for when preparation is done
-  public func prepareForAnimation(withGIFURL imageURL: URL,
-                                  loopCount: Int = 0,
-                                  completionHandler: (() -> Void)? = nil) {
-    let session = URLSession.shared
-    let task = session.dataTask(with: imageURL) { (data, response, error) in
-      switch (data, response, error) {
-      case (.none, _, let error?):
-        print("Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
-      case (let data?, _, _):
-        DispatchQueue.main.async {
-          self.prepareForAnimation(withGIFData: data,
-                                   loopCount: loopCount,
-                                   completionHandler: completionHandler)
+  public func prepareForAnimation(
+    withGIFURL imageURL: URL,
+    loopCount: Int = 0,
+    completionHandler: (@Sendable () -> Void)? = nil
+  ) {
+    Task {
+      do {
+        let (data, _) = try await URLSession.shared.data(from: imageURL)
+        await MainActor.run {
+          self.prepareForAnimation(
+            withGIFData: data,
+            loopCount: loopCount,
+            completionHandler: completionHandler
+          )
         }
-      default: ()
+      } catch {
+        print("Error downloading gif:", error.localizedDescription, "at url:", imageURL.absoluteString)
       }
     }
-
-    task.resume()
   }
 
   /// Stop animating and free up GIF data from memory.
@@ -209,9 +240,10 @@ extension GIFAnimatable {
 
   /// Updates the image with a new frame if necessary.
   public func updateImageIfNeeded() {
-    if var imageContainer = self as? any ImageContainer {
-      let container = imageContainer
-      imageContainer.image = activeFrame ?? container.image
+    if let imageContainer = self as? (any ImageContainer) {
+      let currentImage = imageContainer.image
+      let newImage = activeFrame ?? currentImage
+      imageContainer.image = newImage
     } else {
       layer.contents = activeFrame?.cgImage
     }

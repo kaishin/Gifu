@@ -9,13 +9,17 @@ on:
       - master
 
 jobs:
-  build:
-    runs-on: macOS-13
+  # Device list: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
+  build-xcode-16:
+    runs-on: macos-latest
     env:
-      DEVELOPER_DIR: /Applications/Xcode_15.0.1.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
 
     steps:
       - uses: actions/checkout@v1
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "16.2.0"
       - name: Run iOS tests
         run: make test-ios
       - name: Run tvOS tests

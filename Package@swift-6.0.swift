@@ -1,18 +1,19 @@
-// swift-tools-version: 5.9
+// swift-tools-version:6.0
 
 import PackageDescription
 
 let package = Package(
   name: "Gifu",
   platforms: [
-    .iOS(.v14),
-    .tvOS(.v14),
+    .iOS(.v16),
+    .tvOS(.v16),
     .visionOS(.v1),
   ],
   products: [
     .library(
       name: "Gifu",
-      targets: ["Gifu"])
+      targets: ["Gifu"]
+    )
   ],
   dependencies: [],
   targets: [
@@ -23,7 +24,16 @@ let package = Package(
     .testTarget(
       name: "GifuTests",
       dependencies: ["Gifu"],
-      resources: [.process("Images")]
-    )
+      resources: [
+        .copy("Images")
+      ]
+    ),
   ]
 )
+
+for target in package.targets {
+  target.swiftSettings = target.swiftSettings ?? []
+  target.swiftSettings?.append(contentsOf: [
+    .enableUpcomingFeature("ExistentialAny")
+  ])
+}
