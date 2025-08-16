@@ -68,11 +68,7 @@ final class FrameStore: Sendable {
   /// The index of the previous GIF frame.
   var previousFrameIndex = 0 {
     didSet {
-      preloadFrameQueue.async {
-        Task { @MainActor in
-          self.updateFrameCache()
-        }
-      }
+      updateFrameCache()
     }
   }
 
@@ -81,11 +77,6 @@ final class FrameStore: Sendable {
 
   /// Specifies whether GIF frames should be resized.
   var shouldResizeFrames = true
-
-  /// Dispatch queue used for preloading images.
-  private lazy var preloadFrameQueue: DispatchQueue = {
-    return DispatchQueue(label: "co.kaishin.Gifu.preloadQueue")
-  }()
 
   /// The current image frame to show.
   var currentFrameImage: UIImage? {
@@ -101,7 +92,6 @@ final class FrameStore: Sendable {
   var isAnimatable: Bool {
     return imageSource.isAnimatedGIF
   }
-
 
   /// Creates an animator instance from raw GIF image data and an `Animatable` delegate.
   ///
@@ -158,12 +148,8 @@ final class FrameStore: Sendable {
     frameCount = Int(CGImageSourceGetCount(imageSource))
     animatedFrames.reserveCapacity(frameCount)
 
-    preloadFrameQueue.async {
-      Task { @MainActor in
-        self.setupAnimatedFrames()
-        completionHandler?()
-      }
-    }
+    setupAnimatedFrames()
+    completionHandler?()
   }
 
   /// Returns the frame at a particular index.
@@ -227,7 +213,8 @@ extension FrameStore {
   /// Updates the frames by preloading new ones and replacing the previous frame with a placeholder.
   private func updateFrameCache() {
     if case let .cacheUpcoming(size) = cachingStrategy,
-      size < frameCount - 1 {
+      size < frameCount - 1
+    {
       deleteCachedFrame(at: previousFrameIndex)
     }
 

@@ -143,15 +143,9 @@ public class Animator {
     displayLink.add(to: .main, forMode: RunLoop.Mode.common)
   }
 
-  private func invalidateDisplayLink() {
-    Task { [displayLink] in
-      displayLink.invalidate()
-    }
-  }
-
   deinit {
     MainActor.assumeIsolated {
-      invalidateDisplayLink()
+      displayLink.invalidate()
     }
   }
 

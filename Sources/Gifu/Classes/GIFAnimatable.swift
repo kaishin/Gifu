@@ -18,7 +18,7 @@ public protocol GIFAnimatable: AnyObject, Sendable {
 }
 
 /// A single-property protocol that animatable classes can optionally conform to.
-public protocol ImageContainer {
+public protocol ImageContainer: AnyObject {
   /// Used for displaying the animation frames.
   @MainActor var image: UIImage? { get set }
 }
@@ -162,9 +162,10 @@ extension GIFAnimatable {
     loopCount: Int = 0,
     completionHandler: (@Sendable () -> Void)? = nil
   ) {
-    if var imageContainer = self as? (any ImageContainer) {
-      let initialImage = UIImage(data: imageData)
-      imageContainer.image = initialImage
+    if let imageContainer = self as? (any ImageContainer) {
+      MainActor.assumeIsolated {
+        imageContainer.image = UIImage(data: imageData)
+      }
     }
 
     animator?.prepareForAnimation(
@@ -241,7 +242,7 @@ extension GIFAnimatable {
 
   /// Updates the image with a new frame if necessary.
   public func updateImageIfNeeded() {
-    if var imageContainer = self as? (any ImageContainer) {
+    if let imageContainer = self as? (any ImageContainer) {
       let currentImage = imageContainer.image
       let newImage = activeFrame ?? currentImage
       imageContainer.image = newImage
