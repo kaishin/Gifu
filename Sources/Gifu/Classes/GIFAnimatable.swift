@@ -163,9 +163,7 @@ extension GIFAnimatable {
     completionHandler: (@Sendable () -> Void)? = nil
   ) {
     if let imageContainer = self as? (any ImageContainer) {
-      MainActor.assumeIsolated {
-        imageContainer.image = UIImage(data: imageData)
-      }
+      imageContainer.image = UIImage(data: imageData)
     }
 
     animator?.prepareForAnimation(

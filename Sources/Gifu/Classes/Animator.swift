@@ -143,12 +143,6 @@ public class Animator {
     displayLink.add(to: .main, forMode: RunLoop.Mode.common)
   }
 
-  deinit {
-    MainActor.assumeIsolated {
-      displayLink.invalidate()
-    }
-  }
-
   /// Start animating.
   func startAnimating() {
     if frameStore?.isAnimatable ?? false {
