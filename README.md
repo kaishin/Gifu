@@ -20,17 +20,6 @@ let package = Package(
 )
 ```
 
-#### [Carthage](https://github.com/Carthage/Carthage) (Deprecated)
-
-- Add the following to your Cartfile: `github "kaishin/Gifu"`
-- Then run `carthage update`
-- Follow the current instructions in [Carthage's README][carthage-installation]
-  for up to date installation instructions.
-
-[carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
-
-> **Deprecated Methods Notice**: The installation method using Carthage is now deprecated and will not be supported in future releases. It is recommended to use Swift Package Manager for integrating Gifu into your projects.
-
 ## How It Works
 
 `Gifu` does not require using the built-in `GIFImageView` subclass. The `Animator` class does the heavy-lifting, while the `GIFAnimatable` protocol exposes the functionality to the view classes that conform to it, using protocol extensions.
