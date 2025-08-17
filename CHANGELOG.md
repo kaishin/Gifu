@@ -7,10 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.0.1] - 2024-08-17
 
-### Fixed
+### Changed
 
-- Fixed `Gifu.podspec` by removing invalid Swift 6.2 reference and cleaning up submodules configuration
-- Improved compatibility with dependency managers
+- Dropped support for Carthage and CocoaPods.
 
 ## [4.0.0] - 2024-08-16
 
